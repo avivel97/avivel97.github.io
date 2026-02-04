@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RetailBI — Analytical Solution for Retail</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-primary: #0a0e17;
+    --bg-secondary: #111827;
+    --bg-card: #1a2235;
+    --bg-card-hover: #1f2a40;
+    --accent: #3b82f6;
+    --accent-light: #60a5fa;
+    --accent-glow: rgba(59, 130, 246, 0.15);
+    --accent-green: #10b981;
+    --accent-amber: #f59e0b;
+    --accent-red: #ef4444;
+    --accent-purple: #8b5cf6;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border: #1e293b;
+    --border-light: #334155;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  /* ── Navigation ── */
+
+  .slide-counter {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    z-index: 100;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .arrow-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    background: rgba(17, 24, 39, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+  .arrow-nav:hover { background: rgba(59, 130, 246, 0.15); color: var(--accent-light); border-color: var(--accent); }
+  .arrow-left { left: 20px; }
+  .arrow-right { right: 20px; }
+
+
+  /* ── Slides Container ── */
+  .slides-wrapper {
+    display: flex;
+    height: 100vh;
+    transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .slide {
+    min-width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── Background Effects ── */
+  .slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 600px 400px at 15% 20%, rgba(59, 130, 246, 0.06), transparent),
+      radial-gradient(ellipse 500px 350px at 85% 75%, rgba(139, 92, 246, 0.04), transparent);
+    pointer-events: none;
+  }
+
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  /* ── Content Wrapper ── */
+  .slide-content {
+    max-width: 1200px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Typography ── */
+  .tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-glow);
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 640px;
+    font-weight: 400;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--accent-light), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-green {
+    background: linear-gradient(135deg, var(--accent-green), #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-amber {
+    background: linear-gradient(135deg, var(--accent-amber), #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Cards ── */
+  .card-grid {
+    display: grid;
+    gap: 14px;
+    margin-top: 20px;
+  }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    transition: all 0.3s;
+  }
+  .card:hover {
+    border-color: var(--border-light);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  .card-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  .icon-blue { background: rgba(59, 130, 246, 0.12); color: var(--accent-light); }
+  .icon-green { background: rgba(16, 185, 129, 0.12); color: var(--accent-green); }
+  .icon-amber { background: rgba(245, 158, 11, 0.12); color: var(--accent-amber); }
+  .icon-purple { background: rgba(139, 92, 246, 0.12); color: var(--accent-purple); }
+  .icon-red { background: rgba(239, 68, 68, 0.12); color: var(--accent-red); }
+
+  .card p {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  /* ── Comparison Table ── */
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .comp-col {
+    border-radius: 14px;
+    padding: 22px;
+    border: 1px solid var(--border);
+  }
+  .comp-traditional {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(239, 68, 68, 0.02));
+    border-color: rgba(239, 68, 68, 0.15);
+  }
+  .comp-ours {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(59, 130, 246, 0.03));
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+  .comp-col h3 {
+    margin-bottom: 14px;
+    font-size: 1rem;
+  }
+  .comp-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+  .comp-icon {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    margin-top: 1px;
+  }
+  .icon-cross { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); }
+  .icon-check { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+
+  /* ── Architecture Diagram ── */
+  .arch-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .arch-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 120px;
+    transition: all 0.3s;
+  }
+  .arch-block:hover { border-color: var(--accent); box-shadow: 0 0 16px var(--accent-glow); }
+  .arch-block .block-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .arch-block .block-name { font-size: 1rem; font-weight: 600; }
+  .arch-arrow { color: var(--text-muted); font-size: 1.4rem; }
+
+  /* ── Stats Row ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .stat {
+    text-align: left;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .stat-icon {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    margin-top: 2px;
+  }
+  .stat-text { flex: 1; }
+  .stat-value {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .stat-label {
+    font-size: 0.73rem;
+    color: var(--text-muted);
+    margin-top: 3px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* ── Flow Diagram ── */
+  .flow-row {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .flow-step {
+    flex: 1;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 14px;
+    text-align: center;
+    position: relative;
+  }
+  .flow-step .step-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 8px;
+  }
+  .flow-step h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+  .flow-step p { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; }
+  .flow-arrow-h { display: flex; align-items: center; color: var(--accent); font-size: 1.2rem; }
+
+  /* ── Highlight Box ── */
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.05));
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 14px;
+    padding: 16px 22px;
+    margin-top: 16px;
+  }
+  .highlight-box p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+
+  /* ── Side-by-side layout ── */
+  .split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* ── Lists ── */
+  .feature-list {
+    list-style: none;
+    margin-top: 12px;
+  }
+  .feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .feature-list .li-icon {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    margin-top: 2px;
+    background: rgba(59, 130, 246, 0.12);
+    color: var(--accent-light);
+  }
+
+  /* ── Code Block ── */
+  .code-block {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    overflow-x: auto;
+    margin-top: 14px;
+  }
+  .code-block .kw { color: var(--accent-purple); }
+  .code-block .fn { color: var(--accent-light); }
+  .code-block .str { color: var(--accent-green); }
+  .code-block .cmt { color: var(--text-muted); font-style: italic; }
+  .code-block .num { color: var(--accent-amber); }
+
+  /* ── Matrix Visual ── */
+  .matrix-grid {
+    display: grid;
+    grid-template-columns: auto repeat(3, 1fr);
+    gap: 3px;
+    margin-top: 24px;
+    max-width: 420px;
+  }
+  .matrix-cell {
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 6px;
+  }
+  .matrix-header {
+    background: transparent;
+    color: var(--text-muted);
+    font-weight: 700;
+    font-size: 0.78rem;
+  }
+  .matrix-row-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-weight: 700;
+    font-size: 0.78rem;
+  }
+  .cell-high { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+  .cell-mid { background: rgba(245, 158, 11, 0.12); color: var(--accent-amber); }
+  .cell-low { background: rgba(239, 68, 68, 0.1); color: var(--accent-red); }
+
+  /* ── Title Slide Specific ── */
+  .title-slide .slide-content {
+    text-align: left;
+    max-width: 1200px;
+  }
+  .title-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: stretch;
+  }
+  .title-left {}
+  .title-slide h1 {
+    font-size: 3.6rem;
+    margin-bottom: 12px;
+  }
+  .title-slide .subtitle {
+    font-size: 1rem;
+    max-width: 560px;
+    line-height: 1.55;
+    margin-bottom: 0;
+  }
+  .title-motto {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .motto-line {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.8;
+    letter-spacing: -0.04em;
+  }
+  .motto-dim {
+    color: var(--text-muted);
+  }
+  .motto-accent {
+    background: linear-gradient(135deg, var(--accent-light), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Closing Slide ── */
+  .closing-slide .slide-content { text-align: center; }
+  .closing-slide h2 { font-size: 2.4rem; margin-bottom: 10px; }
+  .closing-slide .subtitle { margin: 0 auto; text-align: center; }
+
+  /* ── Alt Title Slide ── */
+  .alt-title-slide .slide-content {
+    max-width: 960px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0;
+  }
+  .alt-brand {
+    margin-bottom: 40px;
+  }
+  .alt-brand .tag { margin-bottom: 10px; }
+  .alt-title-slide h1 {
+    font-size: 3.8rem;
+    margin-bottom: 0;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+  .alt-motto {
+    font-size: 2.15rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.4;
+    max-width: 800px;
+    background: linear-gradient(135deg, var(--accent-light) 0%, #a78bfa 50%, var(--accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 40px;
+  }
+  .alt-divider {
+    width: 50%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), var(--accent-purple), transparent);
+    margin-bottom: 36px;
+  }
+  .alt-pillars-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 32px;
+  }
+  .alt-pill {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+    padding: 18px 20px;
+    border-radius: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .alt-pill:hover {
+    border-color: var(--border-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  }
+  .alt-pill-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .alt-pill h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .alt-pill p {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+  .alt-footer {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    max-width: 680px;
+    font-weight: 400;
+  }
+
+  /* ── Company Logos Strip ── */
+  .logo-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+    padding: 14px 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .logo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px 6px 8px;
+    border-radius: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.01em;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+  .logo-badge:hover {
+    border-color: var(--border-light);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+  }
+  .logo-badge img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    border-radius: 3px;
+  }
+  .logo-source {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+  .logo-source a {
+    color: var(--accent-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(96, 165, 250, 0.3);
+  }
+  .logo-source a:hover {
+    border-bottom-color: var(--accent-light);
+  }
+
+  /* ── Team Cards ── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 28px;
+  }
+  .team-member {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 20px 24px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .team-member:hover {
+    border-color: var(--border-light);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  .team-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 16px;
+    display: block;
+    border: 2px solid var(--border-light);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .team-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .team-role {
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+  .team-bio {
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  @media (max-width: 1024px) {
+    .team-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── Animations ── */
+  .slide-content > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .slide.active .slide-content > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .slide.active .slide-content > *:nth-child(1) { transition-delay: 0.1s; }
+  .slide.active .slide-content > *:nth-child(2) { transition-delay: 0.2s; }
+  .slide.active .slide-content > *:nth-child(3) { transition-delay: 0.3s; }
+  .slide.active .slide-content > *:nth-child(4) { transition-delay: 0.4s; }
+  .slide.active .slide-content > *:nth-child(5) { transition-delay: 0.5s; }
+  .slide.active .slide-content > *:nth-child(6) { transition-delay: 0.6s; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .slide { padding: 40px; }
+    h1 { font-size: 2.4rem; }
+    h2 { font-size: 2rem; }
+    .title-slide h1 { font-size: 2.8rem; }
+    .card-grid.grid-3, .card-grid.grid-4 { grid-template-columns: 1fr 1fr; }
+    .split-layout { grid-template-columns: 1fr; gap: 24px; }
+    .comparison { grid-template-columns: 1fr; }
+    .title-header { grid-template-columns: 1fr; gap: 20px; }
+    .title-motto { text-align: left; }
+    .stats-row { grid-template-columns: 1fr; }
+    .flow-row { flex-direction: column; }
+    .flow-arrow-h { transform: rotate(90deg); justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<button class="arrow-nav arrow-left" onclick="prevSlide()">&#8592;</button>
+<button class="arrow-nav arrow-right" onclick="nextSlide()">&#8594;</button>
+<div class="slide-counter" id="slideCounter"></div>
+
+<div class="slides-wrapper" id="slidesWrapper">
+
+  <!-- ═══════════════ SLIDE 1: TITLE (SELLING) ═══════════════ -->
+  <div class="slide alt-title-slide active">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="alt-brand">
+        <div class="tag">Система продвинутой аналитики для ритейла</div>
+        <h1>Retail<span class="gradient-text">BI+</span></h1>
+      </div>
+      <div class="alt-motto">
+        Аналитика для тех, кто хочет развивать бизнес, а&nbsp;не&nbsp;просто смотреть на&nbsp;графики.
+      </div>
+      <div class="alt-divider"></div>
+      <div class="alt-pillars-row">
+        <div class="alt-pill">
+          <span class="alt-pill-icon">&#128187;</span>
+          <div>
+            <h3 class="gradient-text">Dashboard-as-Code</h3>
+            <p>Agent-friendly формат. Быстрая и дешевая разработка. Максимальная гибкость и прозрачность.</p>
+          </div>
+        </div>
+        <div class="alt-pill">
+          <span class="alt-pill-icon">&#9881;</span>
+          <div>
+            <h3 class="gradient-green">Compute &ne; Visualize</h3>
+            <p>Все расчёты вне дашбордов. Полная кастомизация алгоритмов. Продвинутая аналитика без ограничений.</p>
+          </div>
+        </div>
+        <div class="alt-pill">
+          <span class="alt-pill-icon">&#9889;</span>
+          <div>
+            <h3 class="gradient-amber">Эффективная архитектура</h3>
+            <p>Каждый объект &mdash; отдельный сервис. Только нужные данные. Быстрая работа на больших объёмах.</p>
+          </div>
+        </div>
+      </div>
+      <p class="alt-footer">
+        BIG DATA-система, которая анализирует данные научными методами &mdash; исследует структуру, динамику и первопричины, превращая сырые данные в решения на интерактивных дашбордах.
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SLIDE 2: WHAT WE ARE ═══════════════ -->
+  <div class="slide">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="tag">Наша позиция</div>
+      <h2>Мы даём <span class="gradient-green">инсайты</span>,<br>а не визуализации</h2>
+      <div class="split-layout" style="margin-top: 20px;">
+        <div>
+          <h3 style="color: var(--accent-green); margin-bottom: 16px;">Что мы такое</h3>
+          <ul class="feature-list">
+            <li>
+              <div class="li-icon" style="background: rgba(16, 185, 129, 0.12); color: var(--accent-green);">&#10003;</div>
+              <span><strong>Аналитический продукт</strong>, заточенные под данные ритейла</span>
+            </li>
+            <li>
+              <div class="li-icon" style="background: rgba(16, 185, 129, 0.12); color: var(--accent-green);">&#10003;</div>
+              <span>Продвинутые методы анализа данных для самых полезных инсайтов</span>
+            </li>
+            <li>
+              <div class="li-icon" style="background: rgba(16, 185, 129, 0.12); color: var(--accent-green);">&#10003;</div>
+              <span>Научный подход к поиску причинно-следственных связей</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="color: var(--accent-red); margin-bottom: 16px;">Чем мы не являемся</h3>
+          <ul class="feature-list">
+            <li>
+              <div class="li-icon" style="background: rgba(239, 68, 68, 0.12); color: var(--accent-red);">&#10007;</div>
+              <span>Не BI-инструмент для подготовки переговорных отчётов между ритейлерами и поставщиками</span>
+            </li>
+            <li>
+              <div class="li-icon" style="background: rgba(239, 68, 68, 0.12); color: var(--accent-red);">&#10007;</div>
+              <span>Не сервис &laquo;нарисуйте нам графики&raquo; &mdash; кастомные визуализации требуют отдельного проекта</span>
+            </li>
+            <li>
+              <div class="li-icon" style="background: rgba(239, 68, 68, 0.12); color: var(--accent-red);">&#10007;</div>
+              <span>Не завязаны на чужие методологии или представления о том, как делать аналитику</span>
+            </li>
+          </ul>
+          <div class="highlight-box" style="margin-top: 24px;">
+            <p><strong>Наши выводы могут быть неудобными.</strong> Мы работаем с данными так, как нужно для реального анализа, а не подстраиваемся под стандартные отчеты. Именно это делает анализ ценным.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SLIDE 3: THE PROBLEM ═══════════════ -->
+  <div class="slide">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="tag">Архитектурное сравнение</div>
+      <h2>Четыре решения, которые <span class="gradient-text">отличают</span> RetailBI<br>от традиционных BI-платформ</h2>
+
+      <!-- BIG3-style comparison table -->
+      <div style="margin-top: 24px; border: 1px solid var(--border); border-radius: 14px; overflow: hidden;">
+
+        <!-- Table header -->
+        <div style="display: grid; grid-template-columns: 1.1fr 1.5fr 1.9fr; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--border);">
+          <div style="padding: 14px 20px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted);">Измерение</div>
+          <div style="padding: 14px 20px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-red); border-left: 1px solid var(--border);">Традиционные BI-платформы</div>
+          <div style="padding: 14px 20px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-green); border-left: 1px solid var(--border);">Подход RetailBI</div>
+        </div>
+
+        <!-- Row 1: Code practices -->
+        <div style="display: grid; grid-template-columns: 1.1fr 1.5fr 1.9fr; border-bottom: 1px solid var(--border);">
+          <div style="padding: 16px 20px; display: flex; align-items: center;">
+            <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-primary);">Управление<br>кодом</span>
+          </div>
+          <div style="padding: 16px 20px; border-left: 1px solid var(--border); font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55;">
+            GUI-редактирование без версионирования.<br>Ручные правки &rarr; медленные релизы.<br>CI/CD для дашбордов отсутствует.<br>Создание множества версий под пользователей → ручная и рискованная работа.
+          </div>
+          <div style="padding: 16px 20px; border-left: 1px solid var(--border); font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55;">
+            <strong style="color: var(--accent-green);">Dashboard-as-Code.</strong><br>Полная история изменений (Git). CI/CD. AI-friendly формат разработки.<br>Прозрачность и сквозное изменений формул и графиков. <br>Максимальная кастомизация без рисков потери контроля.
+          </div>
+        </div>
+
+        <!-- Row 2: Tech stack -->
+        <div style="display: grid; grid-template-columns: 1.1fr 1.5fr 1.9fr; border-bottom: 1px solid var(--border);">
+          <div style="padding: 16px 20px; display: flex; align-items: center;">
+            <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-primary);">Технологический<br>стек</span>
+          </div>
+          <div style="padding: 16px 20px; border-left: 1px solid var(--border); font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55;">
+            Проприетарные языки (DAX, Qlik-скрипты).<br>Vendor lock-in, лицензии за пользователя.<br>Миграция = пересборка с нуля.
+          </div>
+          <div style="padding: 16px 20px; border-left: 1px solid var(--border); font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55;">
+            <strong style="color: var(--accent-green);">Открытый стек.</strong><br>Python, SQL, JavaScript, DuckDB, Docker+Kubernetes и другие.<br>Полный доступ к экосистеме ML/DS-библиотек.
+          </div>
+        </div>
+
+        <!-- Row 3: Compute layer -->
+        <div style="display: grid; grid-template-columns: 1.1fr 1.5fr 1.9fr; border-bottom: 1px solid var(--border);">
+          <div style="padding: 16px 20px; display: flex; align-items: center;">
+            <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-primary);">Вычислительный<br>слой</span>
+          </div>
+          <div style="padding: 16px 20px; border-left: 1px solid var(--border); font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55;">
+            Расчёты в ETL или in-memory движке.<br>Кастомные модели &rarr; ручная интеграция отдельной инфраструктуры.
+          </div>
+          <div style="padding: 16px 20px; border-left: 1px solid var(--border); font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55;">
+            <strong style="color: var(--accent-green);"> Compute ≠ Visualize.</strong><br>Вычисления происходят вне BI &rarr; доступны сложные вычисления.<br>Любая кастомная логика расчетов. <br> Динамическая обработка любых объемов данных.
+          </div>
+        </div>
+
+        <!-- Row 4: Data access -->
+        <div style="display: grid; grid-template-columns: 1.1fr 1.5fr 1.9fr;">
+          <div style="padding: 16px 20px; display: flex; align-items: center;">
+            <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-primary);">Доступ<br>к данным</span>
+          </div>
+          <div style="padding: 16px 20px; border-left: 1px solid var(--border); font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55;">
+            Общая in-memory модель для всего приложения.<br>Вынужденная предагрегация для больших объёмов.<br>On-demand reload - затруднен или недоступен.
+          </div>
+          <div style="padding: 16px 20px; border-left: 1px solid var(--border); font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55;">
+            <strong style="color: var(--accent-green);">Объект на листе = SQL-эндпоинт.</strong><br>Каждый график/таблица хранит только то, что отображает.<br> Пересчет по новым фильтрам, быстрый отклик.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SLIDE 4: CODE MANAGEMENT ═══════════════ -->
+  <div class="slide">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="tag">Управление кодом</div>
+      <h2>Открытый стек. Проверенные технологии.<br><span class="gradient-text">Индустриальный стандарт.</span></h2>
+
+      <!-- Three-column layout -->
+      <div style="display: grid; grid-template-columns: 0.8fr 1.1fr 1.1fr; gap: 20px; margin-top: 24px;">
+
+        <!-- Column 1: Tech Stack (stretches full height) -->
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <h3 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); padding-bottom: 8px; border-bottom: 1px solid var(--border); margin-bottom: 0;">Технологии</h3>
+          <div class="card" style="padding: 18px; flex: 1; display: flex; flex-direction: column; justify-content: center;">
+            <div class="card-icon icon-blue" style="width: 32px; height: 32px; font-size: 1rem; margin-bottom: 8px;">&#128187;</div>
+            <h3 style="font-size: 0.9rem;">Python + SQL</h3>
+            <p style="font-size: 0.75rem;">Бэкенд</p>
+          </div>
+          <div class="card" style="padding: 18px; flex: 1; display: flex; flex-direction: column; justify-content: center;">
+            <div class="card-icon icon-amber" style="width: 32px; height: 32px; font-size: 1rem; margin-bottom: 8px;">&#127760;</div>
+            <h3 style="font-size: 0.9rem;">JavaScript + HTML</h3>
+            <p style="font-size: 0.75rem;">Фронтенд</p>
+          </div>
+          <div class="card" style="padding: 18px; flex: 1; display: flex; flex-direction: column; justify-content: center;">
+            <div class="card-icon icon-green" style="width: 32px; height: 32px; font-size: 1rem; margin-bottom: 8px;">&#128230;</div>
+            <h3 style="font-size: 0.9rem;">Docker + Kubernetes</h3>
+            <p style="font-size: 0.75rem;">Деплой</p>
+          </div>
+        </div>
+
+        <!-- Column 2: Vega + Used by -->
+        <div style="display: flex; flex-direction: column; border-left: 1px solid var(--border); padding-left: 20px;">
+          <h3 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-light); padding-bottom: 8px; border-bottom: 1px solid var(--border); margin-bottom: 10px;">Vega &mdash; визуализации</h3>
+          <div style="display: flex; flex-direction: column; gap: 8px; flex: 1;">
+            <div class="card" style="padding: 12px 14px; border-color: rgba(59, 130, 246, 0.15);">
+              <h3 style="font-size: 0.8rem; color: var(--accent-light); margin-bottom: 4px;">1. Графики строятся в браузере</h3>
+              <p style="font-size: 0.7rem; line-height: 1.45;">Вся работа происходит на устройстве пользователя.<br>
+              <span style="color: var(--text-muted);">→ Минимальная нагрузка на сервер<br>→ Легко добавлять пользователей</span></p>
+            </div>
+            <div class="card" style="padding: 12px 14px; border-color: rgba(59, 130, 246, 0.15);">
+              <h3 style="font-size: 0.8rem; color: var(--accent-light); margin-bottom: 4px;">2. Нет состояния на сервере</h3>
+              <p style="font-size: 0.7rem; line-height: 1.45;">Каждый запрос независим — система не хранит сессии.<br>
+              <span style="color: var(--text-muted);">→ Стабильность при пиках нагрузки<br>→ Простое масштабирование</span></p>
+            </div>
+            <div class="card" style="padding: 12px 14px; border-color: rgba(59, 130, 246, 0.15);">
+              <h3 style="font-size: 0.8rem; color: var(--accent-light); margin-bottom: 4px;">3. Декларативный подход</h3>
+              <p style="font-size: 0.7rem; line-height: 1.45;">Интерактивность внутри Vega, не через callback'и.<br>
+              <span style="color: var(--text-muted);">→ Предсказуемая работа<br>→ Меньше ошибок</span></p>
+            </div>
+          </div>
+          <!-- Vega used by -->
+          <div style="margin-top: 10px;">
+            <p style="text-align: center; font-size: 0.65rem; color: var(--text-muted); margin-bottom: 5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;">Используют</p>
+            <div class="logo-strip" style="padding: 6px 10px; flex-direction: column; gap: 4px;">
+              <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;">
+                <span class="logo-badge" style="padding: 3px 8px 3px 5px; font-size: 0.72rem;"><img src="frontend/img/logos/google.png" alt="Google" style="width: 16px; height: 16px;"> Google</span>
+                <span class="logo-badge" style="padding: 3px 8px 3px 5px; font-size: 0.72rem;"><img src="frontend/img/logos/apple.png" alt="Apple" style="width: 16px; height: 16px;"> Apple</span>
+                <span class="logo-badge" style="padding: 3px 8px 3px 5px; font-size: 0.72rem;"><img src="frontend/img/logos/microsoft.png" alt="Microsoft" style="width: 16px; height: 16px;"> Microsoft</span>
+                <span class="logo-badge" style="padding: 3px 8px 3px 5px; font-size: 0.72rem;"><img src="frontend/img/logos/airbnb.png" alt="Airbnb" style="width: 16px; height: 16px;"> Airbnb</span>
+              </div>
+              <div style="display: flex; gap: 10px; justify-content: center; font-size: 0.62rem; color: var(--text-muted); visibility: hidden;">
+                <span>&nbsp;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: DuckDB + File Storage + Used by -->
+        <div style="display: flex; flex-direction: column; border-left: 1px solid var(--border); padding-left: 20px;">
+          <h3 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-amber); padding-bottom: 8px; border-bottom: 1px solid var(--border); margin-bottom: 10px;">DuckDB + File Storage</h3>
+          <div style="display: flex; flex-direction: column; gap: 8px; flex: 1;">
+            <div class="card" style="padding: 12px 14px; border-color: rgba(245, 158, 11, 0.15);">
+              <h3 style="font-size: 0.8rem; color: var(--accent-amber); margin-bottom: 4px;">1. Hot–cold разделение данных</h3>
+              <p style="font-size: 0.7rem; line-height: 1.45;">DuckDB для горячих данных; холодные — в файлах.<br>
+              <span style="color: var(--text-muted);">→ Быстрая колоночная in-memory БД для работы сессии <br>→ Безлимитная история в дешёвом хранилище</span></p>
+            </div>
+            <div class="card" style="padding: 12px 14px; border-color: rgba(245, 158, 11, 0.15);">
+              <h3 style="font-size: 0.8rem; color: var(--accent-amber); margin-bottom: 4px;">2. Загрузка по требованию</h3>
+              <p style="font-size: 0.7rem; line-height: 1.45;">В DuckDB только нужное сейчас, остальное - по нажатию кнопки.<br>
+              <span style="color: var(--text-muted);">→ Каждый пользователь грузит нужное ему.<br>→ Вычисления на BIG DATA - вне БД, результаты в DuckDB</span></p>
+            </div>
+            <div class="card" style="padding: 12px 14px; border-color: rgba(245, 158, 11, 0.15);">
+              <h3 style="font-size: 0.8rem; color: var(--accent-amber); margin-bottom: 4px;">3. Предсказуемая производительность</h3>
+              <p style="font-size: 0.7rem; line-height: 1.45;">Дашборды работают с датасетом стабильного размера.<br>
+              <span style="color: var(--text-muted);">→ Устойчивая latency под нагрузкой<br>→ Простой деплой, лёгкое кеширование</span></p>
+            </div>
+          </div>
+          <!-- DuckDB used by -->
+          <div style="margin-top: 10px;">
+            <p style="text-align: center; font-size: 0.65rem; color: var(--text-muted); margin-bottom: 5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;">Используют</p>
+            <div class="logo-strip" style="padding: 6px 10px; flex-direction: column; gap: 4px;">
+              <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;">
+                <span class="logo-badge" style="padding: 3px 8px 3px 5px; font-size: 0.72rem;"><img src="frontend/img/logos/evidence.png" alt="Evidence" style="width: 16px; height: 16px;"> Evidence</span>
+                <span class="logo-badge" style="padding: 3px 8px 3px 5px; font-size: 0.72rem;"><img src="frontend/img/logos/rill.png" alt="Rill" style="width: 16px; height: 16px;"> Rill</span>
+                <span class="logo-badge" style="padding: 3px 8px 3px 5px; font-size: 0.72rem;"><img src="frontend/img/logos/mode.png" alt="Mode" style="width: 16px; height: 16px;"> Mode</span>
+                <span class="logo-badge" style="padding: 3px 8px 3px 5px; font-size: 0.72rem;"><img src="frontend/img/logos/hex.png" alt="Hex" style="width: 16px; height: 16px;"> Hex</span>
+              </div>
+              <div style="display: flex; gap: 10px; justify-content: center; font-size: 0.62rem; color: var(--text-muted);">
+                <span><strong style="color: var(--text-secondary);">Evidence</strong> — SQL Engine</span>
+                <span><strong style="color: var(--text-secondary);">Rill &amp; Mode</strong> — Dashboards</span>
+                <span><strong style="color: var(--text-secondary);">Hex</strong> — Notebooks</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SLIDE 5: DATA ACCESS ═══════════════ -->
+  <div class="slide">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="tag">Доступ к данным</div>
+      <h2>Как данные попадают на дашборд</h2>
+
+      <!-- VS Comparison Header -->
+      <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; margin-top: 24px; align-items: start;">
+
+        <!-- Traditional BI -->
+        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(239, 68, 68, 0.03)); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 14px; padding: 20px;">
+          <h3 style="color: var(--accent-red); font-size: 1rem; margin-bottom: 12px; text-align: center;">Традиционные BI</h3>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); text-align: center; margin-bottom: 16px;">Весь датасет загружен в память заранее</p>
+
+          <!-- Scheme -->
+          <div style="background: rgba(0,0,0,0.2); border-radius: 10px; padding: 16px;">
+            <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+              <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 12px 24px; text-align: center;">
+                <div style="font-size: 0.75rem; font-weight: 600; color: var(--accent-red);">Data Model</div>
+                <div style="font-size: 0.65rem; color: var(--text-muted);">In-Memory (ВЕСЬ датасет)</div>
+              </div>
+              <div style="color: var(--text-muted); font-size: 0.7rem;">читают из памяти</div>
+              <div style="color: var(--accent-red); font-size: 1.2rem;">↓ ↓ ↓ ↓</div>
+              <div style="display: flex; gap: 8px; justify-content: center;">
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 0.7rem;">График 1</div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 0.7rem;">График 2</div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 0.7rem;">...</div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 0.7rem;">График N</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px; font-size: 0.72rem; color: var(--text-muted); line-height: 1.5;">
+            <span style="color: var(--accent-red);">→</span> Данные загружены заранее целиком<br>
+            <span style="color: var(--accent-red);">→</span> Графики читают из in-memory модели<br>
+            <span style="color: var(--accent-red);">→</span> Память занята независимо от использования
+          </div>
+        </div>
+
+        <!-- VS Divider -->
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 60px;">
+          <div style="background: linear-gradient(180deg, var(--accent-red), var(--accent-green)); color: white; font-weight: 800; font-size: 1rem; padding: 12px 16px; border-radius: 50%; letter-spacing: -0.02em;">VS</div>
+        </div>
+
+        <!-- RetailBI -->
+        <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(59, 130, 246, 0.05)); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 14px; padding: 20px;">
+          <h3 style="color: var(--accent-green); font-size: 1rem; margin-bottom: 12px; text-align: center;">RetailBI</h3>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); text-align: center; margin-bottom: 16px;">N графиков = N запросов к бэкенду</p>
+
+          <!-- Scheme -->
+          <div style="background: rgba(0,0,0,0.2); border-radius: 10px; padding: 16px;">
+            <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+              <div style="display: flex; gap: 8px; justify-content: center;">
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 0.7rem;">График 1</div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 0.7rem;">График 2</div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 0.7rem;">...</div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 0.7rem;">График N</div>
+              </div>
+              <div style="color: var(--accent-green); font-size: 1.2rem;">↓ ↓ ↓ ↓</div>
+              <div style="color: var(--text-muted); font-size: 0.7rem;">запросы к бэкенду</div>
+              <div style="color: var(--accent-green); font-size: 1.2rem;">↓ ↓ ↓ ↓</div>
+              <div style="display: flex; gap: 6px; justify-content: center;">
+                <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 6px; padding: 6px 10px; text-align: center;">
+                  <div style="font-size: 0.65rem; color: var(--accent-green);">Агрегат 1</div>
+                </div>
+                <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 6px; padding: 6px 10px; text-align: center;">
+                  <div style="font-size: 0.65rem; color: var(--accent-green);">Агрегат 2</div>
+                </div>
+                <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 6px; padding: 6px 10px; text-align: center;">
+                  <div style="font-size: 0.65rem; color: var(--accent-green);">...</div>
+                </div>
+                <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 6px; padding: 6px 10px; text-align: center;">
+                  <div style="font-size: 0.65rem; color: var(--accent-green);">Агрегат N</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px; font-size: 0.72rem; color: var(--text-muted); line-height: 1.5;">
+            <span style="color: var(--accent-green);">→</span> Каждый график запрашивает свои данные<br>
+            <span style="color: var(--accent-green);">→</span> Бэкенд возвращает готовые агрегаты<br>
+            <span style="color: var(--accent-green);">→</span> Загружается только нужное для визуализации
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom note -->
+      <div class="highlight-box" style="margin-top: 20px;">
+        <p style="font-size: 0.82rem; text-align: center;"><strong>У RetailBI объём подгружаемых данных минимален</strong> — каждый график получает только рассчитанные значения в нужной детализации.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ SLIDE 6: COMPUTE LAYER ═══════════════ -->
+  <div class="slide">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="tag">Вычислительный слой</div>
+      <h2>Вычисления отделены от визуализации.<br><span class="gradient-amber">Можно рассчитать что угодно.</span></h2>
+      <p class="subtitle">В традиционных BI расчёты ограничены возможностями платформы. В RetailBI вычисления &mdash; отдельный слой без ограничений.</p>
+
+      <div class="card-grid grid-3" style="margin-top: 24px;">
+        <div class="card">
+          <div class="card-icon icon-purple">&#9881;</div>
+          <h3>Любые модели без ограничений</h3>
+          <p>Прогнозирование, аномалии, эластичность &mdash; подключаются без согласований с вендором и без дополнительных затрат.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon icon-green">&#9889;</div>
+          <h3>Быстрое внедрение</h3>
+          <p>Добавление новой модели не требует переделки дашбордов. Новая аналитика = новый модуль.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon icon-blue">&#128260;</div>
+          <h3>Переиспользование</h3>
+          <p>Одни расчёты питают несколько дашбордов, отчётов и API. Единый источник правды.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon icon-amber">&#128269;</div>
+          <h3>Тестируемость</h3>
+          <p>Бизнес-логика проверяется отдельно от UI. Ошибки ловятся до релиза.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon icon-green">&#128218;</div>
+          <h3>Версионирование</h3>
+          <p>Формулы в коде — можно откатить, сравнить и проверить историю изменений.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon icon-blue">&#128101;</div>
+          <h3>Независимость команд</h3>
+          <p>Аналитики работают над моделями, не трогая дашборды. Параллельная разработка.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SLIDE 7: PRODUCTION GRADE ═══════════════ -->
+  <div class="slide">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="tag">Готовность к продакшену</div>
+      <h2>Production-grade<br><span class="gradient-green">с первого дня</span></h2>
+      <p class="subtitle">Не прототип. Система с безопасностью, мониторингом и автоматизированным деплоем из коробки.</p>
+      <div class="card-grid grid-2">
+        <div class="card">
+          <div class="card-icon icon-blue">&#128274;</div>
+          <h3>Безопасность</h3>
+          <p>Аутентификация, защита от инъекций, ограничение частоты запросов, шифрование. Данные доступны только на чтение.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon icon-green">&#128200;</div>
+          <h3>Мониторинг</h3>
+          <p>Метрики производительности, визуальные дашборды состояния системы, централизованные логи. Проблемы видны до того, как о них сообщит пользователь.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon icon-amber">&#128230;</div>
+          <h3>Деплой одной командой</h3>
+          <p>Контейнерная архитектура, кеширование, балансировка нагрузки. Разворачивание на новом сервере &mdash; одна команда.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon icon-purple">&#128296;</div>
+          <h3>Автоматическое обновление данных</h3>
+          <p>Конвейер данных синхронизирует источники без простоев. 130+ автотестов гарантируют стабильность при каждом обновлении.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  const wrapper = document.getElementById('slidesWrapper');
+  const counter = document.getElementById('slideCounter');
+
+  function goToSlide(n) {
+    if (n < 0 || n >= totalSlides) return;
+    slides[currentSlide].classList.remove('active');
+    currentSlide = n;
+    wrapper.style.transform = `translateX(-${currentSlide * 100}vw)`;
+    slides[currentSlide].classList.add('active');
+    counter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+  }
+
+  function nextSlide() { goToSlide(currentSlide + 1); }
+  function prevSlide() { goToSlide(currentSlide - 1); }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+    if (e.key === 'Home') { e.preventDefault(); goToSlide(0); }
+    if (e.key === 'End') { e.preventDefault(); goToSlide(totalSlides - 1); }
+  });
+
+  // Touch / swipe support
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 60) { diff > 0 ? nextSlide() : prevSlide(); }
+  });
+
+  // Mouse wheel navigation (debounced)
+  let wheelTimeout = false;
+  document.addEventListener('wheel', e => {
+    if (wheelTimeout) return;
+    wheelTimeout = true;
+    setTimeout(() => { wheelTimeout = false; }, 800);
+    e.deltaY > 0 ? nextSlide() : prevSlide();
+  }, { passive: true });
+
+  // Init
+  counter.textContent = `1 / ${totalSlides}`;
+</script>
+</body>
+</html>
