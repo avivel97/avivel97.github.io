@@ -1,11 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=Retail_BI_pitch.html">
-    <title>Redirecting to Presentation...</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vladimir Belolipetskiy</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <p>Redirecting to <a href="Retail_BI_pitch.html">Retail Business Intelligence Presentation</a>...</p>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Vladimir Belolipetskiy home">
+      <span class="brand-mark">VB</span>
+      <span>Vladimir Belolipetskiy</span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#cv">CV</a>
+      <a href="#research">Research</a>
+      <a href="#in-progress">In-progress</a>
+      <a class="profile-link" href="https://orcid.org/0009-0003-4219-0287" target="_blank" rel="noreferrer">
+        ORCID 0009-0003-4219-0287
+      </a>
+      <a class="profile-link" href="https://github.com/avivel97" target="_blank" rel="noreferrer">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero-section" aria-labelledby="hero-title">
+      <div class="portrait-panel">
+        <img src="My_prom.jpg" alt="Portrait of Vladimir Belolipetskiy" class="portrait">
+      </div>
+      <div class="intro-panel">
+        <p class="eyebrow">Mathematics, networks, and modeling</p>
+        <h1 id="hero-title">Vladimir Belolipetskiy</h1>
+        <p class="bio">
+          I am a researcher drawn to the quiet drama of complex systems: how networks form, how uncertainty moves
+          through data, and how mathematical models can make tangled questions easier to reason about. My work
+          lives somewhere between applied probability, structural analysis, and the useful habit of turning coffee
+          into clearer notation.
+        </p>
+        <div class="hero-actions" aria-label="Profile links">
+          <a class="button primary" href="CV_Vladimir_Belolipetskiy_0323.pdf" download>Download CV</a>
+          <a class="button secondary" href="https://orcid.org/0009-0003-4219-0287" target="_blank" rel="noreferrer">View ORCID</a>
+          <a class="button secondary" href="https://github.com/avivel97" target="_blank" rel="noreferrer">View GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="profile-strip" aria-label="Research focus">
+      <div>
+        <span class="strip-label">Focus</span>
+        <strong>Applied networks</strong>
+      </div>
+      <div>
+        <span class="strip-label">Methods</span>
+        <strong>Stochastic modeling</strong>
+      </div>
+      <div>
+        <span class="strip-label">Output</span>
+        <strong>Papers, talks, abstracts</strong>
+      </div>
+    </section>
+
+    <section class="content-section" id="cv" aria-labelledby="cv-title">
+      <div class="section-heading">
+        <p class="eyebrow">Curriculum vitae and research files</p>
+        <h2 id="cv-title">Document Preview</h2>
+        <a class="text-link" href="CV_Vladimir_Belolipetskiy_0323.pdf" download>Download CV PDF</a>
+      </div>
+      <div class="document-viewer">
+        <div class="viewer-toolbar" aria-label="Document preview selector">
+          <button class="viewer-tab is-active" type="button" data-file="CV_Vladimir_Belolipetskiy_0323.pdf" data-title="CV preview">CV</button>
+          <button class="viewer-tab" type="button" data-file="Belolipetskiy.pdf" data-title="Research paper preview">Paper</button>
+          <button class="viewer-tab" type="button" data-file="DFDE_presentation.pdf" data-title="Presentation preview">Presentation</button>
+          <button class="viewer-tab" type="button" data-file="QTS_abstract.pdf" data-title="Abstract preview">Abstract</button>
+          <button class="viewer-tab" type="button" data-file="retail_world_model_imrad_article.pdf" data-title="Retail world model preview">Retail Model</button>
+          <button class="viewer-tab" type="button" data-file="Why_BI_Is_Not_Enough_Decision_Intelligence.pdf" data-title="Decision intelligence preview">Decision Intelligence</button>
+        </div>
+        <iframe
+          id="pdf-preview"
+          title="CV preview"
+          src="CV_Vladimir_Belolipetskiy_0323.pdf#toolbar=1&amp;navpanes=0"
+        ></iframe>
+      </div>
+    </section>
+
+    <section class="content-section" id="research" aria-labelledby="research-title">
+      <div class="section-heading">
+        <p class="eyebrow">Selected research</p>
+        <h2 id="research-title">Downloads</h2>
+      </div>
+      <div class="download-grid">
+        <article class="download-card">
+          <p class="document-type">Paper</p>
+          <h3>Belolipetskiy Paper</h3>
+          <p>Research manuscript available as a PDF.</p>
+          <div class="card-actions">
+            <button class="small-button preview-button" type="button" data-file="Belolipetskiy.pdf" data-title="Research paper preview">Preview</button>
+            <a class="small-button" href="Belolipetskiy.pdf" download>Download</a>
+          </div>
+        </article>
+        <article class="download-card">
+          <p class="document-type">Slides</p>
+          <h3>DFDE Presentation</h3>
+          <p>Presentation deck for quick review or offline reading.</p>
+          <div class="card-actions">
+            <button class="small-button preview-button" type="button" data-file="DFDE_presentation.pdf" data-title="Presentation preview">Preview</button>
+            <a class="small-button" href="DFDE_presentation.pdf" download>Download</a>
+          </div>
+        </article>
+        <article class="download-card">
+          <p class="document-type">Abstract</p>
+          <h3>QTS Abstract</h3>
+          <p>Short research abstract in PDF format.</p>
+          <div class="card-actions">
+            <button class="small-button preview-button" type="button" data-file="QTS_abstract.pdf" data-title="Abstract preview">Preview</button>
+            <a class="small-button" href="QTS_abstract.pdf" download>Download</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section" id="in-progress" aria-labelledby="progress-title">
+      <div class="section-heading">
+        <p class="eyebrow">Current drafts</p>
+        <h2 id="progress-title">In-progress Work</h2>
+      </div>
+      <div class="download-grid two-column">
+        <article class="download-card">
+          <p class="document-type">Draft article</p>
+          <h3>Retail World Model</h3>
+          <p>IMRAD-style article draft available as a PDF.</p>
+          <div class="card-actions">
+            <button class="small-button preview-button" type="button" data-file="retail_world_model_imrad_article.pdf" data-title="Retail world model preview">Preview</button>
+            <a class="small-button" href="retail_world_model_imrad_article.pdf" download>Download</a>
+          </div>
+        </article>
+        <article class="download-card">
+          <p class="document-type">Working paper</p>
+          <h3>Why BI Is Not Enough</h3>
+          <p>Decision intelligence working paper available as a PDF.</p>
+          <div class="card-actions">
+            <button class="small-button preview-button" type="button" data-file="Why_BI_Is_Not_Enough_Decision_Intelligence.pdf" data-title="Decision intelligence preview">Preview</button>
+            <a class="small-button" href="Why_BI_Is_Not_Enough_Decision_Intelligence.pdf" download>Download</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>&copy; <span id="year">2026</span> Vladimir Belolipetskiy</span>
+    <div class="footer-links">
+      <a href="https://orcid.org/0009-0003-4219-0287" target="_blank" rel="noreferrer">ORCID profile</a>
+      <a href="https://github.com/avivel97" target="_blank" rel="noreferrer">GitHub</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
