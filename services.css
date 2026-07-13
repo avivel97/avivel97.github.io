@@ -451,6 +451,8 @@
 }
 
 .form-field select,
+.form-field .text-input,
+.form-field textarea,
 .hours-label input {
   width: 100%;
   min-height: 48px;
@@ -463,11 +465,32 @@
 }
 
 .form-field select:focus,
+.form-field .text-input:focus,
+.form-field textarea:focus,
 .hours-label input:focus,
 .segmented-control input:focus-visible + span,
 #hours-range:focus-visible {
   outline: 3px solid rgba(15, 118, 110, 0.2);
   outline-offset: 2px;
+}
+
+.customer-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.form-field textarea {
+  min-height: 152px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.field-hint {
+  display: block;
+  margin-top: 7px;
+  color: #6e7779;
+  font-size: 0.8rem;
 }
 
 .segmented-control {
@@ -604,6 +627,83 @@
   margin: 14px 0 0;
   color: rgba(255, 255, 255, 0.62);
   font-size: 0.82rem;
+}
+
+.request-button {
+  width: 100%;
+  min-height: 52px;
+  color: #ffffff;
+  background: var(--coral);
+  border: 1px solid var(--coral);
+  cursor: pointer;
+}
+
+.request-button:hover {
+  background: #c94f39;
+  border-color: #c94f39;
+}
+
+.request-button:focus-visible,
+.request-download:focus-visible {
+  outline: 3px solid rgba(15, 118, 110, 0.24);
+  outline-offset: 3px;
+}
+
+.request-button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.request-status {
+  min-height: 1.25rem;
+  margin: -12px 0 0;
+  color: #687174;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.request-status.is-error {
+  color: #a2392c;
+}
+
+.request-document {
+  margin-top: 34px;
+}
+
+.request-document-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.request-document-heading h3 {
+  margin: 6px 0 0;
+  font-size: 1.55rem;
+}
+
+.request-download {
+  flex: 0 0 auto;
+  color: #ffffff;
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
+}
+
+.request-preview-frame {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 18px 50px rgba(29, 37, 40, 0.1);
+}
+
+#request-preview {
+  display: block;
+  width: 100%;
+  height: 720px;
+  border: 0;
+  background: #ffffff;
 }
 
 .proposal-cta {
@@ -746,12 +846,20 @@
     padding: 24px;
   }
 
+  .customer-fields {
+    grid-template-columns: 1fr;
+  }
+
   .urgency-control {
     grid-template-columns: 1fr;
   }
 
   .estimate-total {
     font-size: 3rem;
+  }
+
+  #request-preview {
+    height: 620px;
   }
 }
 
@@ -779,6 +887,19 @@
 
   .segmented-control {
     grid-template-columns: 1fr;
+  }
+
+  .request-document-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .request-download {
+    width: 100%;
+  }
+
+  #request-preview {
+    height: 520px;
   }
 
   .case-header {

@@ -307,6 +307,23 @@
 
         <div class="calculator-tool">
           <form class="calculator-form" id="cost-form">
+            <div class="customer-fields">
+              <div class="form-field">
+                <label for="customer-name">Customer name</label>
+                <input class="text-input" id="customer-name" name="customerName" type="text" maxlength="100" autocomplete="name" placeholder="Your full name" required>
+              </div>
+              <div class="form-field">
+                <label for="company-name">Company name</label>
+                <input class="text-input" id="company-name" name="companyName" type="text" maxlength="120" autocomplete="organization" placeholder="Company or organization" required>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="problem-description">Problem description</label>
+              <textarea id="problem-description" name="problemDescription" rows="6" maxlength="3000" placeholder="Describe the decision, available data, constraints, and the outcome you need." aria-describedby="problem-hint" required></textarea>
+              <span class="field-hint" id="problem-hint">Up to 3,000 characters. The text will be included in the request PDF.</span>
+            </div>
+
             <div class="form-field">
               <label for="service-type">Service class</label>
               <select id="service-type" name="service">
@@ -370,6 +387,9 @@
                 <span>160h</span>
               </div>
             </div>
+
+            <button class="button request-button" id="form-request" type="submit" aria-controls="request-document">Form a request</button>
+            <p class="request-status" id="request-status" role="status" aria-live="polite">Your details stay in this browser and are only used to create the PDF.</p>
           </form>
 
           <aside class="estimate-result" aria-live="polite">
@@ -398,6 +418,19 @@
             <p class="estimate-disclaimer">Budget estimate only. Data acquisition, travel, taxes, and third-party software are not included.</p>
           </aside>
         </div>
+
+        <section class="request-document" id="request-document" aria-labelledby="request-document-title" hidden>
+          <div class="request-document-heading">
+            <div>
+              <p class="proposal-eyebrow">Generated document</p>
+              <h3 id="request-document-title">Project Request Preview</h3>
+            </div>
+            <a class="button request-download" id="request-download" href="#" download>Download PDF</a>
+          </div>
+          <div class="request-preview-frame">
+            <iframe id="request-preview" title="Generated project request PDF preview"></iframe>
+          </div>
+        </section>
       </div>
     </section>
 
@@ -425,6 +458,7 @@
     </div>
   </footer>
 
+  <script src="jspdf.umd.min.js"></script>
   <script src="services.js"></script>
 </body>
 </html>
