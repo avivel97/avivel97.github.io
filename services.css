@@ -1,0 +1,792 @@
+.services-page {
+  background: #f6f3ec;
+}
+
+.services-page .site-header {
+  background: rgba(246, 243, 236, 0.94);
+}
+
+.proposal-container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-right: 48px;
+  padding-left: 48px;
+}
+
+.proposal-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 560px;
+  overflow: hidden;
+  background-image: url("My_prom.jpg");
+  background-position: center 42%;
+  background-size: cover;
+  color: #ffffff;
+}
+
+.proposal-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 42, 43, 0.78);
+}
+
+.proposal-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 66px 48px 54px;
+}
+
+.proposal-kicker,
+.proposal-eyebrow {
+  margin: 0;
+  color: var(--coral);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.proposal-kicker {
+  color: #ffd3c8;
+}
+
+.proposal-hero h1 {
+  max-width: 800px;
+  margin: 14px 0 22px;
+  font-size: 3.8rem;
+  line-height: 1.02;
+}
+
+.proposal-lead {
+  max-width: 690px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2rem;
+}
+
+.proposal-actions,
+.proposal-proof,
+.evidence-links,
+.cta-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.proposal-actions {
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.proposal-primary {
+  background: #ffffff;
+  color: var(--teal-dark);
+}
+
+.proposal-secondary {
+  color: #ffffff;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.56);
+}
+
+.proposal-outline {
+  color: var(--teal-dark);
+  background: transparent;
+  border-color: rgba(10, 77, 73, 0.32);
+}
+
+.proposal-primary:hover,
+.proposal-secondary:hover,
+.proposal-outline:hover {
+  transform: translateY(-1px);
+}
+
+.proposal-proof {
+  gap: 18px;
+  margin-top: 38px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.proposal-proof span {
+  position: relative;
+  padding-left: 15px;
+}
+
+.proposal-proof span::before {
+  position: absolute;
+  top: 0.63em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  content: "";
+  background: #f3ae56;
+  border-radius: 50%;
+}
+
+.evidence-band {
+  background: #e9dfcf;
+  border-top: 1px solid #d2c4ad;
+  border-bottom: 1px solid #d2c4ad;
+}
+
+.evidence-layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.45fr;
+  gap: 34px 58px;
+  align-items: start;
+  padding-top: 42px;
+  padding-bottom: 42px;
+}
+
+.evidence-layout h2,
+.proposal-heading h2,
+.calculator-heading h2,
+.cta-layout h2 {
+  margin: 8px 0 0;
+  font-size: 2.2rem;
+  line-height: 1.12;
+}
+
+.evidence-layout > p {
+  margin: 0;
+  color: #3f494c;
+  font-size: 1.06rem;
+}
+
+.evidence-links {
+  grid-column: 1 / -1;
+  gap: 18px;
+  color: var(--teal-dark);
+  font-weight: 850;
+}
+
+.evidence-links a,
+.case-references a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.proposal-section,
+.pricing-section,
+.calculator-section {
+  padding: 88px 0;
+}
+
+.proposal-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.64fr);
+  gap: 44px;
+  align-items: end;
+  margin-bottom: 30px;
+}
+
+.proposal-heading > p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.service-grid,
+.case-grid,
+.rate-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.service-grid,
+.case-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.service-card,
+.case-card,
+.rate-tier {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.service-card {
+  min-height: 320px;
+  padding: 26px;
+  background: var(--paper);
+}
+
+.service-number,
+.case-index,
+.case-class {
+  color: var(--coral);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.service-card h3,
+.case-card h3 {
+  margin: 22px 0 12px;
+  font-size: 1.45rem;
+}
+
+.service-card > p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.service-card ul {
+  margin: 22px 0 0;
+  padding-left: 20px;
+  color: #384347;
+}
+
+.service-card li + li {
+  margin-top: 6px;
+}
+
+.pricing-section {
+  background: #173e3d;
+  color: #ffffff;
+}
+
+.pricing-section .proposal-eyebrow {
+  color: #ffb8a8;
+}
+
+.pricing-heading > p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.rate-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.rate-tier {
+  min-height: 220px;
+  padding: 28px;
+}
+
+.regular-tier {
+  color: var(--ink);
+  background: #f5ead7;
+  border-color: #f5ead7;
+}
+
+.outstanding-tier {
+  color: var(--ink);
+  background: #dcefeb;
+  border-color: #dcefeb;
+}
+
+.rate-name {
+  margin: 0;
+  font-weight: 900;
+}
+
+.rate-price {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  margin: 16px 0 12px;
+}
+
+.rate-price strong {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.rate-price span {
+  color: #526064;
+  font-weight: 800;
+}
+
+.rate-tier > p:last-child {
+  max-width: 52ch;
+  margin-bottom: 0;
+  color: #445055;
+}
+
+.price-table-wrap {
+  margin-top: 22px;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+.price-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.price-table th,
+.price-table td {
+  padding: 16px 18px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.price-table th {
+  color: #ffd2c8;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.price-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.pricing-note {
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.9rem;
+}
+
+.case-grid {
+  align-items: stretch;
+}
+
+.case-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 560px;
+  padding: 26px;
+  background: var(--paper);
+}
+
+.case-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.case-class {
+  color: var(--teal);
+  text-align: right;
+}
+
+.case-question {
+  margin: 0 0 16px;
+  color: var(--teal-dark);
+  font-size: 1.05rem;
+  font-weight: 850;
+}
+
+.case-card > p:not(.case-question):not(.deliverables) {
+  margin: 0;
+  color: var(--muted);
+}
+
+.deliverables {
+  margin: 20px 0 0;
+  color: #394448;
+}
+
+.case-references {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.case-references p {
+  margin: 0;
+  color: var(--coral);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.case-references ol {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  color: var(--teal-dark);
+  font-size: 0.9rem;
+}
+
+.case-references li + li {
+  margin-top: 8px;
+}
+
+.calculator-section {
+  background: #ece5d8;
+  border-top: 1px solid #d5c9b7;
+  border-bottom: 1px solid #d5c9b7;
+}
+
+.calculator-tool {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 18px 50px rgba(29, 37, 40, 0.1);
+}
+
+.calculator-form {
+  display: grid;
+  gap: 24px;
+  padding: 30px;
+}
+
+.form-field {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.form-field label,
+.form-field legend {
+  display: block;
+  margin-bottom: 9px;
+  color: #364145;
+  font-weight: 850;
+}
+
+.form-field select,
+.hours-label input {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  color: var(--ink);
+  background: #fbfaf7;
+  border: 1px solid #cfc9bc;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.form-field select:focus,
+.hours-label input:focus,
+.segmented-control input:focus-visible + span,
+#hours-range:focus-visible {
+  outline: 3px solid rgba(15, 118, 110, 0.2);
+  outline-offset: 2px;
+}
+
+.segmented-control {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.urgency-control {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.segmented-control label {
+  margin: 0;
+}
+
+.segmented-control input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.segmented-control span {
+  display: grid;
+  place-items: center;
+  min-height: 48px;
+  padding: 8px 10px;
+  color: #596468;
+  background: #f2eee6;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.segmented-control input:checked + span {
+  color: #ffffff;
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
+}
+
+.hours-label {
+  display: grid;
+  grid-template-columns: 1fr 90px;
+  gap: 16px;
+  align-items: end;
+}
+
+.hours-label input {
+  text-align: center;
+  font-weight: 850;
+}
+
+#hours-range {
+  width: 100%;
+  height: 8px;
+  margin: 18px 0 0;
+  accent-color: var(--coral);
+  cursor: pointer;
+}
+
+.range-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  color: #7b8487;
+  font-size: 0.78rem;
+}
+
+.estimate-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 620px;
+  padding: 34px;
+  color: #ffffff;
+  background: #0d5752;
+}
+
+.estimate-label {
+  margin: 0;
+  color: #ffd0c5;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.estimate-total {
+  margin: 12px 0 4px;
+  font-size: 3.6rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.estimate-range {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.estimate-breakdown {
+  margin: 28px 0 0;
+}
+
+.estimate-breakdown div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.estimate-breakdown dt {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.estimate-breakdown dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 850;
+}
+
+.estimate-formula {
+  margin: 24px 0 0;
+  padding: 13px;
+  color: #163e3d;
+  background: #dcefeb;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 850;
+}
+
+.estimate-disclaimer {
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.82rem;
+}
+
+.proposal-cta {
+  padding: 70px 0;
+  background: #f8f5ef;
+}
+
+.cta-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.cta-layout p:not(.proposal-eyebrow) {
+  max-width: 650px;
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.cta-actions {
+  justify-content: flex-end;
+  gap: 12px;
+  min-width: 310px;
+}
+
+.proposal-cta .proposal-primary {
+  color: #ffffff;
+  background: var(--teal-dark);
+}
+
+@media (max-width: 980px) {
+  .proposal-hero h1 {
+    font-size: 3.1rem;
+  }
+
+  .proposal-heading,
+  .evidence-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .evidence-links {
+    grid-column: auto;
+  }
+
+  .calculator-tool {
+    grid-template-columns: 1fr;
+  }
+
+  .estimate-result {
+    min-height: 0;
+  }
+
+  .cta-layout {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cta-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 720px) {
+  .proposal-container,
+  .proposal-hero-inner {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .services-page .site-header {
+    gap: 12px;
+  }
+
+  .services-page .nav-links {
+    width: 100%;
+    flex-flow: row nowrap;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .services-page .nav-links a {
+    flex: 0 0 auto;
+  }
+
+  .services-page .profile-link {
+    width: auto;
+  }
+
+  .proposal-hero {
+    min-height: 490px;
+    background-position: 62% center;
+  }
+
+  .proposal-hero-inner {
+    padding-top: 48px;
+    padding-bottom: 42px;
+  }
+
+  .proposal-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .proposal-lead {
+    font-size: 1.05rem;
+  }
+
+  .proposal-proof {
+    gap: 10px 14px;
+    margin-top: 26px;
+  }
+
+  .proposal-section,
+  .pricing-section,
+  .calculator-section {
+    padding: 64px 0;
+  }
+
+  .proposal-heading {
+    gap: 18px;
+  }
+
+  .service-grid,
+  .case-grid,
+  .rate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-card {
+    min-height: 0;
+  }
+
+  .case-references {
+    margin-top: 24px;
+  }
+
+  .calculator-form,
+  .estimate-result {
+    padding: 24px;
+  }
+
+  .urgency-control {
+    grid-template-columns: 1fr;
+  }
+
+  .estimate-total {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .proposal-hero h1 {
+    font-size: 2.15rem;
+  }
+
+  .proposal-actions .button,
+  .cta-actions,
+  .cta-actions .button {
+    width: 100%;
+  }
+
+  .proposal-proof span {
+    width: 100%;
+  }
+
+  .evidence-layout h2,
+  .proposal-heading h2,
+  .calculator-heading h2,
+  .cta-layout h2 {
+    font-size: 1.85rem;
+  }
+
+  .segmented-control {
+    grid-template-columns: 1fr;
+  }
+
+  .case-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .case-class {
+    text-align: left;
+  }
+}
