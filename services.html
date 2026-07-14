@@ -316,6 +316,15 @@
                 <label for="company-name">Company name</label>
                 <input class="text-input" id="company-name" name="companyName" type="text" maxlength="120" autocomplete="organization" placeholder="Company or organization" required>
               </div>
+              <div class="form-field customer-email-field">
+                <label for="customer-email">Email</label>
+                <input class="text-input" id="customer-email" name="email" type="email" maxlength="200" autocomplete="email" placeholder="you@example.com" required>
+              </div>
+            </div>
+
+            <div class="honeypot-field" aria-hidden="true">
+              <label for="website-field">Website</label>
+              <input id="website-field" name="website" type="text" tabindex="-1" autocomplete="off">
             </div>
 
             <div class="form-field">
@@ -388,8 +397,11 @@
               </div>
             </div>
 
-            <button class="button request-button" id="form-request" type="submit" aria-controls="request-document">Form a request</button>
-            <p class="request-status" id="request-status" role="status" aria-live="polite">Your details stay in this browser and are only used to create the PDF.</p>
+            <div class="request-form-actions">
+              <button class="button request-button" id="form-request" type="submit" aria-controls="request-document">Form a request</button>
+              <button class="button submit-request-button" id="submit-request" type="button">Submit request</button>
+            </div>
+            <p class="request-status" id="request-status" role="status" aria-live="polite">Create a PDF for your records or submit the request directly.</p>
           </form>
 
           <aside class="estimate-result" aria-live="polite">

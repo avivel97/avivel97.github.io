@@ -480,6 +480,19 @@
   gap: 16px;
 }
 
+.customer-email-field {
+  grid-column: 1 / -1;
+}
+
+.honeypot-field {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 .form-field textarea {
   min-height: 152px;
   resize: vertical;
@@ -638,18 +651,40 @@
   cursor: pointer;
 }
 
+.request-form-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.submit-request-button {
+  width: 100%;
+  min-height: 52px;
+  color: #ffffff;
+  background: var(--teal-dark);
+  border: 1px solid var(--teal-dark);
+  cursor: pointer;
+}
+
+.submit-request-button:hover {
+  background: #073f3b;
+  border-color: #073f3b;
+}
+
 .request-button:hover {
   background: #c94f39;
   border-color: #c94f39;
 }
 
 .request-button:focus-visible,
+.submit-request-button:focus-visible,
 .request-download:focus-visible {
   outline: 3px solid rgba(15, 118, 110, 0.24);
   outline-offset: 3px;
 }
 
-.request-button:disabled {
+.request-button:disabled,
+.submit-request-button:disabled {
   cursor: wait;
   opacity: 0.68;
 }
@@ -664,6 +699,11 @@
 
 .request-status.is-error {
   color: #a2392c;
+}
+
+.request-status.is-success {
+  color: #0d6b52;
+  font-weight: 750;
 }
 
 .request-document {
@@ -850,6 +890,10 @@
     grid-template-columns: 1fr;
   }
 
+  .customer-email-field {
+    grid-column: auto;
+  }
+
   .urgency-control {
     grid-template-columns: 1fr;
   }
@@ -886,6 +930,10 @@
   }
 
   .segmented-control {
+    grid-template-columns: 1fr;
+  }
+
+  .request-form-actions {
     grid-template-columns: 1fr;
   }
 
