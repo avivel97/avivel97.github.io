@@ -355,8 +355,32 @@ function buildRequestMessage(state) {
   ].join("\n");
 }
 
+function getCaptchaToken() {
+  if (window.smartCaptcha && typeof window.smartCaptcha.getResponse === "function") {
+    return window.smartCaptcha.getResponse() || "";
+  }
+
+  const tokenInput = document.querySelector('#request-captcha input[name="smart-token"]');
+  return tokenInput ? tokenInput.value : "";
+}
+
+function resetCaptcha() {
+  if (window.smartCaptcha && typeof window.smartCaptcha.reset === "function") {
+    window.smartCaptcha.reset();
+  }
+}
+
 async function submitRequest() {
   if (!costForm.reportValidity()) {
+    return;
+  }
+
+  const captchaToken = getCaptchaToken();
+
+  if (!captchaToken) {
+    requestStatus.classList.remove("is-success");
+    requestStatus.classList.add("is-error");
+    requestStatus.textContent = "Complete the security check before submitting.";
     return;
   }
 
@@ -380,6 +404,7 @@ async function submitRequest() {
         message: buildRequestMessage(state),
         page_url: window.location.href,
         website: websiteField.value,
+        smart_token: captchaToken,
       }),
     });
 
@@ -407,6 +432,7 @@ async function submitRequest() {
     requestStatus.classList.add("is-error");
     requestStatus.textContent = error instanceof Error ? error.message : "The request could not be submitted. Please try again.";
   } finally {
+    resetCaptcha();
     submitRequestButton.disabled = false;
     formRequestButton.disabled = false;
     submitRequestButton.textContent = originalLabel;
