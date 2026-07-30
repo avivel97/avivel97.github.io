@@ -6,6 +6,13 @@
   background: rgba(246, 243, 236, 0.94);
 }
 
+.services-page .nav-links a.is-current {
+  padding: 10px 14px;
+  color: #8f321f;
+  background: #f6ded7;
+  border-radius: 8px;
+}
+
 .proposal-container {
   width: 100%;
   max-width: 1180px;
