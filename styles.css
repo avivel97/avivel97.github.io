@@ -57,8 +57,7 @@ a {
 .nav-links,
 .hero-actions,
 .card-actions,
-.footer-links,
-.viewer-toolbar {
+.footer-links {
   display: flex;
   align-items: center;
 }
@@ -142,8 +141,7 @@ a {
 }
 
 .eyebrow,
-.document-type,
-.strip-label {
+.document-type {
   margin: 0;
   color: var(--coral);
   font-size: 0.78rem;
@@ -216,8 +214,7 @@ h3 {
 }
 
 .button:hover,
-.small-button:hover,
-.viewer-tab:hover {
+.small-button:hover {
   transform: translateY(-1px);
 }
 
@@ -232,32 +229,18 @@ h3 {
   background: #ffffff;
 }
 
-.profile-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  max-width: 1180px;
-  margin: 0 auto 72px;
-  padding: 0 48px;
-}
-
-.profile-strip > div {
-  min-height: 112px;
-  padding: 24px;
-  background: var(--paper);
-  border: 1px solid var(--line);
-}
-
-.profile-strip strong {
-  display: block;
-  margin-top: 8px;
-  font-size: 1.2rem;
-}
-
 .content-section {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 0 48px 86px;
+  padding: 72px 48px 86px;
+}
+
+.research-section {
+  max-width: 1276px;
+  padding-right: 96px;
+  padding-left: 96px;
+  background: #efe8d9;
+  border-radius: 8px;
 }
 
 .section-heading {
@@ -279,33 +262,6 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: 0 16px 44px rgba(29, 37, 40, 0.08);
-}
-
-.viewer-toolbar {
-  gap: 8px;
-  padding: 12px;
-  background: #efe8d9;
-  border-bottom: 1px solid var(--line);
-  overflow-x: auto;
-}
-
-.viewer-tab {
-  min-height: 40px;
-  padding: 8px 13px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  background: transparent;
-  color: #4c575b;
-  font: inherit;
-  font-weight: 850;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.viewer-tab.is-active {
-  background: var(--paper);
-  color: var(--teal-dark);
-  border-color: rgba(15, 118, 110, 0.2);
 }
 
 #pdf-preview {
@@ -343,11 +299,6 @@ h3 {
 .card-actions {
   flex-wrap: wrap;
   gap: 10px;
-}
-
-.preview-button {
-  background: var(--teal-dark);
-  color: #ffffff;
 }
 
 .site-footer {
@@ -403,13 +354,11 @@ h3 {
     font-size: 3.15rem;
   }
 
-  .profile-strip,
   .download-grid,
   .download-grid.two-column {
     grid-template-columns: 1fr;
   }
 
-  .profile-strip,
   .content-section {
     padding-right: 24px;
     padding-left: 24px;
@@ -464,15 +413,6 @@ h3 {
   }
 
   .button {
-    width: 100%;
-  }
-
-  .viewer-toolbar {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .viewer-tab {
     width: 100%;
   }
 

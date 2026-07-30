@@ -12,11 +12,8 @@ const estimateFormula = document.querySelector("#estimate-formula");
 const costForm = document.querySelector("#cost-form");
 const customerName = document.querySelector("#customer-name");
 const companyName = document.querySelector("#company-name");
-const customerEmail = document.querySelector("#customer-email");
 const problemDescription = document.querySelector("#problem-description");
-const websiteField = document.querySelector("#website-field");
 const formRequestButton = document.querySelector("#form-request");
-const submitRequestButton = document.querySelector("#submit-request");
 const requestStatus = document.querySelector("#request-status");
 const requestDocument = document.querySelector("#request-document");
 const requestPreview = document.querySelector("#request-preview");
@@ -24,8 +21,6 @@ const requestDownload = document.querySelector("#request-download");
 const year = document.querySelector("#year");
 let requestUrl = "";
 let fontAssetsPromise;
-
-const feedbackEndpoint = "https://d5dv69havegcc43mif1c.avjje9e3.apigw.yandexcloud.net/feedback";
 
 const money = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -245,7 +240,6 @@ async function createRequestPdf() {
   drawHeader(true);
   addDetailRow("Prepared for", customerName.value.trim());
   addDetailRow("Company", companyName.value.trim());
-  addDetailRow("Email", customerEmail.value.trim());
   addDetailRow("Prepared by", "Vladimir Belolipetskiy");
   addDetailRow("Date", formatDate(created));
   y += 7;
@@ -284,7 +278,6 @@ async function createRequestPdf() {
 
   addSectionTitle("Professional profile");
   addDetailRow("ORCID", "https://orcid.org/0009-0003-4219-0287");
-  addDetailRow("GitHub", "https://github.com/avivel97");
 
   const pages = doc.getNumberOfPages();
   for (let page = 1; page <= pages; page += 1) {
@@ -338,107 +331,6 @@ async function formRequest(event) {
   }
 }
 
-function buildRequestMessage(state) {
-  return [
-    "Problem description:",
-    problemDescription.value.trim(),
-    "",
-    "Project estimate:",
-    "Service: " + state.service,
-    "Task classification: " + state.classification,
-    "Expected hours: " + state.hours,
-    "Hourly rate: " + money.format(state.rate),
-    "Urgency: " + state.urgencyLabel + " (" + state.urgency.toFixed(2) + "x)",
-    "Scope certainty: " + state.scopeLabel + " (" + state.scope.toFixed(2) + "x)",
-    "Working estimate: " + money.format(state.estimate),
-    "Planning range: " + money.format(state.low) + "-" + money.format(state.high),
-  ].join("\n");
-}
-
-function getCaptchaToken() {
-  if (window.smartCaptcha && typeof window.smartCaptcha.getResponse === "function") {
-    return window.smartCaptcha.getResponse() || "";
-  }
-
-  const tokenInput = document.querySelector('#request-captcha input[name="smart-token"]');
-  return tokenInput ? tokenInput.value : "";
-}
-
-function resetCaptcha() {
-  if (window.smartCaptcha && typeof window.smartCaptcha.reset === "function") {
-    window.smartCaptcha.reset();
-  }
-}
-
-async function submitRequest() {
-  if (!costForm.reportValidity()) {
-    return;
-  }
-
-  const captchaToken = getCaptchaToken();
-
-  if (!captchaToken) {
-    requestStatus.classList.remove("is-success");
-    requestStatus.classList.add("is-error");
-    requestStatus.textContent = "Complete the security check before submitting.";
-    return;
-  }
-
-  const state = getEstimate();
-  const originalLabel = submitRequestButton.textContent;
-  submitRequestButton.disabled = true;
-  formRequestButton.disabled = true;
-  submitRequestButton.textContent = "Submitting...";
-  requestStatus.classList.remove("is-error", "is-success");
-  requestStatus.textContent = "Submitting your request...";
-
-  try {
-    const response = await fetch(feedbackEndpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: customerName.value.trim(),
-        email: customerEmail.value.trim(),
-        company: companyName.value.trim(),
-        category: "Commercial project request",
-        message: buildRequestMessage(state),
-        page_url: window.location.href,
-        website: websiteField.value,
-        smart_token: captchaToken,
-      }),
-    });
-
-    const responseText = await response.text();
-    let result = {};
-
-    if (responseText) {
-      try {
-        result = JSON.parse(responseText);
-      } catch {
-        result = {};
-      }
-    }
-
-    if (!response.ok) {
-      throw new Error(result.error || "The request could not be submitted.");
-    }
-
-    const reference = result.id || result.request_id;
-    requestStatus.classList.add("is-success");
-    requestStatus.textContent = reference
-      ? "Request submitted successfully. Reference: " + reference
-      : "Request submitted successfully.";
-  } catch (error) {
-    requestStatus.classList.add("is-error");
-    requestStatus.textContent = error instanceof Error ? error.message : "The request could not be submitted. Please try again.";
-  } finally {
-    resetCaptcha();
-    submitRequestButton.disabled = false;
-    formRequestButton.disabled = false;
-    submitRequestButton.textContent = originalLabel;
-  }
-}
-
 hoursRange.addEventListener("input", () => {
   hoursNumber.value = hoursRange.value;
   updateEstimate();
@@ -454,7 +346,6 @@ document.querySelectorAll('input[name="classification"], input[name="urgency"]')
 });
 
 costForm.addEventListener("submit", formRequest);
-submitRequestButton.addEventListener("click", submitRequest);
 
 window.addEventListener("beforeunload", () => {
   if (requestUrl) {

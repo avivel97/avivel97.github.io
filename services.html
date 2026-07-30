@@ -7,7 +7,6 @@
   <title>Commercial Services | Vladimir Belolipetskiy</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="services.css">
-  <script src="https://smartcaptcha.cloud.yandex.ru/captcha.js" defer></script>
 </head>
 <body class="services-page">
   <header class="site-header">
@@ -21,7 +20,6 @@
       <a href="#cases">Case studies</a>
       <a href="#calculator">Calculator</a>
       <a class="profile-link" href="https://orcid.org/0009-0003-4219-0287" target="_blank" rel="noreferrer">ORCID</a>
-      <a class="profile-link" href="https://github.com/avivel97" target="_blank" rel="noreferrer">GitHub</a>
     </nav>
   </header>
 
@@ -317,15 +315,6 @@
                 <label for="company-name">Company name</label>
                 <input class="text-input" id="company-name" name="companyName" type="text" maxlength="120" autocomplete="organization" placeholder="Company or organization" required>
               </div>
-              <div class="form-field customer-email-field">
-                <label for="customer-email">Email</label>
-                <input class="text-input" id="customer-email" name="email" type="email" maxlength="200" autocomplete="email" placeholder="you@example.com" required>
-              </div>
-            </div>
-
-            <div class="honeypot-field" aria-hidden="true">
-              <label for="website-field">Website</label>
-              <input id="website-field" name="website" type="text" tabindex="-1" autocomplete="off">
             </div>
 
             <div class="form-field">
@@ -398,21 +387,8 @@
               </div>
             </div>
 
-            <div class="captcha-field" aria-labelledby="captcha-label">
-              <p class="captcha-label" id="captcha-label">Security check</p>
-              <div
-                id="request-captcha"
-                class="smart-captcha"
-                data-sitekey="ysc1_SNQBlhBcmPFye1f2ZGP5lQfI0kclj8OxYmqjWtEg36a4d1ab"
-                data-hl="en"
-              ></div>
-            </div>
-
-            <div class="request-form-actions">
-              <button class="button request-button" id="form-request" type="submit" aria-controls="request-document">Form a request</button>
-              <button class="button submit-request-button" id="submit-request" type="button">Submit request</button>
-            </div>
-            <p class="request-status" id="request-status" role="status" aria-live="polite">Create a PDF for your records or submit the request directly.</p>
+            <button class="button request-button" id="form-request" type="submit" aria-controls="request-document">Form a request</button>
+            <p class="request-status" id="request-status" role="status" aria-live="polite">Your details stay in this browser and are only used to create the PDF.</p>
           </form>
 
           <aside class="estimate-result" aria-live="polite">
@@ -477,7 +453,6 @@
     <div class="footer-links">
       <a href="index.html">Profile</a>
       <a href="https://orcid.org/0009-0003-4219-0287" target="_blank" rel="noreferrer">ORCID</a>
-      <a href="https://github.com/avivel97" target="_blank" rel="noreferrer">GitHub</a>
     </div>
   </footer>
 
