@@ -1341,3 +1341,100 @@
     margin-top: 32px;
   }
 }
+
+/* PDF preview and protected request submission */
+.customer-email-field {
+  grid-column: 1 / -1;
+}
+
+.honeypot-field {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.captcha-field {
+  min-width: 0;
+  padding-top: 4px;
+}
+
+.captcha-label {
+  margin: 0 0 10px;
+  color: #080808;
+  font-weight: 800;
+}
+
+#request-captcha {
+  width: 100%;
+  min-width: 0;
+  height: 100px;
+  overflow: hidden;
+}
+
+.request-form-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.request-form-actions .button {
+  width: 100%;
+  min-height: 52px;
+  cursor: pointer;
+}
+
+.request-form-actions .request-button {
+  color: #080808;
+  background: #ffffff;
+  border: 1.5px solid #080808;
+}
+
+.submit-request-button {
+  color: #ffffff;
+  background: #0d5bff;
+  border: 1.5px solid #080808;
+  border-radius: 999px;
+}
+
+.request-form-actions .request-button:hover,
+.submit-request-button:hover {
+  color: #ffffff;
+  background: #080808;
+  border-color: #080808;
+}
+
+.request-button:focus-visible,
+.submit-request-button:focus-visible,
+.request-download:focus-visible {
+  outline: 3px solid rgba(13, 91, 255, 0.28);
+  outline-offset: 3px;
+}
+
+.request-button:disabled,
+.submit-request-button:disabled {
+  cursor: wait;
+  opacity: 0.64;
+}
+
+.request-status {
+  margin: 0;
+}
+
+.request-status.is-success {
+  color: #086241;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .customer-email-field {
+    grid-column: auto;
+  }
+
+  .request-form-actions {
+    grid-template-columns: 1fr;
+  }
+}

@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Applied analytics, decision consulting, and analytical development services by Vladimir Belolipetskiy.">
   <title>Commercial Services | Vladimir Belolipetskiy</title>
-  <link rel="stylesheet" href="styles.css?v=20260731-8">
-  <link rel="stylesheet" href="services.css?v=20260731-7">
+  <link rel="stylesheet" href="styles.css?v=20260731-12">
+  <link rel="stylesheet" href="services.css?v=20260731-8">
+  <script src="https://smartcaptcha.cloud.yandex.ru/captcha.js" defer></script>
 </head>
 <body class="services-page">
   <header class="site-header">
@@ -192,6 +193,15 @@
                 <label for="company-name">Company name</label>
                 <input class="text-input" id="company-name" name="companyName" type="text" maxlength="120" autocomplete="organization" placeholder="Company or organization" required>
               </div>
+              <div class="form-field customer-email-field">
+                <label for="customer-email">Email</label>
+                <input class="text-input" id="customer-email" name="email" type="email" maxlength="200" autocomplete="email" placeholder="you@example.com" required>
+              </div>
+            </div>
+
+            <div class="honeypot-field" aria-hidden="true">
+              <label for="website-field">Website</label>
+              <input id="website-field" name="website" type="text" tabindex="-1" autocomplete="off">
             </div>
 
             <div class="form-field">
@@ -264,8 +274,20 @@
               </div>
             </div>
 
-            <button class="button request-button" id="form-request" type="submit" aria-controls="request-document">Form a request</button>
-            <p class="request-status" id="request-status" role="status" aria-live="polite">Your details stay in this browser and are only used to create the PDF.</p>
+            <div class="captcha-field" aria-labelledby="captcha-label">
+              <p class="captcha-label" id="captcha-label">Security check</p>
+              <div
+                id="request-captcha"
+                class="smart-captcha"
+                data-sitekey="ysc1_SNQBlhBcmPFye1f2ZGP5lQfI0kclj8OxYmqjWtEg36a4d1ab"
+              ></div>
+            </div>
+
+            <div class="request-form-actions">
+              <button class="button request-button" id="form-request" type="submit" aria-controls="request-document">Preview</button>
+              <button class="button submit-request-button" id="submit-request" type="button">Submit request</button>
+            </div>
+            <p class="request-status" id="request-status" role="status" aria-live="polite">Create a PDF preview or submit the request.</p>
           </form>
 
           <aside class="estimate-result" aria-live="polite">
@@ -295,7 +317,7 @@
             <div class="estimate-cta">
               <p class="proposal-eyebrow">Turn the estimate into a brief</p>
               <h3>Your project request is one click away</h3>
-              <p>Complete the form and select “Form a request.” A ready-to-download PDF will appear below with your brief and estimate.</p>
+              <p>Select “Preview” to create a local PDF. Data is sent only when you select “Submit request.”</p>
             </div>
           </aside>
         </div>
@@ -322,7 +344,7 @@
   </footer>
 
   <script src="jspdf.umd.min.js"></script>
-  <script src="services.js"></script>
-  <script src="i18n.js?v=20260731-3"></script>
+  <script src="services.js?v=20260731-2"></script>
+  <script src="i18n.js?v=20260731-6"></script>
 </body>
 </html>

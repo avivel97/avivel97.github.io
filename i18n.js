@@ -251,7 +251,29 @@
     "Model or decision-support tool prototype": "Прототип модели или инструмента принятия решений",
     "Expert advisory support": "Экспертное сопровождение",
     "Open CV": "Открыть резюме",
-    "Open the full CV in your device’s PDF viewer.": "Откройте полное резюме в PDF-просмотрщике вашего устройства."
+    "Open the full CV in your device’s PDF viewer.": "Откройте полное резюме в PDF-просмотрщике вашего устройства.",
+    "Email": "Электронная почта",
+    "Website": "Сайт",
+    "Security check": "Проверка безопасности",
+    "Preview": "Предварительный просмотр",
+    "Submit request": "Отправить запрос",
+    "Create a PDF preview or submit the request.": "Создайте предварительный PDF или отправьте запрос.",
+    "Select “Preview” to create a local PDF. Data is sent only when you select “Submit request.”": "Нажмите «Предварительный просмотр», чтобы создать локальный PDF. Данные отправляются только после нажатия «Отправить запрос».",
+    "Creating PDF preview...": "Создание предпросмотра PDF...",
+    "Creating your PDF preview...": "Создаём предварительный PDF...",
+    "PDF preview created. Review it below or download the file.": "Предварительный PDF создан. Просмотрите его ниже или скачайте файл.",
+    "Complete the security check before submitting.": "Пройдите проверку безопасности перед отправкой.",
+    "Submitting...": "Отправка...",
+    "Submitting your request...": "Отправляем ваш запрос...",
+    "Request submitted successfully.": "Запрос успешно отправлен.",
+    "Reference:": "Номер запроса:",
+    "The request could not be submitted.": "Не удалось отправить запрос.",
+    "The request could not be submitted. Please try again.": "Не удалось отправить запрос. Повторите попытку.",
+    "Security check failed or expired. Please try again.": "Проверка безопасности не пройдена или истекла. Повторите попытку.",
+    "Security check is temporarily unavailable. Please try again.": "Проверка безопасности временно недоступна. Повторите попытку.",
+    "Enter a valid email address.": "Введите корректный адрес электронной почты.",
+    "Please provide a more detailed problem description.": "Пожалуйста, опишите задачу подробнее.",
+    "The request could not be stored. Please try again.": "Не удалось сохранить запрос. Повторите попытку."
   };
 
   const english = Object.fromEntries(Object.entries(russian).map(([key, value]) => [value, key]));
