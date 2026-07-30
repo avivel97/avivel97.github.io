@@ -93,6 +93,13 @@ a {
   color: var(--teal-dark);
 }
 
+.nav-links a.is-current {
+  padding: 10px 14px;
+  color: #8f321f;
+  background: #f6ded7;
+  border-radius: 8px;
+}
+
 .profile-link {
   padding: 10px 14px;
   color: var(--teal-dark);
@@ -186,6 +193,10 @@ h3 {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 32px;
+}
+
+.cv-actions {
+  justify-content: center;
 }
 
 .button,
