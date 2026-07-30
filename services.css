@@ -918,3 +918,262 @@
     text-align: left;
   }
 }
+
+/* Minimal blue editorial theme */
+.services-page {
+  background-color: #0d5bff;
+  background-image:
+    radial-gradient(circle at 10% 10%, rgba(247, 247, 244, 0.98) 0 7%, rgba(247, 247, 244, 0) 25%),
+    radial-gradient(circle at 76% 4%, rgba(247, 247, 244, 0.94) 0 6%, rgba(247, 247, 244, 0) 22%),
+    radial-gradient(circle at 53% 48%, rgba(247, 247, 244, 0.95) 0 8%, rgba(247, 247, 244, 0) 27%),
+    radial-gradient(circle at 92% 82%, rgba(247, 247, 244, 0.92) 0 7%, rgba(247, 247, 244, 0) 24%),
+    linear-gradient(135deg, #0d5bff 0%, #064cf2 48%, #1268ff 100%);
+  background-attachment: fixed;
+}
+
+.services-page .site-header {
+  background: rgba(247, 247, 244, 0.82);
+}
+
+.services-page .nav-links a.is-current {
+  color: #080808;
+  background: #0d5bff;
+  border: 1.5px solid #080808;
+}
+
+.proposal-container {
+  max-width: none;
+  padding: 0 48px;
+}
+
+.proposal-hero,
+.evidence-band,
+.proposal-section,
+.pricing-section,
+.calculator-section,
+.proposal-cta {
+  width: calc(100% - 36px);
+  max-width: 1240px;
+  margin: 18px auto 0;
+  background: rgba(247, 247, 244, 0.88);
+  border: 2px solid #080808;
+}
+
+.proposal-hero {
+  min-height: 690px;
+  color: #080808;
+  background-image:
+    radial-gradient(circle at 78% 26%, rgba(247, 247, 244, 0.96) 0 8%, rgba(247, 247, 244, 0) 28%),
+    radial-gradient(circle at 23% 76%, rgba(247, 247, 244, 0.88) 0 7%, rgba(247, 247, 244, 0) 26%),
+    linear-gradient(135deg, #0d5bff 0%, #0a50ef 100%);
+  background-position: center;
+}
+
+.proposal-hero-overlay {
+  display: none;
+}
+
+.proposal-hero-inner {
+  max-width: none;
+  padding: 72px 48px 54px;
+}
+
+.proposal-kicker,
+.proposal-eyebrow,
+.proposal-lead,
+.proposal-proof span {
+  color: #080808;
+}
+
+.proposal-kicker {
+  display: inline-flex;
+  padding: 10px 15px;
+  border: 1.5px solid #080808;
+  border-radius: 999px;
+  background: rgba(247, 247, 244, 0.48);
+}
+
+.proposal-hero h1 {
+  max-width: 10ch;
+  margin: 64px 0 28px;
+  font-size: clamp(4.3rem, 8.5vw, 8.2rem);
+  font-weight: 500;
+  line-height: 0.88;
+  letter-spacing: -0.075em;
+}
+
+.proposal-lead {
+  max-width: 58ch;
+  font-size: 1.25rem;
+}
+
+.proposal-actions .button,
+.cta-actions .button,
+.request-button,
+.request-download {
+  color: #080808;
+  background: rgba(247, 247, 244, 0.7);
+  border: 1.5px solid #080808;
+  border-radius: 999px;
+}
+
+.proposal-actions .proposal-primary,
+.request-button {
+  color: #080808;
+  background: #0d5bff;
+}
+
+.proposal-proof {
+  padding-top: 24px;
+  border-top: 2px solid #080808;
+}
+
+.evidence-band,
+.proposal-section,
+.pricing-section,
+.calculator-section,
+.proposal-cta {
+  padding: 68px 0;
+}
+
+.evidence-band,
+.pricing-section,
+.calculator-section,
+.proposal-cta {
+  color: #080808;
+}
+
+.evidence-layout h2,
+.proposal-heading h2,
+.calculator-heading h2,
+.cta-layout h2 {
+  color: #080808;
+  font-size: clamp(2.8rem, 5vw, 5.3rem);
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: -0.065em;
+}
+
+.proposal-heading,
+.calculator-heading,
+.pricing-heading {
+  padding-bottom: 26px;
+  border-bottom: 2px solid #080808;
+}
+
+.service-grid,
+.case-grid,
+.rate-grid {
+  gap: 28px;
+}
+
+.service-card,
+.case-card,
+.rate-tier {
+  padding: 26px 0 0;
+  color: #080808;
+  background: transparent;
+  border: 0;
+  border-top: 2px solid #080808;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.service-number,
+.case-index,
+.case-class,
+.rate-name {
+  color: #080808;
+}
+
+.case-class,
+.case-reference,
+.evidence-links a {
+  border-color: #080808;
+  border-radius: 999px;
+}
+
+.price-table-wrap,
+.calculator-form,
+.estimate-result,
+.request-document {
+  color: #080808;
+  background: rgba(247, 247, 244, 0.62);
+  border: 2px solid #080808;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.price-table th,
+.price-table td,
+.estimate-breakdown > div {
+  border-color: #080808;
+}
+
+.form-field select,
+.form-field .text-input,
+.form-field textarea,
+.hours-label input {
+  color: #080808;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1.5px solid #080808;
+  border-radius: 0;
+}
+
+.segmented-control span {
+  color: #080808;
+  border-color: #080808;
+}
+
+.segmented-control input:checked + span {
+  color: #080808;
+  background: #0d5bff;
+}
+
+.estimate-total,
+.rate-price strong {
+  color: #080808;
+}
+
+.proposal-cta {
+  background: rgba(247, 247, 244, 0.88);
+}
+
+@media (max-width: 900px) {
+  .proposal-hero,
+  .evidence-band,
+  .proposal-section,
+  .pricing-section,
+  .calculator-section,
+  .proposal-cta {
+    width: calc(100% - 24px);
+    margin-top: 12px;
+  }
+
+  .proposal-container,
+  .proposal-hero-inner {
+    padding-right: 28px;
+    padding-left: 28px;
+  }
+
+  .proposal-hero h1 {
+    font-size: clamp(3.5rem, 12vw, 6.5rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .proposal-container,
+  .proposal-hero-inner {
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+
+  .proposal-hero {
+    min-height: 620px;
+  }
+
+  .proposal-hero h1 {
+    margin-top: 48px;
+    font-size: clamp(3.2rem, 15vw, 5rem);
+  }
+}
