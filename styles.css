@@ -479,6 +479,38 @@ body {
   backdrop-filter: blur(24px) saturate(115%);
 }
 
+.language-switcher {
+  display: inline-flex;
+  flex: 0 0 auto;
+  padding: 3px;
+  background: rgba(247, 247, 244, 0.58);
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+}
+
+.language-switcher button {
+  min-width: 40px;
+  padding: 7px 9px;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.language-switcher button.is-active {
+  color: #ffffff;
+  background: var(--ink);
+}
+
+.language-switcher button:focus-visible {
+  outline: 2px solid #0d5bff;
+  outline-offset: 2px;
+}
+
 .brand {
   gap: 10px;
   font-size: 1rem;
@@ -708,6 +740,10 @@ h3 {
   .nav-links {
     width: 100%;
     flex-flow: row wrap;
+  }
+
+  .language-switcher {
+    align-self: flex-start;
   }
 
   .hero-section,
