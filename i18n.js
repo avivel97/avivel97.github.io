@@ -37,6 +37,8 @@
     "Research-grade thinking for practical business questions. I help retail, product, and strategy teams turn fragmented data into defensible decisions, clear operating rules, and useful analytical tools.": "Научная строгость для практических бизнес-задач. Я помогаю командам розничной торговли, продукта и стратегии превращать разрозненные данные в обоснованные решения, понятные правила работы и полезные аналитические инструменты.",
     "Explore services": "Посмотреть услуги",
     "Estimate a project": "Оценить проект",
+    "Book a call": "Записаться на встречу",
+    "Book a 30-minute call": "Записаться на 30-минутную встречу",
     "Applied statistics": "Прикладная статистика",
     "Network analysis": "Сетевой анализ",
     "Retail analytics": "Аналитика розничной торговли",

@@ -1227,6 +1227,17 @@
   border-color: #080808;
 }
 
+.proposal-actions .proposal-booking {
+  color: #080808;
+  background: #ffc46b;
+  border-color: #080808;
+}
+
+.proposal-actions .proposal-booking:hover {
+  color: #ffffff;
+  background: #080808;
+}
+
 .estimate-result {
   justify-content: flex-start;
 }
@@ -1275,6 +1286,28 @@
   margin: 0;
   color: #343434;
   line-height: 1.5;
+}
+
+.estimate-booking-button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  color: #ffffff;
+  background: #0d5bff;
+  border: 1.5px solid #080808;
+  border-radius: 999px;
+}
+
+.estimate-booking-button:hover {
+  color: #ffffff;
+  background: #080808;
+}
+
+.proposal-booking:focus-visible,
+.estimate-booking-button:focus-visible {
+  outline: 3px solid rgba(255, 196, 107, 0.72);
+  outline-offset: 3px;
 }
 
 /* High-contrast pricing section */
