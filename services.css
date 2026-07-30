@@ -936,7 +936,7 @@
 }
 
 .services-page .nav-links a.is-current {
-  color: #080808;
+  color: #ffffff;
   background: #0d5bff;
   border: 1.5px solid #080808;
 }
@@ -980,9 +980,14 @@
 
 .proposal-kicker,
 .proposal-eyebrow,
-.proposal-lead,
-.proposal-proof span {
+.proposal-lead {
   color: #080808;
+}
+
+.proposal-hero h1,
+.proposal-hero .proposal-lead,
+.proposal-proof span {
+  color: #ffffff;
 }
 
 .proposal-kicker {
@@ -1019,7 +1024,7 @@
 
 .proposal-actions .proposal-primary,
 .request-button {
-  color: #080808;
+  color: #ffffff;
   background: #0d5bff;
 }
 
@@ -1126,7 +1131,7 @@
 }
 
 .segmented-control input:checked + span {
-  color: #080808;
+  color: #ffffff;
   background: #0d5bff;
 }
 

@@ -515,7 +515,7 @@ body {
 }
 
 .nav-links a.is-current {
-  color: var(--ink);
+  color: #ffffff;
   background: #0d5bff;
 }
 
@@ -548,8 +548,8 @@ body {
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  filter: grayscale(1) contrast(1.06);
-  mix-blend-mode: multiply;
+  filter: none;
+  mix-blend-mode: normal;
 }
 
 .intro-panel {
@@ -647,9 +647,8 @@ h3 {
   box-shadow: none;
 }
 
-.button.primary,
-.small-button:hover {
-  color: var(--ink);
+.button.primary {
+  color: #ffffff;
   background: #0d5bff;
 }
 
@@ -663,6 +662,10 @@ h3 {
 .small-button:hover {
   transform: none;
   background: #ffffff;
+}
+
+.button.primary:hover {
+  color: var(--ink);
 }
 
 .download-grid,
