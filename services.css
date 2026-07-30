@@ -1182,3 +1182,116 @@
     font-size: clamp(3.2rem, 15vw, 5rem);
   }
 }
+
+/* Readability, stable navigation, and calculator CTA */
+.services-page .nav-links a.is-current {
+  padding: 10px 15px;
+  border-radius: 999px;
+}
+
+.proposal-hero {
+  color: #ffffff;
+  background: linear-gradient(135deg, #0755f2 0%, #003fc8 100%);
+}
+
+.proposal-hero .proposal-kicker {
+  color: #ffb36b;
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.92);
+}
+
+.proposal-hero h1,
+.proposal-hero .proposal-lead,
+.proposal-hero .proposal-proof span {
+  color: #ffffff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+}
+
+.proposal-hero .proposal-proof {
+  border-color: rgba(255, 255, 255, 0.78);
+}
+
+.proposal-hero .proposal-proof span::before {
+  background: #ffb36b;
+}
+
+.proposal-actions .proposal-primary {
+  color: #ffffff;
+  background: #080808;
+  border-color: #080808;
+}
+
+.proposal-actions .proposal-secondary {
+  color: #080808;
+  background: #ffffff;
+  border-color: #080808;
+}
+
+.estimate-result {
+  justify-content: flex-start;
+}
+
+.estimate-label,
+.estimate-range,
+.estimate-breakdown dt,
+.estimate-disclaimer {
+  color: #343434;
+}
+
+.estimate-breakdown dd,
+.estimate-total {
+  color: #080808;
+}
+
+.estimate-breakdown div {
+  border-color: rgba(8, 8, 8, 0.24);
+}
+
+.estimate-formula {
+  color: #080808;
+  background: rgba(13, 91, 255, 0.1);
+  border: 1.5px solid #080808;
+  border-radius: 0;
+}
+
+.estimate-cta {
+  margin-top: auto;
+  padding-top: 30px;
+  border-top: 2px solid #080808;
+}
+
+.estimate-cta .proposal-eyebrow {
+  color: #0d5bff;
+}
+
+.estimate-cta h3 {
+  margin: 10px 0 12px;
+  color: #080808;
+  font-size: clamp(1.7rem, 2.8vw, 2.5rem);
+  line-height: 1;
+}
+
+.estimate-cta > p:last-child {
+  margin: 0;
+  color: #343434;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .proposal-hero {
+    min-height: 0;
+  }
+
+  .proposal-hero h1 {
+    font-size: clamp(2.7rem, 13vw, 4.2rem);
+  }
+
+  .proposal-proof {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .estimate-cta {
+    margin-top: 32px;
+  }
+}

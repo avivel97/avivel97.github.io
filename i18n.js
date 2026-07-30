@@ -190,34 +190,106 @@
     "Creating PDF...": "Создание PDF...",
     "Creating your project request...": "Создаём ваш запрос на проект...",
     "Request created. Preview it below or download the PDF.": "Запрос создан. Просмотрите его ниже или скачайте PDF.",
-    "The PDF could not be created. Please try again.": "Не удалось создать PDF. Повторите попытку."
+    "The PDF could not be created. Please try again.": "Не удалось создать PDF. Повторите попытку.",
+
+    "About Me": "Обо мне",
+    "I build analytical tools that help retailers make better decisions—from identifying root causes and forecasting demand to evaluating pilots and optimizing pricing, assortment, and operational processes. I combine hands-on expertise in SQL, Python, business analysis, and applied statistics to turn data into practical business solutions.": "Я создаю аналитические инструменты, которые помогают розничным компаниям принимать более качественные решения — от выявления первопричин и прогнозирования спроса до оценки пилотных проектов и оптимизации ценообразования, ассортимента и операционных процессов. Я объединяю практический опыт работы с SQL, Python, бизнес-анализом и прикладной статистикой, чтобы превращать данные в практические бизнес-решения.",
+
+    "Mathematical Methods of Managing a Retail Store as a Dynamic System: The Promotional Pricing Aspect": "Mathematical Methods of Managing a Retail Store as a Dynamic System: The Promotional Pricing Aspect",
+    "A game-theoretic and optimization framework for coordinating promotional pricing at store level.": "A game-theoretic and optimization framework for coordinating promotional pricing at store level.",
+    "Presentation for the 10th International Conference on Differential and Functional Differential Equations.": "Presentation for the 10th International Conference on Differential and Functional Differential Equations.",
+    "A Queueing-Theoretic Framework for Controlling Customer Flow in Loyalty Programs Under Budget Constraints": "A Queueing-Theoretic Framework for Controlling Customer Flow in Loyalty Programs Under Budget Constraints",
+    "A state-dependent queueing model for financially sustainable loyalty-program progression.": "A state-dependent queueing model for financially sustainable loyalty-program progression.",
+    "A Hierarchical Retail World Model for Interpretable Demand Decomposition": "A Hierarchical Retail World Model for Interpretable Demand Decomposition",
+    "An operations-research framework for tracing retail outcomes back to interpretable upstream drivers.": "An operations-research framework for tracing retail outcomes back to interpretable upstream drivers.",
+    "Why BI Is Not Enough: The Move Toward Decision Intelligence": "Why BI Is Not Enough: The Move Toward Decision Intelligence",
+    "A practical argument for moving from retrospective dashboards to constrained, learning decision systems.": "A practical argument for moving from retrospective dashboards to constrained, learning decision systems.",
+
+    "Consulting & Problem Framing": "Консалтинг и постановка задач",
+    "I help formulate the real business problem, test initial assumptions, identify data constraints, and determine the most rational path to a solution.": "Помогаю сформулировать реальную бизнес-задачу, проверить исходные предположения, выявить ограничения в данных и определить наиболее рациональный путь к решению.",
+    "Analytical briefs for management": "Подготовка аналитических записок для руководства",
+    "Problem and hypothesis framing sessions": "Проведение сессий по формулировке задач и гипотез",
+    "Independent expert review of analytical initiatives": "Независимая экспертная оценка аналитических инициатив",
+    "Research plan and measurement system design": "Разработка плана исследований и системы измерений",
+    "I study markets, categories, customers, and the competitive environment to turn data into a clear foundation for commercial decisions.": "Исследую рынок, категории, клиентов и конкурентную среду, чтобы превратить данные в понятную основу для принятия коммерческих решений.",
+    "Market potential and growth opportunity assessment": "Оценка потенциала рынка и возможностей роста",
+    "Category, assortment, and customer base analysis": "Анализ категорий, ассортимента и клиентской базы",
+    "Segmentation and market structure analysis": "Сегментация и анализ структуры рынка",
+    "Scenario modeling and sensitivity analysis": "Сценарное моделирование и анализ чувствительности",
+    "Analytical Solution Development": "Разработка аналитических решений",
+    "I turn analytical approaches into practical tools and models that the business can use every day without an analyst.": "Преобразую аналитические подходы в практические инструменты и модели, которыми бизнес может пользоваться ежедневно без участия аналитика.",
+    "Decision-support system prototypes": "Прототипы систем поддержки принятия решений",
+    "Analytical process automation": "Автоматизация аналитических процессов",
+    "Research Design & Evaluation": "Проектирование и оценка исследований",
+    "I design studies and experiments that produce reliable conclusions and separate real effects from random observations.": "Разрабатываю исследования и эксперименты, позволяющие получать достоверные выводы и отделять реальные эффекты от случайных наблюдений.",
+    "Methodology and model validation": "Проверка корректности методологии и моделей",
+    "KPI and outcome measurement system design": "Разработка KPI и системы оценки результатов",
+    "Findings and analytical reporting": "Подготовка выводов и аналитической отчётности",
+
+    "Turn the estimate into a brief": "Превратите оценку в заявку",
+    "Your project request is one click away": "Сформируйте заявку и получите PDF",
+    "Complete the form and select “Form a request.” A ready-to-download PDF will appear below with your brief and estimate.": "Заполните форму и нажмите «Сформировать запрос». Ниже появится готовый PDF с описанием задачи и расчётом стоимости.",
+
+    "Regular | $50/h": "Стандартная | 5 000 ₽/ч",
+    "Outstanding | $100/h": "Нестандартная | 10 000 ₽/ч",
+    "$50/hour": "5 000 ₽/час",
+    "Planning range: $1,584-$1,936": "Плановый диапазон: 158 400–193 600 ₽",
+    "32 hours x $50 x 1.00 x 1.10": "32 ч × 5 000 ₽ × 1,00 × 1,10",
+    "$50": "5 000 ₽",
+    "$100": "10 000 ₽",
+    "$300-$500": "30 000–50 000 ₽",
+    "$600-$1,000": "60 000–100 000 ₽",
+    "$1,000-$2,000": "100 000–200 000 ₽",
+    "$2,000-$4,000": "200 000–400 000 ₽",
+    "$4,000-$8,000": "400 000–800 000 ₽",
+    "$400-$800": "40 000–80 000 ₽",
+    "$800-$1,600": "80 000–160 000 ₽"
   };
 
   const english = Object.fromEntries(Object.entries(russian).map(([key, value]) => [value, key]));
   const ignoredParents = new Set(["SCRIPT", "STYLE", "NOSCRIPT"]);
-  let language = "en";
+  const storageKey = "siteLanguageV2";
+  const rublesPerDollar = 100;
+  const rubFormatter = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 0 });
+  const usdFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
+  let language = "ru";
   let scheduled = false;
 
   function normalize(value) {
     return value.trim().replace(/\s+/g, " ");
   }
 
+  function dollarsToRubles(value) {
+    return value.replace(/\$([\d,]+)/g, (_, amount) => {
+      const dollars = Number(amount.replace(/,/g, ""));
+      return `${rubFormatter.format(dollars * rublesPerDollar)} ₽`;
+    });
+  }
+
+  function rublesToDollars(value) {
+    return value.replace(/([\d\s\u00a0]+)\s*₽/g, (_, amount) => {
+      const rubles = Number(amount.replace(/[\s\u00a0]/g, ""));
+      return `$${usdFormatter.format(rubles / rublesPerDollar)}`;
+    });
+  }
+
   function dynamicEnglish(value) {
-    return value
+    const normalized = value
       .replace(/^Плановый диапазон:\s*/, "Planning range: ")
       .replace(/\/(?:час|ч)$/, "/hour")
       .replace(/^(\d+) ч × /, "$1 hours x ")
       .replace(/ × /g, " x ")
       .replace(/(\d),(\d)/g, "$1.$2");
+    return rublesToDollars(normalized);
   }
 
   function dynamicRussian(value) {
-    return value
+    return dollarsToRubles(value
       .replace(/^Planning range:\s*/, "Плановый диапазон: ")
       .replace(/\/hour$/, "/час")
       .replace(/^(\d+) hours x /, "$1 ч × ")
       .replace(/ x /g, " × ")
-      .replace(/(\d)\.(\d)/g, "$1,$2");
+      .replace(/(\d)\.(\d)/g, "$1,$2"));
   }
 
   function translate(value) {
@@ -272,11 +344,11 @@
 
   function setLanguage(nextLanguage, updateUrl = true) {
     language = nextLanguage === "ru" ? "ru" : "en";
-    localStorage.setItem("siteLanguage", language);
+    localStorage.setItem(storageKey, language);
 
     if (updateUrl) {
       const url = new URL(window.location.href);
-      if (language === "ru") url.searchParams.set("lang", "ru");
+      if (language === "en") url.searchParams.set("lang", "en");
       else url.searchParams.delete("lang");
       history.replaceState({}, "", url);
     }
@@ -287,7 +359,7 @@
   const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
   language = requestedLanguage === "ru" || requestedLanguage === "en"
     ? requestedLanguage
-    : localStorage.getItem("siteLanguage") === "ru" ? "ru" : "en";
+    : localStorage.getItem(storageKey) === "en" ? "en" : "ru";
 
   document.querySelectorAll("[data-language]").forEach((button) => {
     button.addEventListener("click", () => setLanguage(button.dataset.language));
