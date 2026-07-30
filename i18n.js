@@ -249,7 +249,9 @@
     "Problem diagnosis": "Диагностика проблемы",
     "Solving a specific task": "Решение конкретной задачи",
     "Model or decision-support tool prototype": "Прототип модели или инструмента принятия решений",
-    "Expert advisory support": "Экспертное сопровождение"
+    "Expert advisory support": "Экспертное сопровождение",
+    "Open CV": "Открыть резюме",
+    "Open the full CV in your device’s PDF viewer.": "Откройте полное резюме в PDF-просмотрщике вашего устройства."
   };
 
   const english = Object.fromEntries(Object.entries(russian).map(([key, value]) => [value, key]));

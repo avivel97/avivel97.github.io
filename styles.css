@@ -916,3 +916,58 @@ html[lang="ru"] .intro-panel h1 {
     font-size: clamp(2.4rem, 10.5vw, 3.6rem);
   }
 }
+
+/* Reliable CV preview on touch devices and smaller screens. */
+.desktop-cv-preview {
+  display: block;
+}
+
+.mobile-cv-preview {
+  display: none;
+}
+
+@media (max-width: 1180px), (hover: none) and (pointer: coarse) {
+  .desktop-cv-preview,
+  .cv-open-link {
+    display: none;
+  }
+
+  .mobile-cv-preview {
+    display: grid;
+    gap: 20px;
+    justify-items: center;
+    padding: 20px;
+    background: #e9eef9;
+  }
+
+  .mobile-cv-sheet {
+    display: block;
+    width: min(100%, 760px);
+    background: #ffffff;
+    border: 2px solid var(--ink);
+  }
+
+  .mobile-cv-sheet img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .mobile-cv-open {
+    width: min(100%, 360px);
+    text-align: center;
+  }
+
+  .mobile-cv-preview > p {
+    margin: -6px 0 0;
+    color: var(--muted);
+    text-align: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .mobile-cv-preview {
+    gap: 16px;
+    padding: 12px;
+  }
+}
