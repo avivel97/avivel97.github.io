@@ -889,3 +889,30 @@ h3 {
     font-size: 0.72rem;
   }
 }
+
+/* Keep long names inside the Bio panel at tablet zoom levels. */
+.intro-panel h1 {
+  max-width: 100%;
+}
+
+html[lang="ru"] .intro-panel h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+}
+
+@media (min-width: 641px) and (max-width: 1366px) {
+  .intro-panel h1 {
+    font-size: clamp(3.4rem, 6.3vw, 5.2rem);
+  }
+
+  html[lang="ru"] .intro-panel h1 {
+    font-size: clamp(3.2rem, 5.6vw, 4.8rem);
+  }
+}
+
+@media (max-width: 640px) {
+  html[lang="ru"] .intro-panel h1 {
+    font-size: clamp(2.4rem, 10.5vw, 3.6rem);
+  }
+}

@@ -243,7 +243,13 @@
     "$2,000-$4,000": "200 000–400 000 ₽",
     "$4,000-$8,000": "400 000–800 000 ₽",
     "$400-$800": "40 000–80 000 ₽",
-    "$800-$1,600": "80 000–160 000 ₽"
+    "$800-$1,600": "80 000–160 000 ₽",
+    "How project pricing is calculated": "Как формируется стоимость проекта",
+    "Typical projects": "Типовые проекты",
+    "Problem diagnosis": "Диагностика проблемы",
+    "Solving a specific task": "Решение конкретной задачи",
+    "Model or decision-support tool prototype": "Прототип модели или инструмента принятия решений",
+    "Expert advisory support": "Экспертное сопровождение"
   };
 
   const english = Object.fromEntries(Object.entries(russian).map(([key, value]) => [value, key]));

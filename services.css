@@ -1277,6 +1277,52 @@
   line-height: 1.5;
 }
 
+/* High-contrast pricing section */
+.pricing-section {
+  color: #ffffff;
+  background: #003fc8;
+}
+
+.pricing-section .pricing-heading {
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+.pricing-section .proposal-heading h2,
+.pricing-section .pricing-heading > p,
+.pricing-section .pricing-note {
+  color: #ffffff;
+}
+
+.pricing-section .proposal-eyebrow {
+  display: inline-flex;
+  padding: 8px 12px;
+  color: #ffc46b;
+  background: #080808;
+  border: 1.5px solid #ffffff;
+  border-radius: 999px;
+}
+
+.pricing-section .rate-tier {
+  padding: 26px;
+  color: #080808;
+  background: #f7f7f4;
+  border: 2px solid #080808;
+}
+
+.pricing-section .price-table-wrap {
+  background: #f7f7f4;
+}
+
+.pricing-section .price-table th {
+  color: #080808;
+  background: #ffc46b;
+}
+
+.pricing-section .price-table td {
+  color: #080808;
+  background: #f7f7f4;
+}
+
 @media (max-width: 640px) {
   .proposal-hero {
     min-height: 0;
