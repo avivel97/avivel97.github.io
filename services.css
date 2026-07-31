@@ -1310,6 +1310,78 @@
   outline-offset: 3px;
 }
 
+.cal-inline-section {
+  margin-top: 36px;
+  padding: clamp(22px, 4vw, 44px);
+  color: #080808;
+  background: rgba(247, 247, 244, 0.92);
+  border: 2px solid #080808;
+}
+
+.cal-inline-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(280px, 1.2fr);
+  gap: 12px 36px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid #080808;
+}
+
+.cal-inline-heading .proposal-eyebrow {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #0d5bff;
+}
+
+.cal-inline-heading h3 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 4.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.cal-inline-heading > p:last-child {
+  max-width: 620px;
+  margin: 0;
+  color: #343434;
+  line-height: 1.55;
+}
+
+.cal-inline-widget {
+  width: 100%;
+  height: 760px;
+  margin-top: 24px;
+  overflow: auto;
+  background: #ffffff;
+  border: 1.5px solid #080808;
+}
+
+.cal-inline-fallback {
+  margin: 18px 0 0;
+}
+
+.cal-inline-fallback a {
+  color: #0d5bff;
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  .cal-inline-section {
+    padding: 18px;
+  }
+
+  .cal-inline-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .cal-inline-heading .proposal-eyebrow {
+    grid-column: auto;
+  }
+
+  .cal-inline-widget {
+    height: 720px;
+  }
+}
+
 /* High-contrast pricing section */
 .pricing-section {
   color: #ffffff;
