@@ -373,6 +373,15 @@
     });
   }
 
+  const bioEn = "I build analytical tools that help retailers make better decisions—from identifying root causes and forecasting demand to evaluating pilots and optimizing pricing, assortment, and operational processes. I combine hands-on expertise in SQL, Python, business analysis, and applied statistics to turn data into practical business solutions.";
+  const bioRu = "Я создаю аналитические инструменты, которые помогают розничным компаниям принимать более качественные решения — от выявления первопричин и прогнозирования спроса до оценки пилотных проектов и оптимизации ценообразования, ассортимента и операционных процессов. Я объединяю практический опыт работы с SQL, Python, бизнес-анализом и прикладной статистикой, чтобы превращать данные в практические бизнес-решения.";
+
+  function updateBioText() {
+    document.querySelectorAll("[data-bio]").forEach((element) => {
+      const next = language === "ru" ? bioRu : bioEn;
+      if (normalize(element.textContent || "") !== next) element.textContent = next;
+    });
+  }
   function updateCvAssets() {
     const key = language === "ru" ? "ru" : "en";
 
@@ -395,6 +404,7 @@
     translateText(root);
     translateAttributes(root);
     document.documentElement.lang = language;
+    updateBioText();
     updateCvAssets();
     updateSwitcher();
   }
