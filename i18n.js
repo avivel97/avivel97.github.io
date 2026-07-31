@@ -377,17 +377,17 @@
     const key = language === "ru" ? "ru" : "en";
 
     document.querySelectorAll("[data-cv-href-ru][data-cv-href-en]").forEach((element) => {
-      const next = element.dataset[`cvHref${key.toUpperCase()}`];
+      const next = element.getAttribute(`data-cv-href-${key}`);
       if (next && element.getAttribute("href") !== next) element.setAttribute("href", next);
     });
 
     document.querySelectorAll("[data-cv-src-ru][data-cv-src-en]").forEach((element) => {
-      const next = element.dataset[`cvSrc${key.toUpperCase()}`];
+      const next = element.getAttribute(`data-cv-src-${key}`);
       if (next && element.getAttribute("src") !== next) element.setAttribute("src", next);
     });
 
     document.querySelectorAll("[data-cv-preview-ru][data-cv-preview-en]").forEach((element) => {
-      const next = element.dataset[`cvPreview${key.toUpperCase()}`];
+      const next = element.getAttribute(`data-cv-preview-${key}`);
       if (next && element.getAttribute("src") !== next) element.setAttribute("src", next);
     });
   }
