@@ -57,6 +57,6 @@
     }
   });
   window.Cal.ns.consultation("preload", {
-    calLink: "vladimir-belolipetskiy-uh9xmh/30min"
+    calLink: "avivel97"
   });
 })();
