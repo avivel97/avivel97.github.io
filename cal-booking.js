@@ -58,12 +58,12 @@
   });
   window.Cal.ns.consultation("inline", {
     elementOrSelector: "#cal-booking-inline",
-    calLink: "avivel97",
+    calLink: "avivel97/30min",
     config: {
       layout: "month_view"
     }
   });
   window.Cal.ns.consultation("preload", {
-    calLink: "avivel97"
+    calLink: "avivel97/30min"
   });
 })();
