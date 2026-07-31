@@ -238,20 +238,20 @@
     "Your project request is one click away": "Сформируйте заявку и получите PDF",
     "Complete the form and select “Form a request.” A ready-to-download PDF will appear below with your brief and estimate.": "Заполните форму и нажмите «Сформировать запрос». Ниже появится готовый PDF с описанием задачи и расчётом стоимости.",
 
-    "Regular | $50/h": "Стандартная | 5 000 ₽/ч",
-    "Outstanding | $100/h": "Нестандартная | 10 000 ₽/ч",
-    "$50/hour": "5 000 ₽/час",
-    "Planning range: $1,584-$1,936": "Плановый диапазон: 158 400–193 600 ₽",
-    "32 hours x $50 x 1.00 x 1.10": "32 ч × 5 000 ₽ × 1,00 × 1,10",
-    "$50": "5 000 ₽",
-    "$100": "10 000 ₽",
-    "$300-$500": "30 000–50 000 ₽",
-    "$600-$1,000": "60 000–100 000 ₽",
-    "$1,000-$2,000": "100 000–200 000 ₽",
-    "$2,000-$4,000": "200 000–400 000 ₽",
-    "$4,000-$8,000": "400 000–800 000 ₽",
-    "$400-$800": "40 000–80 000 ₽",
-    "$800-$1,600": "80 000–160 000 ₽",
+    "Regular | $50/h": "Стандартная | 2 500 ₽/ч",
+    "Outstanding | $100/h": "Нестандартная | 5 000 ₽/ч",
+    "$50/hour": "2 500 ₽/час",
+    "Planning range: $1,584-$1,936": "Плановый диапазон: 79 200–96 800 ₽",
+    "32 hours x $50 x 1.00 x 1.10": "32 ч × 2 500 ₽ × 1,00 × 1,10",
+    "$50": "2 500 ₽",
+    "$100": "5 000 ₽",
+    "$300-$500": "15 000–25 000 ₽",
+    "$600-$1,000": "30 000–50 000 ₽",
+    "$1,000-$2,000": "50 000–100 000 ₽",
+    "$2,000-$4,000": "100 000–200 000 ₽",
+    "$4,000-$8,000": "200 000–400 000 ₽",
+    "$400-$800": "20 000–40 000 ₽",
+    "$800-$1,600": "40 000–80 000 ₽",
     "How project pricing is calculated": "Как формируется стоимость проекта",
     "Typical projects": "Типовые проекты",
     "Problem diagnosis": "Диагностика проблемы",
@@ -287,7 +287,7 @@
   const english = Object.fromEntries(Object.entries(russian).map(([key, value]) => [value, key]));
   const ignoredParents = new Set(["SCRIPT", "STYLE", "NOSCRIPT"]);
   const storageKey = "siteLanguageV2";
-  const rublesPerDollar = 100;
+  const rublesPerDollar = 50;
   const rubFormatter = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 0 });
   const usdFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
   let language = "ru";
