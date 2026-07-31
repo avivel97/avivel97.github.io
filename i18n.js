@@ -373,10 +373,29 @@
     });
   }
 
+  function updateCvAssets() {
+    const key = language === "ru" ? "ru" : "en";
+
+    document.querySelectorAll("[data-cv-href-ru][data-cv-href-en]").forEach((element) => {
+      const next = element.dataset[`cvHref${key.toUpperCase()}`];
+      if (next && element.getAttribute("href") !== next) element.setAttribute("href", next);
+    });
+
+    document.querySelectorAll("[data-cv-src-ru][data-cv-src-en]").forEach((element) => {
+      const next = element.dataset[`cvSrc${key.toUpperCase()}`];
+      if (next && element.getAttribute("src") !== next) element.setAttribute("src", next);
+    });
+
+    document.querySelectorAll("[data-cv-preview-ru][data-cv-preview-en]").forEach((element) => {
+      const next = element.dataset[`cvPreview${key.toUpperCase()}`];
+      if (next && element.getAttribute("src") !== next) element.setAttribute("src", next);
+    });
+  }
   function applyTranslations(root = document.documentElement) {
     translateText(root);
     translateAttributes(root);
     document.documentElement.lang = language;
+    updateCvAssets();
     updateSwitcher();
   }
 
