@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vladimir Belolipetskiy</title>
   <link rel="stylesheet" href="styles.css?v=20260731-12">
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  
+  <!-- CHANGE: Bumped the version number to force browser to fetch the new i18n.js -->
+  <script src="i18n.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -96,6 +100,58 @@
       </div>
     </section>
 
+    <!-- BIG TEXT BLOCK START -->
+    <div style="width: 100%; text-align: center; padding: 40px 0 10px 0; margin-top: 20px;">
+      <h2 style="font-size: 2.5rem; font-weight: 700; color: #111111; margin: 0; letter-spacing: -0.02em; line-height: 1.2;">
+        My few last years in numbers
+      </h2>
+      <div style="width: 60px; height: 4px; background: #3b82f6; border-radius: 4px; margin: 16px auto 0 auto;"></div>
+    </div>
+    <!-- BIG TEXT BLOCK END -->
+
+    <!-- ROW 1: SANKEY & HISTOGRAM -->
+    <div style="margin-top: 24px; width: 100%; min-width: 50%; background: #ffffff; color: #111111; padding: 24px; border-radius: 12px; border: 1px solid #e5e7eb; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch;">
+      
+      <!-- LEFT COLUMN: Sankey Chart -->
+      <div style="flex: 2; min-width: 400px;">
+        <h3 style="margin: 0 0 4px 0; font-size: 1.1rem; font-weight: 600; color: #111111;">Task Breakdown</h3>
+        <p style="margin: 0 0 16px 0; font-size: 0.85rem; color: #555555;">
+          Flow from root tasks to the two direct contributions.
+        </p>
+        <div id="sankeyChart" style="height: 380px; width: 100%;"></div>
+      </div>
+
+      <!-- RIGHT COLUMN: Vertical Histogram -->
+      <div style="flex: 1.2; min-width: 300px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e5e7eb; display: flex; flex-direction: column;">
+        <h4 style="margin: 0 0 4px 0; font-size: 1rem; font-weight: 600; color: #111111;">VB Comments Distribution</h4>
+        <p style="margin: 0 0 12px 0; font-size: 0.75rem; color: #64748b;">Number of comments on Indirect tasks</p>
+        <div id="histogramChart" style="height: 350px; width: 100%; flex: 1;"></div>
+      </div>
+      
+    </div>
+
+    <!-- ROW 2: BUSINESS DOMAIN & CAPABILITY -->
+    <div style="margin-top: 24px; width: 100%; min-width: 50%; background: #ffffff; color: #111111; padding: 24px; border-radius: 12px; border: 1px solid #e5e7eb; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch;">
+      
+      <h3 style="width: 100%; margin: 0 0 4px 0; font-size: 1.1rem; font-weight: 600; color: #111111;">Work Profile Breakdown</h3>
+      <p style="width: 100%; margin: 0 0 8px 0; font-size: 0.85rem; color: #555555;">
+        Categorical breakdown of the 1,033 total tasks.
+      </p>
+
+      <!-- LEFT COLUMN: Business Domain -->
+      <div style="flex: 1; min-width: 300px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e5e7eb; display: flex; flex-direction: column;">
+        <h4 style="margin: 0 0 12px 0; font-size: 1rem; font-weight: 600; color: #111111;">Business Domain</h4>
+        <div id="domainChart" style="height: 300px; width: 100%; flex: 1;"></div>
+      </div>
+
+      <!-- RIGHT COLUMN: Capability -->
+      <div style="flex: 1; min-width: 300px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e5e7eb; display: flex; flex-direction: column;">
+        <h4 style="margin: 0 0 12px 0; font-size: 1rem; font-weight: 600; color: #111111;">Capability</h4>
+        <div id="capabilityChart" style="height: 300px; width: 100%; flex: 1;"></div>
+      </div>
+
+    </div>
+
   </main>
 
   <footer class="site-footer">
@@ -104,6 +160,215 @@
 
   <script src="script.js"></script>
   <script src="i18n.js?v=20260731-10"></script>
+  
+  <script>
+    function renderCharts() {
+      if (typeof siteI18n === 'undefined') return;
+      var t = siteI18n.t.bind(siteI18n);
+
+      /**************************/
+      /* 1. Sankey Chart Setup  */
+      /**************************/
+      var sankeyDom = document.getElementById('sankeyChart');
+      if (sankeyDom) {
+        var sankeyChart = echarts.getInstanceByDom(sankeyDom) || echarts.init(sankeyDom);
+        var sankeyOption = {
+          backgroundColor: 'transparent',
+          series: {
+            type: 'sankey',
+            layout: 'none',
+            nodeAlign: 'left',
+            emphasis: { focus: 'adjacency' },
+            label: {
+              show: true,
+              position: 'right',
+              fontSize: 12,
+              fontWeight: 'bold',
+              formatter: function (params) {
+                if (params.dataType === 'node') {
+                  let name = params.name;
+                  let val = params.value.toLocaleString();
+                  let transName = t(name);
+                  if (name === 'Directly Assigned') return transName + '\n' + val + ' (43%)';
+                  if (name === 'Indirect Participation') return transName + '\n' + val + ' (57%)';
+                  if (name === 'Assigned at least once') return transName + '\n' + val + ' (60%)';
+                  if (name === 'Commented, never assigned') return transName + '\n' + val + ' (40%)';
+                  return transName + '\n' + val;
+                }
+                return params.name;
+              }
+            },
+            tooltip: {
+              trigger: 'item',
+              triggerOn: 'mousemove',
+              formatter: function(params) {
+                if(params.dataType === 'edge') {
+                  return params.data.source + ' ➔ ' + params.data.target + '<br/><b>' + params.data.value.toLocaleString() + '</b> items';
+                }
+                return t(params.name) + '<br/><b>' + params.value.toLocaleString() + '</b> items';
+              }
+            },
+            data: [
+              { name: 'Unique Keys', value: 1033, itemStyle: { color: '#6b7280' } },
+              { name: 'Directly Assigned', value: 443, itemStyle: { color: '#4ade80' } },
+              { name: 'Indirect Participation', value: 575, itemStyle: { color: '#fbbf24' } },
+              { name: 'Assigned at least once', value: 343, itemStyle: { color: '#22d3ee' } },
+              { name: 'Commented, never assigned', value: 232, itemStyle: { color: '#a78bfa' } }
+            ],
+            links: [
+              { source: 'Unique Keys', target: 'Directly Assigned', value: 443 },
+              { source: 'Unique Keys', target: 'Indirect Participation', value: 575 },
+              { source: 'Indirect Participation', target: 'Assigned at least once', value: 343 },
+              { source: 'Indirect Participation', target: 'Commented, never assigned', value: 232 }
+            ],
+            lineStyle: { color: 'source', curveness: 0.5, opacity: 0.5 },
+            nodeGap: 30,
+            nodeWidth: 18,
+            draggable: true
+          }
+        };
+        sankeyChart.setOption(sankeyOption, true);
+      }
+
+      /**************************/
+      /* 2. Histogram Setup     */
+      /**************************/
+      var histDom = document.getElementById('histogramChart');
+      if (histDom) {
+        var histChart = echarts.getInstanceByDom(histDom) || echarts.init(histDom);
+        var histX = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','20','22','30'];
+        var histY = [48,191,122,62,35,29,22,19,10,10,4,3,2,1,4,2,3,3,1,1,1,2];
+
+        var histOption = {
+          backgroundColor: 'transparent',
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: { type: 'shadow' },
+            formatter: function(params) {
+              var p = params[0];
+              return t('# of VB Comments') + ': <b>' + p.name + '</b><br/>' + t('Number of Tasks') + ': <b>' + p.value + '</b>';
+            }
+          },
+          grid: { left: '3%', right: '4%', bottom: '15%', top: '5%', containLabel: true },
+          xAxis: {
+            type: 'category', data: histX, name: t('# of VB Comments'),
+            nameLocation: 'middle', nameGap: 30,
+            axisLabel: { rotate: 45, fontSize: 11, interval: 0 },
+            axisTick: { alignWithLabel: true }
+          },
+          yAxis: { type: 'value', name: t('Number of Tasks') },
+          series: [{
+            data: histY, type: 'bar', barWidth: '70%',
+            itemStyle: { color: '#3b82f6' },
+            emphasis: { itemStyle: { color: '#1d4ed8' } }
+          }]
+        };
+        histChart.setOption(histOption, true);
+      }
+
+      /**************************/
+      /* 3. Business Domain Setup */
+      /**************************/
+      var domainDom = document.getElementById('domainChart');
+      if (domainDom) {
+        var domainChart = echarts.getInstanceByDom(domainDom) || echarts.init(domainDom);
+        var domainData = [
+          { name: 'Promo, sales & commercial performance', value: 282 },
+          { name: 'Customer, category & segmentation analytics', value: 261 },
+          { name: 'Assortment, inventory & availability', value: 155 },
+          { name: 'Other / cross-domain', value: 121 },
+          { name: 'Data platform & integrations', value: 108 },
+          { name: 'BI products & reporting', value: 94 },
+          { name: 'Delivery operations & support', value: 12 }
+        ];
+        var domainOption = {
+          backgroundColor: 'transparent',
+          tooltip: { 
+            trigger: 'axis', 
+            axisPointer: { type: 'shadow' },
+            formatter: function(params) {
+              var p = params[0];
+              return t(p.name) + ': <b>' + p.value + '</b>';
+            }
+          },
+          grid: { left: '3%', right: '8%', bottom: '5%', top: '3%', containLabel: true },
+          xAxis: { type: 'value', splitLine: { show: false } },
+          yAxis: { 
+            type: 'category', 
+            data: domainData.map(d => t(d.name)).reverse(), 
+            axisTick: { show: false } 
+          },
+          series: [{
+            type: 'bar',
+            data: domainData.map(d => d.value).reverse(),
+            barWidth: '65%',
+            label: { show: true, position: 'right', fontWeight: 'bold' },
+            itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#00b4d8' }, { offset: 1, color: '#0077b6' }]) }
+          }]
+        };
+        domainChart.setOption(domainOption, true);
+      }
+
+      /**************************/
+      /* 4. Capability Setup    */
+      /**************************/
+      var capabilityDom = document.getElementById('capabilityChart');
+      if (capabilityDom) {
+        var capabilityChart = echarts.getInstanceByDom(capabilityDom) || echarts.init(capabilityDom);
+        var capabilityData = [
+          { name: 'BI, dashboard & application development', value: 323 },
+          { name: 'Data quality, validation & reconciliation', value: 161 },
+          { name: 'Requirements, documentation & solution design', value: 156 },
+          { name: 'Data engineering & integration', value: 118 },
+          { name: 'Analytics, metric logic & modeling', value: 107 },
+          { name: 'Other / insufficient text signal', value: 100 },
+          { name: 'Technical support, incidents & configuration', value: 41 },
+          { name: 'Coordination & delivery management', value: 27 }
+        ];
+        var capabilityOption = {
+          backgroundColor: 'transparent',
+          tooltip: { 
+            trigger: 'axis', 
+            axisPointer: { type: 'shadow' },
+            formatter: function(params) {
+              var p = params[0];
+              return t(p.name) + ': <b>' + p.value + '</b>';
+            }
+          },
+          grid: { left: '3%', right: '8%', bottom: '5%', top: '3%', containLabel: true },
+          xAxis: { type: 'value', splitLine: { show: false } },
+          yAxis: { 
+            type: 'category', 
+            data: capabilityData.map(d => t(d.name)).reverse(), 
+            axisTick: { show: false } 
+          },
+          series: [{
+            type: 'bar',
+            data: capabilityData.map(d => d.value).reverse(),
+            barWidth: '65%',
+            label: { show: true, position: 'right', fontWeight: 'bold' },
+            itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#a855f7' }, { offset: 1, color: '#7e22ce' }]) }
+          }]
+        };
+        capabilityChart.setOption(capabilityOption, true);
+      }
+    }
+
+    // Initial render when page loads
+    renderCharts();
+
+    // Listen for language changes triggered by i18n.js
+    window.addEventListener('languageChanged', function() {
+      renderCharts();
+    });
+
+    // Global Resize
+    window.addEventListener('resize', function() {
+      ['sankeyChart', 'histogramChart', 'domainChart', 'capabilityChart'].forEach(id => {
+        let chart = echarts.getInstanceByDom(document.getElementById(id));
+        if (chart) chart.resize();
+      });
+    });
+  </script>
 </body>
 </html>
-

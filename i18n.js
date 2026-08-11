@@ -15,22 +15,22 @@
     "Research | Vladimir Belolipetskiy": "Исследования | Владимир Белолипецкий",
     "Completed papers, presentations, and abstracts": "Завершённые статьи, презентации и тезисы",
     "Paper": "Статья",
-    "Mathematical Methods of Managing a Retail Store as a Dynamic System: The Promotional Pricing Aspect": "Математические методы управления розничным магазином как динамической системой: аспект промо-ценообразования",
-    "A game-theoretic and optimization framework for coordinating promotional pricing at store level.": "Теоретико-игровая и оптимизационная модель координации промо-ценообразования на уровне магазина.",
+    "Mathematical Methods of Managing a Retail Store as a Dynamic System: The Promotional Pricing Aspect": "Mathematical Methods of Managing a Retail Store as a Dynamic System: The Promotional Pricing Aspect",
+    "A game-theoretic and optimization framework for coordinating promotional pricing at store level.": "A game-theoretic and optimization framework for coordinating promotional pricing at store level.",
     "Download": "Скачать",
     "Slides": "Презентация",
-    "Presentation for the 10th International Conference on Differential and Functional Differential Equations.": "Презентация для 10-й Международной конференции по дифференциальным и функционально-дифференциальным уравнениям.",
+    "Presentation for the 10th International Conference on Differential and Functional Differential Equations.": "Presentation for the 10th International Conference on Differential and Functional Differential Equations.",
     "Abstract": "Тезисы",
-    "A Queueing-Theoretic Framework for Controlling Customer Flow in Loyalty Programs Under Budget Constraints": "Теоретико-очередная модель управления потоком клиентов в программах лояльности при бюджетных ограничениях",
-    "A state-dependent queueing model for financially sustainable loyalty-program progression.": "Зависимая от состояния модель очередей для финансово устойчивого развития программ лояльности.",
+    "A Queueing-Theoretic Framework for Controlling Customer Flow in Loyalty Programs Under Budget Constraints": "A Queueing-Theoretic Framework for Controlling Customer Flow in Loyalty Programs Under Budget Constraints",
+    "A state-dependent queueing model for financially sustainable loyalty-program progression.": "A state-dependent queueing model for financially sustainable loyalty-program progression.",
     "Current drafts": "Текущие черновики",
     "In-progress Work": "Работы в процессе",
     "Draft article": "Черновик статьи",
-    "A Hierarchical Retail World Model for Interpretable Demand Decomposition": "Иерархическая модель мира розничной торговли для интерпретируемой декомпозиции спроса",
-    "An operations-research framework for tracing retail outcomes back to interpretable upstream drivers.": "Модель исследования операций, связывающая результаты розничной торговли с интерпретируемыми первичными факторами.",
+    "A Hierarchical Retail World Model for Interpretable Demand Decomposition": "A Hierarchical Retail World Model for Interpretable Demand Decomposition",
+    "An operations-research framework for tracing retail outcomes back to interpretable upstream drivers.": "An operations-research framework for tracing retail outcomes back to interpretable upstream drivers.",
     "Working paper": "Рабочая статья",
-    "Why BI Is Not Enough: The Move Toward Decision Intelligence": "Почему BI недостаточно: переход к интеллектуальным системам принятия решений",
-    "A practical argument for moving from retrospective dashboards to constrained, learning decision systems.": "Практическое обоснование перехода от ретроспективных дашбордов к обучающимся системам принятия решений с ограничениями.",
+    "Why BI Is Not Enough: The Move Toward Decision Intelligence": "Why BI Is Not Enough: The Move Toward Decision Intelligence",
+    "A practical argument for moving from retrospective dashboards to constrained, learning decision systems.": "A practical argument for moving from retrospective dashboards to constrained, learning decision systems.",
     "Commercial Services | Vladimir Belolipetskiy": "Коммерческие услуги | Владимир Белолипецкий",
     "Vladimir Belolipetskiy | Commercial proposal": "Владимир Белолипецкий | Коммерческое предложение",
     "Applied Analytics & Decision Consulting": "Прикладная аналитика и консалтинг по принятию решений",
@@ -281,7 +281,47 @@
     "Security check is temporarily unavailable. Please try again.": "Проверка безопасности временно недоступна. Повторите попытку.",
     "Enter a valid email address.": "Введите корректный адрес электронной почты.",
     "Please provide a more detailed problem description.": "Пожалуйста, опишите задачу подробнее.",
-    "The request could not be stored. Please try again.": "Не удалось сохранить запрос. Повторите попытку."
+    "The request could not be stored. Please try again.": "Не удалось сохранить запрос. Повторите попытку.",
+
+    // --- CHART KEYS ---
+    "My few last years in numbers": "Мои последние несколько лет в цифрах",
+    "Task Breakdown": "Разбор задач",
+    "Flow from root tasks to the two direct contributions.": "Поток от корневых задач к двум прямым вкладам.",
+    "VB Comments Distribution": "Распределение комментариев VB",
+    "Number of comments on Indirect tasks": "Количество комментариев по косвенным задачам",
+    "Work Profile Breakdown": "Профиль работы",
+    "Categorical breakdown of the 1,033 total tasks.": "Категорийный разбор 1 033 задач.",
+    "Business Domain": "Бизнес-домен",
+    "Capability": "Компетенция",
+
+    // Sankey Nodes
+    "Unique Keys": "Уникальные ключи",
+    "Directly Assigned": "Прямые назначения",
+    "Indirect Participation": "Косвенное участие",
+    "Assigned at least once": "Назначено хотя бы раз",
+    "Commented, never assigned": "Только комментарии (без назначения)",
+
+    // Histogram
+    "# of VB Comments": "Количество комментариев VB",
+    "Number of Tasks": "Количество задач",
+
+    // --- NEW: DOMAIN AND CAPABILITY CATEGORIES ---
+    "Promo, sales & commercial performance": "Промо, продажи и коммерческая эффективность",
+    "Customer, category & segmentation analytics": "Аналитика клиентов, категорий и сегментация",
+    "Assortment, inventory & availability": "Ассортимент, запасы и доступность",
+    "Other / cross-domain": "Другое / кросс-доменное",
+    "Data platform & integrations": "Платформа данных и интеграции",
+    "BI products & reporting": "BI-продукты и отчётность",
+    "Delivery operations & support": "Операции и поддержка доставки",
+    
+    "BI, dashboard & application development": "Разработка BI, дашбордов и приложений",
+    "Data quality, validation & reconciliation": "Качество данных, валидация и сверка",
+    "Requirements, documentation & solution design": "Требования, документация и проектирование решений",
+    "Data engineering & integration": "Инженерия данных и интеграция",
+    "Analytics, metric logic & modeling": "Аналитика, метрическая логика и моделирование",
+    "Other / insufficient text signal": "Другое / недостаточный текстовый сигнал",
+    "Technical support, incidents & configuration": "Техническая поддержка, инциденты и настройка",
+    "Coordination & delivery management": "Координация и управление доставкой"
   };
 
   const english = Object.fromEntries(Object.entries(russian).map(([key, value]) => [value, key]));
@@ -421,6 +461,7 @@
     }
 
     applyTranslations();
+    window.dispatchEvent(new CustomEvent("languageChanged", { detail: { language } }));
   }
 
   const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
