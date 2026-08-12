@@ -54,6 +54,38 @@ function translated(value) {
     : value;
 }
 
+function initializeMobileAccordions() {
+  const breakpoint = window.matchMedia("(max-width: 640px)");
+  const toggles = Array.from(document.querySelectorAll("[data-mobile-accordion]"));
+
+  function syncPanels() {
+    toggles.forEach((toggle) => {
+      const panel = document.getElementById(toggle.getAttribute("data-mobile-accordion"));
+      if (!panel) return;
+
+      if (breakpoint.matches) {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        panel.classList.toggle("is-mobile-collapsed", !expanded);
+      } else {
+        toggle.setAttribute("aria-expanded", "true");
+        panel.classList.remove("is-mobile-collapsed");
+      }
+    });
+  }
+
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      if (!breakpoint.matches) return;
+      const expanded = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!expanded));
+      syncPanels();
+    });
+  });
+
+  breakpoint.addEventListener("change", syncPanels);
+  syncPanels();
+}
+
 function getEstimate() {
   const hours = normalizedHours(hoursNumber.value);
   const rate = checkedValue("classification");
@@ -471,4 +503,5 @@ if (year) {
   year.textContent = new Date().getFullYear();
 }
 
+initializeMobileAccordions();
 updateEstimate();
