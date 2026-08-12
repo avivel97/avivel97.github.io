@@ -285,8 +285,8 @@
 
     // --- CHART KEYS ---
     "My few last years in numbers": "Мои последние несколько лет в цифрах",
-    "Tasks Breakdown": "Разбор задач",
-    "Topics are modelled from task names with ChatGPT 5.6 Sol": "Темы смоделированы по названиям задач с помощью ChatGPT 5.6 Sol",
+    "Task Breakdown": "Разбор задач",
+    "Flow from root tasks to the two direct contributions.": "Поток от корневых задач к двум прямым вкладам.",
     "VB Comments Distribution": "Распределение комментариев VB",
     "Number of comments on Indirect tasks": "Количество комментариев по косвенным задачам",
     "Work Profile Breakdown": "Профиль работы",
@@ -295,7 +295,7 @@
     "Capability": "Компетенция",
 
     // Sankey Nodes
-    "All Tasks": "Все задачи",
+    "Unique Keys": "Уникальные ключи",
     "Directly Assigned": "Прямые назначения",
     "Indirect Participation": "Косвенное участие",
     "Assigned at least once": "Назначено хотя бы раз",
@@ -318,10 +318,10 @@
     "Data quality, validation & reconciliation": "Качество данных, валидация и сверка",
     "Requirements, documentation & solution design": "Требования, документация и проектирование решений",
     "Data engineering & integration": "Инженерия данных и интеграция",
-    "Analytics, metric logic & modeling": "Аналитика, логика метрик и моделирование",
+    "Analytics, metric logic & modeling": "Аналитика, метрическая логика и моделирование",
     "Other / insufficient text signal": "Другое / недостаточный текстовый сигнал",
     "Technical support, incidents & configuration": "Техническая поддержка, инциденты и настройка",
-    "Coordination & delivery management": "Координация и управление"
+    "Coordination & delivery management": "Координация и управление доставкой"
   };
 
   const english = Object.fromEntries(Object.entries(russian).map(([key, value]) => [value, key]));

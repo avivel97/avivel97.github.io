@@ -114,9 +114,9 @@
       
       <!-- LEFT COLUMN: Sankey Chart -->
       <div style="flex: 2; min-width: 400px;">
-        <h3 style="margin: 0 0 4px 0; font-size: 1.1rem; font-weight: 600; color: #111111;">Tasks Breakdown</h3>
+        <h3 style="margin: 0 0 4px 0; font-size: 1.1rem; font-weight: 600; color: #111111;">Task Breakdown</h3>
         <p style="margin: 0 0 16px 0; font-size: 0.85rem; color: #555555;">
-          Topics are modelled from task names with ChatGPT 5.6 Sol
+          Flow from root tasks to the two direct contributions.
         </p>
         <div id="sankeyChart" style="height: 380px; width: 100%;"></div>
       </div>
@@ -209,15 +209,15 @@
               }
             },
             data: [
-              { name: 'All Tasks', value: 1033, itemStyle: { color: '#6b7280' } },
+              { name: 'Unique Keys', value: 1033, itemStyle: { color: '#6b7280' } },
               { name: 'Directly Assigned', value: 443, itemStyle: { color: '#4ade80' } },
               { name: 'Indirect Participation', value: 575, itemStyle: { color: '#fbbf24' } },
               { name: 'Assigned at least once', value: 343, itemStyle: { color: '#22d3ee' } },
-              { name: 'Commented, never assigned', value: 232, localX: 0.89, itemStyle: { color: '#a78bfa' } }
+              { name: 'Commented, never assigned', value: 232, itemStyle: { color: '#a78bfa' } }
             ],
             links: [
-              { source: 'All Tasks', target: 'Directly Assigned', value: 443 },
-              { source: 'All Tasks', target: 'Indirect Participation', value: 575 },
+              { source: 'Unique Keys', target: 'Directly Assigned', value: 443 },
+              { source: 'Unique Keys', target: 'Indirect Participation', value: 575 },
               { source: 'Indirect Participation', target: 'Assigned at least once', value: 343 },
               { source: 'Indirect Participation', target: 'Commented, never assigned', value: 232 }
             ],
