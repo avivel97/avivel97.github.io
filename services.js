@@ -320,9 +320,6 @@ async function createRequestPdf() {
     [89, 100, 104]
   );
 
-  addSectionTitle("Professional profile");
-  addDetailRow("ORCID", "https://orcid.org/0009-0003-4219-0287");
-
   const pages = doc.getNumberOfPages();
   for (let page = 1; page <= pages; page += 1) {
     doc.setPage(page);
