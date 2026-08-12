@@ -284,7 +284,9 @@
     "The request could not be stored. Please try again.": "Не удалось сохранить запрос. Повторите попытку.",
 
     // --- CHART KEYS ---
+    "My few last years in numbers (as of July 2026)": "Мои последние несколько лет в цифрах (по состоянию на июль 2026 года)",
     "My few last years in numbers": "Мои последние несколько лет в цифрах",
+    "As of July 2026": "По состоянию на июль 2026 года",
     "Tasks Breakdown": "Разбор задач",
     "Topics are modelled from task names with ChatGPT 5.6 Sol": "Темы смоделированы по названиям задач с помощью ChatGPT 5.6 Sol",
     "VB Comments Distribution": "Распределение комментариев VB",
@@ -293,6 +295,14 @@
     "Categorical breakdown of the 1,033 total tasks.": "Категорийный разбор 1 033 задач.",
     "Business Domain": "Бизнес-домен",
     "Capability": "Компетенция",
+    "Analytics sections": "Разделы аналитики",
+    "Comments": "Комменты",
+    "Domains": "Домены",
+    "Capabilities": "Навыки",
+    "Indirect participation composition": "Состав косвенного участия",
+    "60% of indirect tasks": "60% косвенных задач",
+    "40% of indirect tasks": "40% косвенных задач",
+    "Work types that appear most often across tasks.": "Какие виды работы чаще всего встречались в задачах.",
 
     // Sankey Nodes
     "All Tasks": "Все задачи",

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics Mobile Sketch</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #111827;
+      --muted: #5f6878;
+      --line: #d9e1ec;
+      --panel: #ffffff;
+      --soft: #f5f8fc;
+      --blue: #0969ff;
+      --cyan: #06a7c8;
+      --green: #37c871;
+      --gold: #f5be25;
+      --violet: #9069e8;
+      --slate: #697386;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 20% 5%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 32rem),
+        linear-gradient(145deg, #eef4ff 0%, #ffffff 42%, #dbe8ff 100%);
+    }
+
+    .dashboard {
+      width: min(100%, 520px);
+      margin: 0 auto;
+      padding: 18px 14px 28px;
+    }
+
+    .headline {
+      padding: 8px 2px 16px;
+    }
+
+    .headline h1 {
+      margin: 0;
+      font-size: clamp(1.55rem, 7.2vw, 2.25rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .headline p {
+      margin: 9px 0 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .kpi {
+      min-height: 92px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .kpi strong {
+      display: block;
+      font-size: 1.62rem;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .kpi span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.25;
+    }
+
+    .tabbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(245, 248, 252, 0.96);
+      backdrop-filter: blur(10px);
+    }
+
+    .tabbar button {
+      min-width: 0;
+      min-height: 38px;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--muted);
+      font: 700 0.68rem/1 Arial, sans-serif;
+      cursor: pointer;
+    }
+
+    .tabbar button[aria-selected="true"] {
+      color: #ffffff;
+      background: var(--blue);
+      box-shadow: 0 6px 18px rgba(9, 105, 255, 0.24);
+    }
+
+    .panel,
+    .task-summary {
+      display: none;
+      margin-top: 12px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .task-summary {
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .panel.is-active {
+      display: block;
+    }
+
+    .panel h2,
+    .task-summary h2 {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .panel-note {
+      margin: 6px 0 16px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+
+    .flow-root {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 8px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+    }
+
+    .root-total,
+    .flow-node {
+      border-radius: 8px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+    }
+
+    .root-total {
+      padding: 14px;
+      border-left: 7px solid var(--slate);
+    }
+
+    .root-total span,
+    .flow-node span,
+    .rank-label span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .root-total strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .split {
+      display: grid;
+      gap: 10px;
+    }
+
+    .flow-node {
+      overflow: hidden;
+    }
+
+    .indirect-group {
+      display: grid;
+      gap: 8px;
+      padding: 10px;
+      border: 2px solid rgba(245, 190, 37, 0.5);
+      border-radius: 8px;
+      background: rgba(245, 190, 37, 0.08);
+    }
+
+    .indirect-group-label {
+      color: #8a6810;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .flow-node header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 12px 8px;
+      font-weight: 800;
+    }
+
+    .flow-node b {
+      white-space: nowrap;
+    }
+
+    .bar {
+      height: 10px;
+      margin: 0 12px 12px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e8edf4;
+    }
+
+    .bar i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+    }
+
+    .details {
+      display: grid;
+      gap: 8px;
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      font-weight: 700;
+    }
+
+    .detail-row span {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 400;
+    }
+
+    .mini-bars {
+      display: grid;
+      gap: 8px;
+    }
+
+    .comment-row {
+      display: grid;
+      grid-template-columns: 34px 1fr 36px;
+      gap: 8px;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .comment-row .track {
+      height: 12px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #edf2f7;
+    }
+
+    .comment-row .fill {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--blue);
+    }
+
+    .rank-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .rank-item {
+      display: grid;
+      gap: 7px;
+    }
+
+    .rank-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .rank-label b {
+      white-space: nowrap;
+    }
+
+    .rank-track {
+      height: 11px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #edf2f7;
+    }
+
+    .rank-track i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+    }
+
+    .footer-note {
+      margin: 14px 2px 0;
+      color: var(--muted);
+      font-size: 0.76rem;
+      text-align: center;
+    }
+
+    @media (min-width: 760px) {
+      .dashboard {
+        width: min(100%, 980px);
+        padding: 30px 24px 42px;
+      }
+
+      .headline h1 {
+        font-size: 2.6rem;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .split {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .panel,
+      .task-summary {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="dashboard">
+    <section class="headline" aria-labelledby="dashboard-title">
+      <h1 id="dashboard-title">Мои последние несколько лет в цифрах</h1>
+      <p>По состоянию на июль 2026 года</p>
+    </section>
+
+    <section class="task-summary" aria-labelledby="tasks-title">
+      <h2 id="tasks-title">Разбор задач</h2>
+      <p class="panel-note">Темы смоделированы по названиям задач с помощью ChatGPT 5.6 Sol</p>
+
+      <div class="flow-root">
+        <div class="root-total">
+          <span>Все задачи</span>
+          <strong>1 033</strong>
+        </div>
+
+        <div class="split">
+          <article class="flow-node">
+            <header>
+              <span>Прямые назначения</span>
+              <b>443</b>
+            </header>
+            <div class="bar"><i style="width: 43%; background: var(--green);"></i></div>
+          </article>
+
+        </div>
+
+        <div class="indirect-group">
+          <div class="indirect-group-label">Состав косвенного участия</div>
+          <article class="flow-node">
+            <header>
+              <span>Косвенное участие</span>
+              <b>575</b>
+            </header>
+            <div class="bar"><i style="width: 57%; background: var(--gold);"></i></div>
+          </article>
+
+          <div class="details">
+            <div class="detail-row">
+              <div>Назначено хотя бы раз <span>60% косвенных задач</span></div>
+              <b>343</b>
+            </div>
+            <div class="detail-row">
+              <div>Только комментарии <span>40% косвенных задач</span></div>
+              <b>232</b>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="tabbar" aria-label="Разделы аналитики">
+      <button type="button" aria-selected="true" data-tab="comments">Комменты</button>
+      <button type="button" aria-selected="false" data-tab="domains">Домены</button>
+      <button type="button" aria-selected="false" data-tab="skills">Навыки</button>
+    </nav>
+
+    <section class="panel is-active" id="comments" aria-labelledby="comments-title">
+      <h2 id="comments-title">Распределение комментариев VB</h2>
+      <p class="panel-note">Сколько задач получали разное количество комментариев.</p>
+      <div class="mini-bars" aria-label="Распределение комментариев">
+        <div class="comment-row"><span>0</span><div class="track"><i class="fill" style="width: 25%;"></i></div><b>48</b></div>
+        <div class="comment-row"><span>1</span><div class="track"><i class="fill" style="width: 100%;"></i></div><b>191</b></div>
+        <div class="comment-row"><span>2</span><div class="track"><i class="fill" style="width: 64%;"></i></div><b>122</b></div>
+        <div class="comment-row"><span>3</span><div class="track"><i class="fill" style="width: 32%;"></i></div><b>62</b></div>
+        <div class="comment-row"><span>4</span><div class="track"><i class="fill" style="width: 18%;"></i></div><b>35</b></div>
+        <div class="comment-row"><span>5+</span><div class="track"><i class="fill" style="width: 61%;"></i></div><b>117</b></div>
+      </div>
+    </section>
+
+    <section class="panel" id="domains" aria-labelledby="domains-title">
+      <h2 id="domains-title">Бизнес-домен</h2>
+      <p class="panel-note">Категорийный разбор 1 033 задач.</p>
+      <div class="rank-list">
+        <div class="rank-item">
+          <div class="rank-label"><span>Промо, продажи и коммерческая эффективность</span><b>282</b></div>
+          <div class="rank-track"><i style="width: 100%; background: var(--cyan);"></i></div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-label"><span>Аналитика клиентов, категорий и сегментация</span><b>261</b></div>
+          <div class="rank-track"><i style="width: 93%; background: var(--cyan);"></i></div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-label"><span>Ассортимент, запасы и доступность</span><b>155</b></div>
+          <div class="rank-track"><i style="width: 55%; background: var(--cyan);"></i></div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-label"><span>Другое / кросс-доменное</span><b>121</b></div>
+          <div class="rank-track"><i style="width: 43%; background: var(--cyan);"></i></div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-label"><span>Платформа данных и интеграции</span><b>108</b></div>
+          <div class="rank-track"><i style="width: 38%; background: var(--cyan);"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title">Компетенция</h2>
+      <p class="panel-note">Какие виды работы чаще всего встречались в задачах.</p>
+      <div class="rank-list">
+        <div class="rank-item">
+          <div class="rank-label"><span>Разработка BI, дашбордов и приложений</span><b>323</b></div>
+          <div class="rank-track"><i style="width: 100%; background: var(--violet);"></i></div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-label"><span>Качество данных, валидация и сверка</span><b>161</b></div>
+          <div class="rank-track"><i style="width: 50%; background: var(--violet);"></i></div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-label"><span>Требования, документация и проектирование решений</span><b>156</b></div>
+          <div class="rank-track"><i style="width: 48%; background: var(--violet);"></i></div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-label"><span>Инженерия данных и интеграция</span><b>118</b></div>
+          <div class="rank-track"><i style="width: 37%; background: var(--violet);"></i></div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-label"><span>Аналитика, логика метрик и моделирование</span><b>107</b></div>
+          <div class="rank-track"><i style="width: 33%; background: var(--violet);"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Эскиз мобильного представления. Не подключён к основному сайту.</p>
+  </main>
+
+  <script>
+    const tabs = document.querySelectorAll("[data-tab]");
+    const panels = document.querySelectorAll(".panel");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((item) => item.setAttribute("aria-selected", String(item === tab)));
+        panels.forEach((panel) => panel.classList.toggle("is-active", panel.id === tab.dataset.tab));
+      });
+    });
+  </script>
+</body>
+</html>

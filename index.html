@@ -98,57 +98,151 @@
       </div>
     </section>
 
-    <!-- BIG TEXT BLOCK START -->
-    <div style="width: 100%; text-align: center; padding: 40px 0 10px 0; margin-top: 20px;">
-      <h2 style="font-size: 2.5rem; font-weight: 700; color: #111111; margin: 0; letter-spacing: -0.02em; line-height: 1.2;">
-        My few last years in numbers
-      </h2>
-      <div style="width: 60px; height: 4px; background: #3b82f6; border-radius: 4px; margin: 16px auto 0 auto;"></div>
-    </div>
-    <!-- BIG TEXT BLOCK END -->
+    <section class="analytics-desktop" aria-label="Analytics dashboard">
+      <!-- BIG TEXT BLOCK START -->
+      <div style="width: 100%; text-align: center; padding: 40px 0 10px 0; margin-top: 20px;">
+        <h2 style="font-size: 2.5rem; font-weight: 700; color: #111111; margin: 0; letter-spacing: 0; line-height: 1.2;">
+          My few last years in numbers (as of July 2026)
+        </h2>
+        <div style="width: 60px; height: 4px; background: #3b82f6; border-radius: 4px; margin: 16px auto 0 auto;"></div>
+      </div>
+      <!-- BIG TEXT BLOCK END -->
 
-    <!-- ROW 1: SANKEY & HISTOGRAM -->
-    <div style="margin-top: 24px; width: 100%; min-width: 50%; background: #ffffff; color: #111111; padding: 24px; border-radius: 12px; border: 1px solid #e5e7eb; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch;">
-      
-      <!-- LEFT COLUMN: Sankey Chart -->
-      <div style="flex: 2; min-width: 400px;">
-        <h3 style="margin: 0 0 4px 0; font-size: 1.1rem; font-weight: 600; color: #111111;">Tasks Breakdown</h3>
-        <p style="margin: 0 0 16px 0; font-size: 0.85rem; color: #555555;">
-          Topics are modelled from task names with ChatGPT 5.6 Sol
+      <!-- ROW 1: SANKEY & HISTOGRAM -->
+      <div style="margin-top: 24px; width: 100%; min-width: 50%; background: #ffffff; color: #111111; padding: 24px; border-radius: 12px; border: 1px solid #e5e7eb; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch;">
+        
+        <!-- LEFT COLUMN: Sankey Chart -->
+        <div style="flex: 2; min-width: 400px;">
+          <h3 style="margin: 0 0 4px 0; font-size: 1.1rem; font-weight: 600; color: #111111;">Tasks Breakdown</h3>
+          <p style="margin: 0 0 16px 0; font-size: 0.85rem; color: #555555;">
+            Topics are modelled from task names with ChatGPT 5.6 Sol
+          </p>
+          <div id="sankeyChart" style="height: 380px; width: 100%;"></div>
+        </div>
+
+        <!-- RIGHT COLUMN: Vertical Histogram -->
+        <div style="flex: 1.2; min-width: 300px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e5e7eb; display: flex; flex-direction: column;">
+          <h4 style="margin: 0 0 4px 0; font-size: 1rem; font-weight: 600; color: #111111;">VB Comments Distribution</h4>
+          <p style="margin: 0 0 12px 0; font-size: 0.75rem; color: #64748b;">Number of comments on Indirect tasks</p>
+          <div id="histogramChart" style="height: 350px; width: 100%; flex: 1;"></div>
+        </div>
+        
+      </div>
+
+      <!-- ROW 2: BUSINESS DOMAIN & CAPABILITY -->
+      <div style="margin-top: 24px; width: 100%; min-width: 50%; background: #ffffff; color: #111111; padding: 24px; border-radius: 12px; border: 1px solid #e5e7eb; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch;">
+        
+        <h3 style="width: 100%; margin: 0 0 4px 0; font-size: 1.1rem; font-weight: 600; color: #111111;">Work Profile Breakdown</h3>
+        <p style="width: 100%; margin: 0 0 8px 0; font-size: 0.85rem; color: #555555;">
+          Категорийный разбор 1 033 задач.
         </p>
-        <div id="sankeyChart" style="height: 380px; width: 100%;"></div>
+
+        <!-- LEFT COLUMN: Business Domain -->
+        <div style="flex: 1; min-width: 300px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e5e7eb; display: flex; flex-direction: column;">
+          <h4 style="margin: 0 0 12px 0; font-size: 1rem; font-weight: 600; color: #111111;">Business Domain</h4>
+          <div id="domainChart" style="height: 300px; width: 100%; flex: 1;"></div>
+        </div>
+
+        <!-- RIGHT COLUMN: Capability -->
+        <div style="flex: 1; min-width: 300px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e5e7eb; display: flex; flex-direction: column;">
+          <h4 style="margin: 0 0 12px 0; font-size: 1rem; font-weight: 600; color: #111111;">Capability</h4>
+          <div id="capabilityChart" style="height: 300px; width: 100%; flex: 1;"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="analytics-mobile" aria-labelledby="mobile-analytics-title">
+      <div class="analytics-mobile__headline">
+        <h2 id="mobile-analytics-title">My few last years in numbers</h2>
+        <p>As of July 2026</p>
       </div>
 
-      <!-- RIGHT COLUMN: Vertical Histogram -->
-      <div style="flex: 1.2; min-width: 300px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e5e7eb; display: flex; flex-direction: column;">
-        <h4 style="margin: 0 0 4px 0; font-size: 1rem; font-weight: 600; color: #111111;">VB Comments Distribution</h4>
-        <p style="margin: 0 0 12px 0; font-size: 0.75rem; color: #64748b;">Number of comments on Indirect tasks</p>
-        <div id="histogramChart" style="height: 350px; width: 100%; flex: 1;"></div>
-      </div>
-      
-    </div>
+      <section class="analytics-mobile__summary" aria-labelledby="mobile-tasks-title">
+        <h3 id="mobile-tasks-title">Tasks Breakdown</h3>
+        <p class="analytics-mobile__note">Topics are modelled from task names with ChatGPT 5.6 Sol</p>
 
-    <!-- ROW 2: BUSINESS DOMAIN & CAPABILITY -->
-    <div style="margin-top: 24px; width: 100%; min-width: 50%; background: #ffffff; color: #111111; padding: 24px; border-radius: 12px; border: 1px solid #e5e7eb; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch;">
-      
-      <h3 style="width: 100%; margin: 0 0 4px 0; font-size: 1.1rem; font-weight: 600; color: #111111;">Work Profile Breakdown</h3>
-      <p style="width: 100%; margin: 0 0 8px 0; font-size: 0.85rem; color: #555555;">
-        Categorical breakdown of the 1,033 total tasks.
-      </p>
+        <div class="analytics-flow">
+          <div class="analytics-flow__total">
+            <span>All Tasks</span>
+            <strong>1 033</strong>
+          </div>
 
-      <!-- LEFT COLUMN: Business Domain -->
-      <div style="flex: 1; min-width: 300px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e5e7eb; display: flex; flex-direction: column;">
-        <h4 style="margin: 0 0 12px 0; font-size: 1rem; font-weight: 600; color: #111111;">Business Domain</h4>
-        <div id="domainChart" style="height: 300px; width: 100%; flex: 1;"></div>
-      </div>
+          <article class="analytics-flow__node">
+            <header>
+              <span>Directly Assigned</span>
+              <b>443</b>
+            </header>
+            <div class="analytics-flow__bar"><i style="width: 43%; background: #37c871;"></i></div>
+          </article>
 
-      <!-- RIGHT COLUMN: Capability -->
-      <div style="flex: 1; min-width: 300px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e5e7eb; display: flex; flex-direction: column;">
-        <h4 style="margin: 0 0 12px 0; font-size: 1rem; font-weight: 600; color: #111111;">Capability</h4>
-        <div id="capabilityChart" style="height: 300px; width: 100%; flex: 1;"></div>
-      </div>
+          <div class="analytics-flow__group">
+            <div class="analytics-flow__group-label">Indirect participation composition</div>
+            <article class="analytics-flow__node">
+              <header>
+                <span>Indirect Participation</span>
+                <b>575</b>
+              </header>
+              <div class="analytics-flow__bar"><i style="width: 57%; background: #f5be25;"></i></div>
+            </article>
 
-    </div>
+            <div class="analytics-flow__details">
+              <div class="analytics-flow__detail">
+                <div>Assigned at least once <span>60% of indirect tasks</span></div>
+                <b>343</b>
+              </div>
+              <div class="analytics-flow__detail">
+                <div>Commented, never assigned <span>40% of indirect tasks</span></div>
+                <b>232</b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="analytics-mobile__tabs" aria-label="Analytics sections">
+        <button type="button" aria-selected="true" data-mobile-analytics-tab="mobile-comments">Comments</button>
+        <button type="button" aria-selected="false" data-mobile-analytics-tab="mobile-domains">Domains</button>
+        <button type="button" aria-selected="false" data-mobile-analytics-tab="mobile-skills">Capabilities</button>
+      </nav>
+
+      <section class="analytics-mobile__panel is-active" id="mobile-comments" aria-labelledby="mobile-comments-title">
+        <h3 id="mobile-comments-title">VB Comments Distribution</h3>
+        <p class="analytics-mobile__note">Number of comments on Indirect tasks</p>
+        <div class="analytics-mini-bars" aria-label="VB comments distribution">
+          <div class="analytics-mini-bars__row"><span>0</span><div class="analytics-mini-bars__track"><i style="width: 25%;"></i></div><b>48</b></div>
+          <div class="analytics-mini-bars__row"><span>1</span><div class="analytics-mini-bars__track"><i style="width: 100%;"></i></div><b>191</b></div>
+          <div class="analytics-mini-bars__row"><span>2</span><div class="analytics-mini-bars__track"><i style="width: 64%;"></i></div><b>122</b></div>
+          <div class="analytics-mini-bars__row"><span>3</span><div class="analytics-mini-bars__track"><i style="width: 32%;"></i></div><b>62</b></div>
+          <div class="analytics-mini-bars__row"><span>4</span><div class="analytics-mini-bars__track"><i style="width: 18%;"></i></div><b>35</b></div>
+          <div class="analytics-mini-bars__row"><span>5+</span><div class="analytics-mini-bars__track"><i style="width: 61%;"></i></div><b>117</b></div>
+        </div>
+      </section>
+
+      <section class="analytics-mobile__panel" id="mobile-domains" aria-labelledby="mobile-domains-title">
+        <h3 id="mobile-domains-title">Business Domain</h3>
+        <p class="analytics-mobile__note">Categorical breakdown of the 1,033 total tasks.</p>
+        <div class="analytics-rank-list">
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Promo, sales & commercial performance</span><b>282</b></div><div class="analytics-rank-track"><i style="width: 100%; background: #06a7c8;"></i></div></div>
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Customer, category & segmentation analytics</span><b>261</b></div><div class="analytics-rank-track"><i style="width: 93%; background: #06a7c8;"></i></div></div>
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Assortment, inventory & availability</span><b>155</b></div><div class="analytics-rank-track"><i style="width: 55%; background: #06a7c8;"></i></div></div>
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Other / cross-domain</span><b>121</b></div><div class="analytics-rank-track"><i style="width: 43%; background: #06a7c8;"></i></div></div>
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Data platform & integrations</span><b>108</b></div><div class="analytics-rank-track"><i style="width: 38%; background: #06a7c8;"></i></div></div>
+        </div>
+      </section>
+
+      <section class="analytics-mobile__panel" id="mobile-skills" aria-labelledby="mobile-skills-title">
+        <h3 id="mobile-skills-title">Capability</h3>
+        <p class="analytics-mobile__note">Work types that appear most often across tasks.</p>
+        <div class="analytics-rank-list">
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>BI, dashboard & application development</span><b>323</b></div><div class="analytics-rank-track"><i style="width: 100%; background: #9069e8;"></i></div></div>
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Data quality, validation & reconciliation</span><b>161</b></div><div class="analytics-rank-track"><i style="width: 50%; background: #9069e8;"></i></div></div>
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Requirements, documentation & solution design</span><b>156</b></div><div class="analytics-rank-track"><i style="width: 48%; background: #9069e8;"></i></div></div>
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Data engineering & integration</span><b>118</b></div><div class="analytics-rank-track"><i style="width: 37%; background: #9069e8;"></i></div></div>
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Analytics, metric logic & modeling</span><b>107</b></div><div class="analytics-rank-track"><i style="width: 33%; background: #9069e8;"></i></div></div>
+        </div>
+      </section>
+    </section>
 
   </main>
 
@@ -234,8 +328,8 @@
       var histDom = document.getElementById('histogramChart');
       if (histDom) {
         var histChart = echarts.getInstanceByDom(histDom) || echarts.init(histDom);
-        var histX = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','20','22','30'];
-        var histY = [48,191,122,62,35,29,22,19,10,10,4,3,2,1,4,2,3,3,1,1,1,2];
+        var histX = ['0','1','2','3','4','5+'];
+        var histY = [48,191,122,62,35,117];
 
         var histOption = {
           backgroundColor: 'transparent',
@@ -354,6 +448,22 @@
 
     // Initial render when page loads
     renderCharts();
+
+    function bindMobileAnalyticsTabs() {
+      document.querySelectorAll('[data-mobile-analytics-tab]').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var targetId = tab.getAttribute('data-mobile-analytics-tab');
+          document.querySelectorAll('[data-mobile-analytics-tab]').forEach(function(item) {
+            item.setAttribute('aria-selected', String(item === tab));
+          });
+          document.querySelectorAll('.analytics-mobile__panel').forEach(function(panel) {
+            panel.classList.toggle('is-active', panel.id === targetId);
+          });
+        });
+      });
+    }
+
+    bindMobileAnalyticsTabs();
 
     // Listen for language changes triggered by i18n.js
     window.addEventListener('languageChanged', function() {
