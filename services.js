@@ -82,8 +82,26 @@ function initializeMobileAccordions() {
     });
   });
 
+  function revealDestination(hash) {
+    if (!breakpoint.matches || !hash) return;
+    const target = document.getElementById(hash.slice(1));
+    if (!target) return;
+    toggles.forEach((toggle) => {
+      if (target.contains(toggle) || toggle.getAttribute("data-mobile-accordion") === target.id) {
+        toggle.setAttribute("aria-expanded", "true");
+      }
+    });
+    syncPanels();
+  }
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (link) revealDestination(link.getAttribute("href"));
+  });
+  window.addEventListener("hashchange", () => revealDestination(window.location.hash));
   breakpoint.addEventListener("change", syncPanels);
   syncPanels();
+  revealDestination(window.location.hash);
 }
 
 function getEstimate() {
@@ -113,7 +131,6 @@ function getEstimate() {
 function updateEstimate() {
   const state = getEstimate();
 
-  hoursNumber.value = state.hours;
   hoursRange.value = Math.min(Number(hoursRange.max), state.hours);
 
   estimateTotal.textContent = money.format(state.estimate);
@@ -124,6 +141,11 @@ function updateEstimate() {
   resultScope.textContent = state.scope.toFixed(2) + "x";
   estimateFormula.textContent =
     state.hours + " hours x " + money.format(state.rate) + " x " + state.urgency.toFixed(2) + " x " + state.scope.toFixed(2);
+}
+
+function normalizeHours() {
+  hoursNumber.value = normalizedHours(hoursNumber.value);
+  updateEstimate();
 }
 
 function arrayBufferToBase64(buffer) {
@@ -339,6 +361,7 @@ async function createRequestPdf() {
 
 async function formRequest(event) {
   event.preventDefault();
+  normalizeHours();
 
   if (!costForm.reportValidity()) {
     return;
@@ -362,7 +385,10 @@ async function formRequest(event) {
     requestDownload.download = request.filename;
     requestDocument.hidden = false;
     requestStatus.textContent = translated("PDF preview created. Review it below or download the file.");
-    requestDocument.scrollIntoView({ behavior: "smooth", block: "start" });
+    requestDocument.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      block: "start",
+    });
   } catch (error) {
     requestStatus.classList.add("is-error");
     requestStatus.textContent = translated(error instanceof Error ? error.message : "The PDF could not be created. Please try again.");
@@ -405,6 +431,7 @@ function resetCaptcha() {
 }
 
 async function submitRequest() {
+  normalizeHours();
   if (!costForm.reportValidity()) {
     return;
   }
@@ -425,10 +452,13 @@ async function submitRequest() {
   submitRequestButton.textContent = translated("Submitting...");
   requestStatus.classList.remove("is-error", "is-success");
   requestStatus.textContent = translated("Submitting your request...");
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20000);
 
   try {
     const response = await fetch(feedbackEndpoint, {
       method: "POST",
+      signal: controller.signal,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: customerName.value.trim(),
@@ -464,8 +494,11 @@ async function submitRequest() {
       : translated("Request submitted successfully.");
   } catch (error) {
     requestStatus.classList.add("is-error");
-    requestStatus.textContent = translated(error instanceof Error ? error.message : "The request could not be submitted. Please try again.");
+    requestStatus.textContent = translated(error.name === "AbortError"
+      ? "The request timed out. Complete the security check and try again."
+      : error instanceof Error ? error.message : "The request could not be submitted. Please try again.");
   } finally {
+    clearTimeout(timeout);
     resetCaptcha();
     submitRequestButton.disabled = false;
     formRequestButton.disabled = false;
@@ -479,7 +512,8 @@ hoursRange.addEventListener("input", () => {
 });
 
 hoursNumber.addEventListener("input", updateEstimate);
-hoursNumber.addEventListener("change", updateEstimate);
+hoursNumber.addEventListener("change", normalizeHours);
+hoursNumber.addEventListener("blur", normalizeHours);
 serviceType.addEventListener("change", updateEstimate);
 scopeFactor.addEventListener("change", updateEstimate);
 

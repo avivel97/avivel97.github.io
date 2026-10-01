@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vladimir Belolipetskiy</title>
-  <link rel="stylesheet" href="styles.css?v=20260731-12">
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <link rel="stylesheet" href="styles.css?v=20261001-1">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <script defer src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
   
 </head>
 <body>
+  <a class="skip-link" href="#top">Skip to content</a>
   <header class="site-header">
     <div class="language-switcher" aria-label="Language">
       <button type="button" data-language="en" aria-label="Switch to English">EN</button>
@@ -24,10 +26,10 @@
     </nav>
   </header>
 
-  <main id="top">
+  <main id="top" tabindex="-1">
     <section class="hero-section" id="bio" aria-labelledby="hero-title">
       <div class="portrait-panel">
-        <img src="My_prom.jpg" alt="Portrait of Vladimir Belolipetskiy" class="portrait">
+        <img src="My_prom.jpg" alt="Portrait of Vladimir Belolipetskiy" class="portrait" width="960" height="1280">
       </div>
       <div class="intro-panel">
         <p class="eyebrow">I turn complex retail data into practical decisions.</p>
@@ -35,6 +37,10 @@
         <p class="bio" data-bio>
           I build analytical tools that help retailers make better decisions—from identifying root causes and forecasting demand to evaluating pilots and optimizing pricing, assortment, and operational processes. I combine hands-on expertise in SQL, Python, business analysis, and applied statistics to turn data into practical business solutions.
         </p>
+        <div class="hero-actions" aria-label="Learn more">
+          <a class="button primary" href="services.html">Explore services</a>
+          <a class="button secondary" href="research.html">Research</a>
+        </div>
       </div>
     </section>
 
@@ -78,6 +84,8 @@
               data-cv-preview-ru="cv-preview-ru.png"
               data-cv-preview-en="cv-preview-en.png"
               alt="First page of Vladimir Belolipetskiy's CV"
+              width="1191"
+              height="1684"
               loading="lazy"
             >
           </a>
@@ -91,10 +99,6 @@
           >Open CV</a>
           <p>Open the full CV in your device's PDF viewer.</p>
         </div>
-      </div>
-      <div class="hero-actions cv-actions" aria-label="Learn more">
-        <a class="button primary" href="services.html">Learn more about my commercial services</a>
-        <a class="button secondary" href="research.html">Learn more about my research</a>
       </div>
     </section>
 
@@ -113,18 +117,19 @@
         
         <!-- LEFT COLUMN: Sankey Chart -->
         <div style="flex: 2; min-width: 400px;">
-          <h3 style="margin: 0 0 4px 0; font-size: 1.1rem; font-weight: 600; color: #111111;">Tasks Breakdown</h3>
-          <p style="margin: 0 0 16px 0; font-size: 0.85rem; color: #555555;">
+          <h3 id="tasks-chart-title" style="margin: 0 0 4px 0; font-size: 1.1rem; font-weight: 600; color: #111111;">Tasks Breakdown</h3>
+          <p id="tasks-chart-description" style="margin: 0 0 16px 0; font-size: 0.85rem; color: #555555;">
             Topics are modelled from task names with ChatGPT 5.6 Sol
           </p>
-          <div id="sankeyChart" style="height: 380px; width: 100%;"></div>
+          <p class="analytics-mobile__note" id="tasks-count-note">The two displayed groups cover 1,018 of 1,033 tasks; 15 tasks are not represented in this breakdown.</p>
+          <div id="sankeyChart" role="img" aria-labelledby="tasks-chart-title" aria-describedby="tasks-chart-description tasks-count-note" style="height: 380px; width: 100%;"></div>
         </div>
 
         <!-- RIGHT COLUMN: Vertical Histogram -->
         <div style="flex: 1.2; min-width: 300px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e5e7eb; display: flex; flex-direction: column;">
-          <h4 style="margin: 0 0 4px 0; font-size: 1rem; font-weight: 600; color: #111111;">VB Comments Distribution</h4>
-          <p style="margin: 0 0 12px 0; font-size: 0.75rem; color: #64748b;">Number of comments on Indirect tasks</p>
-          <div id="histogramChart" style="height: 350px; width: 100%; flex: 1;"></div>
+          <h4 id="comments-chart-title" style="margin: 0 0 4px 0; font-size: 1rem; font-weight: 600; color: #111111;">VB Comments Distribution</h4>
+          <p id="comments-chart-description" style="margin: 0 0 12px 0; font-size: 0.75rem; color: #64748b;">Number of comments on Indirect tasks</p>
+          <div id="histogramChart" role="img" aria-labelledby="comments-chart-title" aria-describedby="comments-chart-description" style="height: 350px; width: 100%; flex: 1;"></div>
         </div>
         
       </div>
@@ -134,22 +139,77 @@
         
         <h3 style="width: 100%; margin: 0 0 4px 0; font-size: 1.1rem; font-weight: 600; color: #111111;">Work Profile Breakdown</h3>
         <p style="width: 100%; margin: 0 0 8px 0; font-size: 0.85rem; color: #555555;">
-          Категорийный разбор 1 033 задач.
+          Categorical breakdown of the 1,033 total tasks.
         </p>
 
         <!-- LEFT COLUMN: Business Domain -->
         <div style="flex: 1; min-width: 300px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e5e7eb; display: flex; flex-direction: column;">
-          <h4 style="margin: 0 0 12px 0; font-size: 1rem; font-weight: 600; color: #111111;">Business Domain</h4>
-          <div id="domainChart" style="height: 300px; width: 100%; flex: 1;"></div>
+          <h4 id="domain-chart-title" style="margin: 0 0 12px 0; font-size: 1rem; font-weight: 600; color: #111111;">Business Domain</h4>
+          <p id="domain-chart-description">Categorical breakdown of the 1,033 total tasks.</p>
+          <div id="domainChart" role="img" aria-labelledby="domain-chart-title" aria-describedby="domain-chart-description" style="height: 300px; width: 100%; flex: 1;"></div>
         </div>
 
         <!-- RIGHT COLUMN: Capability -->
         <div style="flex: 1; min-width: 300px; background: #f8fafc; padding: 16px; border-radius: 8px; border: 1px solid #e5e7eb; display: flex; flex-direction: column;">
-          <h4 style="margin: 0 0 12px 0; font-size: 1rem; font-weight: 600; color: #111111;">Capability</h4>
-          <div id="capabilityChart" style="height: 300px; width: 100%; flex: 1;"></div>
+          <h4 id="capability-chart-title" style="margin: 0 0 12px 0; font-size: 1rem; font-weight: 600; color: #111111;">Capability</h4>
+          <p id="capability-chart-description">Work types that appear most often across tasks.</p>
+          <div id="capabilityChart" role="img" aria-labelledby="capability-chart-title" aria-describedby="capability-chart-description" style="height: 300px; width: 100%; flex: 1;"></div>
         </div>
 
       </div>
+      <details class="chart-data">
+        <summary>Chart data</summary>
+        <table>
+          <caption>Tasks Breakdown</caption>
+          <thead><tr><th scope="col">Group</th><th scope="col">Tasks</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">All Tasks</th><td>1,033</td></tr>
+            <tr><th scope="row">Directly Assigned</th><td>443</td></tr>
+            <tr><th scope="row">Indirect Participation</th><td>575</td></tr>
+            <tr><th scope="row">Assigned at least once</th><td>343</td></tr>
+            <tr><th scope="row">Commented, never assigned</th><td>232</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <caption>VB Comments Distribution</caption>
+          <thead><tr><th scope="col">Comments per task</th><th scope="col">Tasks</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">0</th><td>48</td></tr>
+            <tr><th scope="row">1</th><td>191</td></tr>
+            <tr><th scope="row">2</th><td>122</td></tr>
+            <tr><th scope="row">3</th><td>62</td></tr>
+            <tr><th scope="row">4</th><td>35</td></tr>
+            <tr><th scope="row">5+</th><td>117</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <caption>Business Domain</caption>
+          <thead><tr><th scope="col">Category</th><th scope="col">Tasks</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Promo, sales &amp; commercial performance</th><td>282</td></tr>
+            <tr><th scope="row">Customer, category &amp; segmentation analytics</th><td>261</td></tr>
+            <tr><th scope="row">Assortment, inventory &amp; availability</th><td>155</td></tr>
+            <tr><th scope="row">Other / cross-domain</th><td>121</td></tr>
+            <tr><th scope="row">Data platform &amp; integrations</th><td>108</td></tr>
+            <tr><th scope="row">BI products &amp; reporting</th><td>94</td></tr>
+            <tr><th scope="row">Delivery operations &amp; support</th><td>12</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <caption>Capability</caption>
+          <thead><tr><th scope="col">Category</th><th scope="col">Tasks</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">BI, dashboard &amp; application development</th><td>323</td></tr>
+            <tr><th scope="row">Data quality, validation &amp; reconciliation</th><td>161</td></tr>
+            <tr><th scope="row">Requirements, documentation &amp; solution design</th><td>156</td></tr>
+            <tr><th scope="row">Data engineering &amp; integration</th><td>118</td></tr>
+            <tr><th scope="row">Analytics, metric logic &amp; modeling</th><td>107</td></tr>
+            <tr><th scope="row">Other / insufficient text signal</th><td>100</td></tr>
+            <tr><th scope="row">Technical support, incidents &amp; configuration</th><td>41</td></tr>
+            <tr><th scope="row">Coordination &amp; delivery management</th><td>27</td></tr>
+          </tbody>
+        </table>
+      </details>
     </section>
 
     <section class="analytics-mobile" aria-labelledby="mobile-analytics-title">
@@ -161,6 +221,7 @@
       <section class="analytics-mobile__summary" aria-labelledby="mobile-tasks-title">
         <h3 id="mobile-tasks-title">Tasks Breakdown</h3>
         <p class="analytics-mobile__note">Topics are modelled from task names with ChatGPT 5.6 Sol</p>
+        <p class="analytics-mobile__note">The two displayed groups cover 1,018 of 1,033 tasks; 15 tasks are not represented in this breakdown.</p>
 
         <div class="analytics-flow">
           <div class="analytics-flow__total">
@@ -173,7 +234,7 @@
               <span>Directly Assigned</span>
               <b>443</b>
             </header>
-            <div class="analytics-flow__bar"><i style="width: 43%; background: #37c871;"></i></div>
+            <div class="analytics-flow__bar"><i style="width: calc(100% * 443 / 1033); background: #37c871;"></i></div>
           </article>
 
           <div class="analytics-flow__group">
@@ -183,7 +244,7 @@
                 <span>Indirect Participation</span>
                 <b>575</b>
               </header>
-              <div class="analytics-flow__bar"><i style="width: 57%; background: #f5be25;"></i></div>
+              <div class="analytics-flow__bar"><i style="width: calc(100% * 575 / 1033); background: #f5be25;"></i></div>
             </article>
 
             <div class="analytics-flow__details">
@@ -201,9 +262,9 @@
       </section>
 
       <nav class="analytics-mobile__tabs" aria-label="Analytics sections">
-        <button type="button" aria-selected="true" data-mobile-analytics-tab="mobile-comments">Comments</button>
-        <button type="button" aria-selected="false" data-mobile-analytics-tab="mobile-domains">Domains</button>
-        <button type="button" aria-selected="false" data-mobile-analytics-tab="mobile-skills">Capabilities</button>
+        <button type="button" aria-pressed="true" aria-controls="mobile-comments" data-mobile-analytics-tab="mobile-comments">Comments</button>
+        <button type="button" aria-pressed="false" aria-controls="mobile-domains" data-mobile-analytics-tab="mobile-domains">Domains</button>
+        <button type="button" aria-pressed="false" aria-controls="mobile-skills" data-mobile-analytics-tab="mobile-skills">Capabilities</button>
       </nav>
 
       <section class="analytics-mobile__panel is-active" id="mobile-comments" aria-labelledby="mobile-comments-title">
@@ -219,7 +280,7 @@
         </div>
       </section>
 
-      <section class="analytics-mobile__panel" id="mobile-domains" aria-labelledby="mobile-domains-title">
+      <section class="analytics-mobile__panel" id="mobile-domains" aria-labelledby="mobile-domains-title" hidden>
         <h3 id="mobile-domains-title">Business Domain</h3>
         <p class="analytics-mobile__note">Categorical breakdown of the 1,033 total tasks.</p>
         <div class="analytics-rank-list">
@@ -228,10 +289,12 @@
           <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Assortment, inventory & availability</span><b>155</b></div><div class="analytics-rank-track"><i style="width: 55%; background: #06a7c8;"></i></div></div>
           <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Other / cross-domain</span><b>121</b></div><div class="analytics-rank-track"><i style="width: 43%; background: #06a7c8;"></i></div></div>
           <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Data platform & integrations</span><b>108</b></div><div class="analytics-rank-track"><i style="width: 38%; background: #06a7c8;"></i></div></div>
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>BI products & reporting</span><b>94</b></div><div class="analytics-rank-track"><i style="width: 33%; background: #06a7c8;"></i></div></div>
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Delivery operations & support</span><b>12</b></div><div class="analytics-rank-track"><i style="width: 4%; background: #06a7c8;"></i></div></div>
         </div>
       </section>
 
-      <section class="analytics-mobile__panel" id="mobile-skills" aria-labelledby="mobile-skills-title">
+      <section class="analytics-mobile__panel" id="mobile-skills" aria-labelledby="mobile-skills-title" hidden>
         <h3 id="mobile-skills-title">Capability</h3>
         <p class="analytics-mobile__note">Work types that appear most often across tasks.</p>
         <div class="analytics-rank-list">
@@ -240,6 +303,9 @@
           <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Requirements, documentation & solution design</span><b>156</b></div><div class="analytics-rank-track"><i style="width: 48%; background: #9069e8;"></i></div></div>
           <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Data engineering & integration</span><b>118</b></div><div class="analytics-rank-track"><i style="width: 37%; background: #9069e8;"></i></div></div>
           <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Analytics, metric logic & modeling</span><b>107</b></div><div class="analytics-rank-track"><i style="width: 33%; background: #9069e8;"></i></div></div>
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Other / insufficient text signal</span><b>100</b></div><div class="analytics-rank-track"><i style="width: 31%; background: #9069e8;"></i></div></div>
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Technical support, incidents & configuration</span><b>41</b></div><div class="analytics-rank-track"><i style="width: 13%; background: #9069e8;"></i></div></div>
+          <div class="analytics-rank-item"><div class="analytics-rank-label"><span>Coordination & delivery management</span><b>27</b></div><div class="analytics-rank-track"><i style="width: 8%; background: #9069e8;"></i></div></div>
         </div>
       </section>
     </section>
@@ -250,22 +316,26 @@
     <span>&copy; <span id="year">2026</span> Vladimir Belolipetskiy</span>
   </footer>
 
-  <script src="script.js"></script>
-  <script src="i18n.js?v=20260812-1"></script>
+  <script src="script.js?v=20261001-1"></script>
+  <script src="i18n.js?v=20261001-1"></script>
   
   <script>
     function renderCharts() {
-      if (typeof siteI18n === 'undefined') return;
+      if (typeof echarts === 'undefined' || typeof siteI18n === 'undefined') return;
       var t = siteI18n.t.bind(siteI18n);
+      var animate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       /**************************/
       /* 1. Sankey Chart Setup  */
       /**************************/
       var sankeyDom = document.getElementById('sankeyChart');
+      if (!sankeyDom || !sankeyDom.clientWidth) return;
       if (sankeyDom) {
         var sankeyChart = echarts.getInstanceByDom(sankeyDom) || echarts.init(sankeyDom);
         var sankeyOption = {
           backgroundColor: 'transparent',
+          animation: animate,
+          aria: { enabled: true, label: { description: t('Tasks Breakdown') } },
           series: {
             type: 'sankey',
             layout: 'none',
@@ -281,8 +351,6 @@
                   let name = params.name;
                   let val = params.value.toLocaleString();
                   let transName = t(name);
-                  if (name === 'Directly Assigned') return transName + '\n' + val + ' (43%)';
-                  if (name === 'Indirect Participation') return transName + '\n' + val + ' (57%)';
                   if (name === 'Assigned at least once') return transName + '\n' + val + ' (60%)';
                   if (name === 'Commented, never assigned') return transName + '\n' + val + ' (40%)';
                   return transName + '\n' + val;
@@ -295,9 +363,9 @@
               triggerOn: 'mousemove',
               formatter: function(params) {
                 if(params.dataType === 'edge') {
-                  return params.data.source + ' ➔ ' + params.data.target + '<br/><b>' + params.data.value.toLocaleString() + '</b> items';
+                  return t(params.data.source) + ' ➔ ' + t(params.data.target) + '<br/>' + t('Number of Tasks') + ': <b>' + params.data.value.toLocaleString() + '</b>';
                 }
-                return t(params.name) + '<br/><b>' + params.value.toLocaleString() + '</b> items';
+                return t(params.name) + '<br/>' + t('Number of Tasks') + ': <b>' + params.value.toLocaleString() + '</b>';
               }
             },
             data: [
@@ -333,6 +401,8 @@
 
         var histOption = {
           backgroundColor: 'transparent',
+          animation: animate,
+          aria: { enabled: true, label: { description: t('Number of comments on Indirect tasks') } },
           tooltip: {
             trigger: 'axis',
             axisPointer: { type: 'shadow' },
@@ -375,6 +445,8 @@
         ];
         var domainOption = {
           backgroundColor: 'transparent',
+          animation: animate,
+          aria: { enabled: true, label: { description: t('Categorical breakdown of the 1,033 total tasks.') } },
           tooltip: { 
             trigger: 'axis', 
             axisPointer: { type: 'shadow' },
@@ -419,6 +491,8 @@
         ];
         var capabilityOption = {
           backgroundColor: 'transparent',
+          animation: animate,
+          aria: { enabled: true, label: { description: t('Work types that appear most often across tasks.') } },
           tooltip: { 
             trigger: 'axis', 
             axisPointer: { type: 'shadow' },
@@ -446,24 +520,37 @@
       }
     }
 
-    // Initial render when page loads
-    renderCharts();
-
     function bindMobileAnalyticsTabs() {
-      document.querySelectorAll('[data-mobile-analytics-tab]').forEach(function(tab) {
+      var tabs = document.querySelectorAll('[data-mobile-analytics-tab]');
+      var panels = document.querySelectorAll('.analytics-mobile__panel');
+      function selectPanel(targetId) {
+        if (!Array.from(panels).some(function(panel) { return panel.id === targetId; })) return;
+        tabs.forEach(function(tab) {
+          tab.setAttribute('aria-pressed', String(tab.getAttribute('data-mobile-analytics-tab') === targetId));
+        });
+        panels.forEach(function(panel) {
+          var active = panel.id === targetId;
+          panel.classList.toggle('is-active', active);
+          panel.hidden = !active;
+        });
+      }
+      tabs.forEach(function(tab) {
         tab.addEventListener('click', function() {
           var targetId = tab.getAttribute('data-mobile-analytics-tab');
-          document.querySelectorAll('[data-mobile-analytics-tab]').forEach(function(item) {
-            item.setAttribute('aria-selected', String(item === tab));
-          });
-          document.querySelectorAll('.analytics-mobile__panel').forEach(function(panel) {
-            panel.classList.toggle('is-active', panel.id === targetId);
-          });
+          selectPanel(targetId);
+          window.location.hash = targetId;
         });
       });
+      function restorePanel() {
+        selectPanel(window.location.hash.slice(1) || 'mobile-comments');
+      }
+      window.addEventListener('hashchange', restorePanel);
+      restorePanel();
     }
 
     bindMobileAnalyticsTabs();
+    // Deferred chart scripts are ready before DOMContentLoaded.
+    document.addEventListener('DOMContentLoaded', renderCharts);
 
     // Listen for language changes triggered by i18n.js
     window.addEventListener('languageChanged', function() {
@@ -472,8 +559,13 @@
 
     // Global Resize
     window.addEventListener('resize', function() {
-      ['sankeyChart', 'histogramChart', 'domainChart', 'capabilityChart'].forEach(id => {
-        let chart = echarts.getInstanceByDom(document.getElementById(id));
+      if (typeof echarts === 'undefined') return;
+      var sankeyDom = document.getElementById('sankeyChart');
+      if (sankeyDom && sankeyDom.clientWidth && !echarts.getInstanceByDom(sankeyDom)) renderCharts();
+      ['sankeyChart', 'histogramChart', 'domainChart', 'capabilityChart'].forEach(function(id) {
+        var dom = document.getElementById(id);
+        if (!dom || !dom.clientWidth) return;
+        var chart = echarts.getInstanceByDom(dom);
         if (chart) chart.resize();
       });
     });

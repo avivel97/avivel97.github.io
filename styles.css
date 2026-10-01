@@ -176,7 +176,8 @@ h2 {
   line-height: 1.1;
 }
 
-h3 {
+h3,
+.download-card h2 {
   margin: 8px 0 10px;
   font-size: 1.35rem;
   line-height: 1.2;
@@ -615,7 +616,8 @@ h2 {
   letter-spacing: -0.06em;
 }
 
-h3 {
+h3,
+.download-card h2 {
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: -0.035em;
@@ -1170,7 +1172,7 @@ html[lang="ru"] .intro-panel h1 {
     cursor: pointer;
   }
 
-  .analytics-mobile__tabs button[aria-selected="true"] {
+  .analytics-mobile__tabs button[aria-pressed="true"] {
     color: #ffffff;
     background: #0969ff;
     box-shadow: 0 6px 18px rgba(9, 105, 255, 0.24);
@@ -1229,8 +1231,106 @@ html[lang="ru"] .intro-panel h1 {
   }
 }
 
-/* Keep translated research headings inside narrow phone panels. */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 18px;
+  z-index: 100;
+  padding: 12px 18px;
+  color: #080808;
+  background: #ffffff;
+  border: 2px solid #080808;
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #0048dc;
+  outline-offset: 4px;
+}
+
+main [id] {
+  scroll-margin-top: 116px;
+}
+
+.chart-data {
+  margin: 18px;
+  padding: 24px;
+  color: #080808;
+  background: #ffffff;
+  border: 2px solid #080808;
+}
+
+.chart-data summary {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.chart-data table {
+  width: 100%;
+  margin-top: 24px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.chart-data caption {
+  margin-bottom: 8px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.chart-data th,
+.chart-data td {
+  padding: 8px;
+  border-bottom: 1px solid #b8b8b8;
+}
+
+.chart-data td:last-child {
+  font-variant-numeric: tabular-nums;
+}
+
+.analytics-mobile__note {
+  color: #5f6878;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .button,
+  .small-button {
+    transition: none;
+  }
+}
+
+@media (max-width: 900px) {
+  main [id] {
+    scroll-margin-top: 24px;
+  }
+}
+
 @media (max-width: 640px) {
+  .intro-panel {
+    grid-row: 1;
+  }
+
+  .portrait-panel {
+    grid-row: 2;
+  }
+
+  .analytics-mobile__panel {
+    scroll-margin-top: 64px;
+  }
+
+  /* Keep translated research headings inside narrow phone panels. */
   .research-section h1 {
     max-width: 100%;
     font-size: clamp(2.5rem, 10vw, 3.4rem);

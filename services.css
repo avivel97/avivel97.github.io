@@ -354,6 +354,11 @@
   all: inherit;
 }
 
+.mobile-accordion-toggle:focus-visible {
+  outline: 3px solid #0048dc;
+  outline-offset: 4px;
+}
+
 .price-table th {
   color: #ffd2c8;
   font-size: 0.78rem;
@@ -1092,7 +1097,7 @@
 }
 
 .proposal-hero {
-  min-height: 690px;
+  min-height: 0;
   color: #080808;
   background-image:
     radial-gradient(circle at 78% 26%, rgba(247, 247, 244, 0.96) 0 8%, rgba(247, 247, 244, 0) 28%),
@@ -1107,7 +1112,7 @@
 
 .proposal-hero-inner {
   max-width: none;
-  padding: 72px 48px 54px;
+  padding: 48px;
 }
 
 .proposal-kicker,
@@ -1131,12 +1136,13 @@
 }
 
 .proposal-hero h1 {
-  max-width: 10ch;
-  margin: 64px 0 28px;
-  font-size: clamp(4.3rem, 8.5vw, 8.2rem);
+  max-width: 18ch;
+  margin: 0 0 24px;
+  font-size: clamp(2.6rem, 5vw, 4.5rem);
   font-weight: 500;
-  line-height: 0.88;
-  letter-spacing: -0.075em;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
 }
 
 .proposal-lead {
@@ -1294,7 +1300,7 @@
   }
 
   .proposal-hero h1 {
-    font-size: clamp(3.5rem, 12vw, 6.5rem);
+    font-size: clamp(2.5rem, 6.5vw, 3.8rem);
   }
 }
 
@@ -1306,12 +1312,12 @@
   }
 
   .proposal-hero {
-    min-height: 620px;
+    min-height: 0;
   }
 
   .proposal-hero h1 {
-    margin-top: 48px;
-    font-size: clamp(3.2rem, 15vw, 5rem);
+    margin-top: 0;
+    font-size: clamp(2.2rem, 9vw, 3rem);
   }
 }
 
@@ -1566,7 +1572,7 @@
   }
 
   .proposal-hero h1 {
-    font-size: clamp(2.7rem, 13vw, 4.2rem);
+    font-size: clamp(2.2rem, 9vw, 3rem);
   }
 
   .proposal-proof {

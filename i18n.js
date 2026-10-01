@@ -3,6 +3,7 @@
     "Vladimir Belolipetskiy": "Владимир Белолипецкий",
     "VB": "ВБ",
     "Bio": "Биография",
+    "Skip to content": "Перейти к содержимому",
     "Commercial Services": "Коммерческие услуги",
     "Research": "Исследования",
     "I turn complex retail data into practical decisions.": "Я превращаю сложные данные о розничной торговле в практические решения.",
@@ -277,6 +278,7 @@
     "Reference:": "Номер запроса:",
     "The request could not be submitted.": "Не удалось отправить запрос.",
     "The request could not be submitted. Please try again.": "Не удалось отправить запрос. Повторите попытку.",
+    "The request timed out. Complete the security check and try again.": "Время ожидания истекло. Пройдите проверку безопасности и повторите попытку.",
     "Security check failed or expired. Please try again.": "Проверка безопасности не пройдена или истекла. Повторите попытку.",
     "Security check is temporarily unavailable. Please try again.": "Проверка безопасности временно недоступна. Повторите попытку.",
     "Enter a valid email address.": "Введите корректный адрес электронной почты.",
@@ -284,6 +286,15 @@
     "The request could not be stored. Please try again.": "Не удалось сохранить запрос. Повторите попытку.",
 
     // --- CHART KEYS ---
+    "Chart data": "Данные диаграммы",
+    "Group": "Группа",
+    "Category": "Категория",
+    "Tasks": "Задачи",
+    "Comments per task": "Комментарии на задачу",
+    "Tasks represented in this breakdown": "Задачи, представленные в этом разборе",
+    "The two displayed groups cover 1,018 of 1,033 tasks; 15 tasks are not represented in this breakdown.": "Две показанные группы охватывают 1 018 из 1 033 задач; 15 задач не представлены в этом разборе.",
+    "Business domain and capability counts": "Количество задач по бизнес-доменам и компетенциям",
+    "Comments on indirect tasks": "Комментарии по косвенным задачам",
     "My few last years in numbers (as of July 2026)": "Мои последние несколько лет в цифрах (по состоянию на июль 2026 года)",
     "My few last years in numbers": "Мои последние несколько лет в цифрах",
     "As of July 2026": "По состоянию на июль 2026 года",
@@ -355,7 +366,7 @@
   }
 
   function rublesToDollars(value) {
-    return value.replace(/([\d\s\u00a0]+)\s*₽/g, (_, amount) => {
+    return value.replace(/(\d[\d\s\u00a0]*)\s*₽/g, (_, amount) => {
       const rubles = Number(amount.replace(/[\s\u00a0]/g, ""));
       return `$${usdFormatter.format(rubles / rublesPerDollar)}`;
     });
@@ -367,7 +378,7 @@
       .replace(/\/(?:час|ч)$/, "/hour")
       .replace(/^(\d+) ч × /, "$1 hours x ")
       .replace(/ × /g, " x ")
-      .replace(/(\d),(\d)/g, "$1.$2");
+      .replace(/(\d),(\d{1,2})(?!\d)/g, "$1.$2");
     return rublesToDollars(normalized);
   }
 
@@ -478,6 +489,9 @@
   language = requestedLanguage === "ru" || requestedLanguage === "en"
     ? requestedLanguage
     : localStorage.getItem(storageKey) === "en" ? "en" : "ru";
+  if (requestedLanguage === "ru" || requestedLanguage === "en") {
+    localStorage.setItem(storageKey, language);
+  }
 
   document.querySelectorAll("[data-language]").forEach((button) => {
     button.addEventListener("click", () => setLanguage(button.dataset.language));
