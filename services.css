@@ -77,7 +77,6 @@
 }
 
 .proposal-actions,
-.proposal-proof,
 .evidence-links,
 .cta-actions {
   display: flex;
@@ -111,30 +110,6 @@
 .proposal-secondary:hover,
 .proposal-outline:hover {
   transform: translateY(-1px);
-}
-
-.proposal-proof {
-  gap: 18px;
-  margin-top: 38px;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.86rem;
-  font-weight: 800;
-}
-
-.proposal-proof span {
-  position: relative;
-  padding-left: 15px;
-}
-
-.proposal-proof span::before {
-  position: absolute;
-  top: 0.63em;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  content: "";
-  background: #f3ae56;
-  border-radius: 50%;
 }
 
 .evidence-band {
@@ -840,11 +815,6 @@
     font-size: 1.05rem;
   }
 
-  .proposal-proof {
-    gap: 10px 14px;
-    margin-top: 26px;
-  }
-
   .proposal-section,
   .pricing-section,
   .calculator-section {
@@ -1018,10 +988,6 @@
     width: 100%;
   }
 
-  .proposal-proof span {
-    width: 100%;
-  }
-
   .evidence-layout h2,
   .proposal-heading h2,
   .calculator-heading h2,
@@ -1122,8 +1088,7 @@
 }
 
 .proposal-hero h1,
-.proposal-hero .proposal-lead,
-.proposal-proof span {
+.proposal-hero .proposal-lead {
   color: #ffffff;
 }
 
@@ -1160,15 +1125,9 @@
   border-radius: 999px;
 }
 
-.proposal-actions .proposal-primary,
 .request-button {
   color: #ffffff;
   background: #0d5bff;
-}
-
-.proposal-proof {
-  padding-top: 24px;
-  border-top: 2px solid #080808;
 }
 
 .evidence-band,
@@ -1339,41 +1298,26 @@
 }
 
 .proposal-hero h1,
-.proposal-hero .proposal-lead,
-.proposal-hero .proposal-proof span {
+.proposal-hero .proposal-lead {
   color: #ffffff;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
 }
 
-.proposal-hero .proposal-proof {
-  border-color: rgba(255, 255, 255, 0.78);
-}
-
-.proposal-hero .proposal-proof span::before {
-  background: #ffb36b;
-}
-
-.proposal-actions .proposal-primary {
-  color: #ffffff;
-  background: #080808;
-  border-color: #080808;
-}
-
-.proposal-actions .proposal-secondary {
+.proposal-actions .button {
   color: #080808;
   background: #ffffff;
-  border-color: #080808;
+  border-color: #ffffff;
 }
 
-.proposal-actions .proposal-booking {
-  color: #080808;
-  background: #ffc46b;
-  border-color: #080808;
+.proposal-actions .button:hover {
+  background: #e8efff;
+  border-color: #e8efff;
+  transform: none;
 }
 
-.proposal-actions .proposal-booking:hover {
-  color: #ffffff;
-  background: #080808;
+.proposal-actions .button:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
 }
 
 .estimate-result {
@@ -1573,11 +1517,6 @@
 
   .proposal-hero h1 {
     font-size: clamp(2.2rem, 9vw, 3rem);
-  }
-
-  .proposal-proof {
-    align-items: flex-start;
-    flex-direction: column;
   }
 
   .estimate-cta {
